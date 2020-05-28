@@ -39,5 +39,5 @@ Installation is easy, Just download the latest phar from [Poggit](https://poggit
 ***[Read More...](https://github.com/CortexPE/TeaSpoon/wiki#faqs)***
 
 # Todo
-  - [] Fix Hoppers
+  - [ ] Fix Hoppers
 <br />***More to do...***
