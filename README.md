@@ -38,106 +38,11 @@ Installation is easy, Just download the latest phar from [Poggit](https://poggit
 
 ***[Read More...](https://github.com/CortexPE/TeaSpoon/wiki#faqs)***
 
-# Finished & Planned Features
- - Worlds
-  - [X] Dimensions
-    - [X] Nether Dimension
-    - [X] End Dimension
-    - [X] Fully Functional Nether Portal Frame and Block
-    - [X] Funtional END_PORTAL Block (Portal Soon)
-  - [X] Weather System
-  - [X] Temperature System
- - Blocks
-   - [X] EndPortal
-   - [X] Portal (Nether Portal Block)
-   - [X] DragonEgg
-   - [X] Beacon
-   - [X] SlimeBlock
-   - [X] Vanilla-Like MobSpawner (Credits: [XenialDan](https://github.com/thebigsmileXD))
-   - [X] Working Shulker Boxes
-   - [X] Hoppers
-   - [X] (somewhat working) Anvils [needs fix] // Handling is translated from [NukkitX](https://github.com/NukkitX/Nukkit)
-   - [X] Enchantment Tables // Handling is translated from [NukkitX](https://github.com/NukkitX/Nukkit)
-   - [X] SnowLayer (Affected by rain and temperature)
-   - [X] Pumpkin / Jack o' Lantern (Spawns Golems)
-   - [X] Brewing Stand
-   - [X] Cauldron
- - Items
-   - [X] Vanilla Enchants (Progress: 98% | Credits to [TheAz928](https://github.com/TheAz928) for some of the values)
-   - [X] Armor Damage
-   - [X] Armor Stands
-   - [X] FireCharge
-   - [X] Fully Functional Elytra Wings
-   - [X] Fully Functional Fireworks (Credits to [XenialDan](https://github.com/thebigsmileXD) for 45% of it)
-   - [X] Lingering Potions (Credits: [ClearSkyTeam](https://github.com/ClearSkyTeam))
-   - [X] Chorus Fruit (with customizable Delay)
-   - [X] FishingRod (Fully working Fishing System)
-   - [X] Vanilla-Like "Instant-Armor-Equipment"
-   - [X] Lightning Rods
-   - [X] Dragon Breath
-   - [X] Trident
- - Entities & Mobs
-   - [X] XP Drops
-   - [X] Projectiles
-     - [X] Tipped Arrows
-     - [X] LingeringPotion
-   - [ ] Entities
-     - [X] Lightning
-     - [X] EndCrystal
-   - [X] Mobs
-     - [X] Bat
-     - [X] Blaze
-     - [X] CaveSpider
-     - [X] Chicken
-     - [X] Cow
-     - [X] Creeper
-       - [X] Charged Creepers
-       - [X] Ignited Creepers
-     - [X] Donkey
-     - [X] ElderGuardian
-     - [X] EnderDragon
-     - [X] Enderman
-     - [X] Endermite
-     - [X] Evoker
-     - [X] Ghast
-     - [X] Guardian
-     - [X] Horse
-     - [X] Husk
-     - [X] IronGolem
-     - [X] Llama
-     - [X] MagmaCube
-     - [X] Mooshroom
-     - [X] Mule
-     - [X] Ocelot
-     - [X] Parrots
-     - [X] Pig
-     - [X] PolarBear
-     - [X] Rabbit
-     - [X] Sheep
-     - [X] Shulker
-     - [X] Silverfish
-     - [X] Skeleton
-     - [X] Skeleton Horse
-     - [X] Slime
-     - [X] SnowGolem (Affected by Rain & Temperature)
-     - [X] Spider
-     - [X] Stray
-     - [X] Vex
-     - [X] Vindicator
-     - [X] Witch
-     - [X] Wither
-     - [X] WitherSkeleton
-     - [X] Wolf
-     - [X] Zombie Horse
-     - [X] Zombie Pigman
-     - [X] Zombie Villager
- - Commands
-   - [X] More Vanilla-Like /kill command (Not perfect)
-   - [X] World Command
-   - [X] Clear Command
-   - [X] PlaySound Command
- - Mechanics
-   - [X] Swimming
- - Utils
-   - [X] TextFormat::center like PC or MiNET. (Credits: [Turanic](https://github.com/TuranicTeam/Turanic))
-<br />***More to do...***
+# Todo
+  - [ ] Fix Hoppers
+  - [ ] Fireworks
+  - [ ] Fishing
+  - [ ] Shulker Boxes
+  - [ ] Client Side Inventorys
+  - [ ] Remove lightning rod (Useless)
+  - [ ] Creeper explosions
