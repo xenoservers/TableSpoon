@@ -40,4 +40,9 @@ Installation is easy, Just download the latest phar from [Poggit](https://poggit
 
 # Todo
   - [ ] Fix Hoppers
-<br />***More to do...***
+  - [ ] Fireworks
+  - [ ] Fishing
+  - [ ] Shulker Boxes
+  - [ ] Client Side Inventorys
+  - [ ] Remove lightning rod (Useless)
+  - [ ] Creeper explosions
