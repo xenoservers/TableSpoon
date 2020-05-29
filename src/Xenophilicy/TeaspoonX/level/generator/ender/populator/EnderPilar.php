@@ -36,23 +36,19 @@ use pocketmine\utils\Random;
  */
 class EnderPilar extends Populator {
     private const radii = [3, 4, 3, 5, 3, 4, 3, 3, 5, 4, 5, 3, 5, 4, 4, 5, 5, 4, 4, 4, 5];
-    /** @var ChunkManager */
-    private $level;
-    private $randomAmount;
-    private $baseAmount;
     
     /**
      * @param $amount
      */
     public function setRandomAmount($amount){
-        $this->randomAmount = $amount;
+        $randomAmount = $amount;
     }
     
     /**
      * @param $amount
      */
     public function setBaseAmount($amount){
-        $this->baseAmount = $amount;
+        $baseAmount = $amount;
     }
     
     /**
@@ -65,7 +61,7 @@ class EnderPilar extends Populator {
     public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){
         // todo: only spawn within 50 blocks from spawn point at a circle (Usual Amount: 10-15 [in my pov])
         if(mt_rand(0, 100) <= 50){
-            $this->level = $level;
+            $level1 = $level;
             $x = $random->nextRange(0, 15);
             $z = $random->nextRange(0, 15);
             $height = mt_rand(76, 103);

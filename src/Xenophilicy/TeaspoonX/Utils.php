@@ -64,7 +64,7 @@ class Utils {
     
     public static function isPhared(): bool{
         if(self::$phared == null){
-            self::$phared = strlen(\Phar::running()) > 0 ? true : false;
+            self::$phared = strlen(\Phar::running()) > 0;
             
             return self::$phared;
         }
@@ -76,7 +76,7 @@ class Utils {
         if(self::$serverPhared == null){
             try{
                 $ref = new \ReflectionClass(Server::class);
-                self::$serverPhared = ((strpos($ref->getFileName(), "phar://") !== false) ? true : false);
+                self::$serverPhared = strpos($ref->getFileName(), "phar://") !== false;
             }catch(\Exception $e){
                 TableSpoon::getInstance()->getLogger()->error($e);
             }

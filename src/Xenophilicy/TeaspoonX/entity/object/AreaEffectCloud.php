@@ -22,7 +22,6 @@
 
 namespace Xenophilicy\TableSpoon\entity\object;
 
-use pocketmine\entity\EffectInstance;
 use pocketmine\entity\Entity;
 use pocketmine\entity\Living;
 use pocketmine\item\Potion;

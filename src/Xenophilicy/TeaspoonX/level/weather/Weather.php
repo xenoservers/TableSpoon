@@ -43,16 +43,16 @@ class Weather {
       CLEAR = 0, SUNNY = 0, RAIN = 1, RAINY = 1, RAINY_THUNDER = 2, THUNDER = 3;
     
     private $level;
-    private $weatherNow = 0;
+    private $weatherNow;
     private $strength1;
     private $strength2;
     private $duration;
     private $canCalculate = true;
     
     /** @var Vector3 */
-    private $temporalVector = null;
+    private $temporalVector;
     
-    private $lastUpdate = 0;
+    private $lastUpdate;
     
     private $randomWeatherData = [self::CLEAR, self::RAIN, self::RAINY_THUNDER,];
     

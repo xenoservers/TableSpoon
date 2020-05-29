@@ -66,7 +66,7 @@ class BrewingRecipe implements Recipe {
     }
     
     /**
-     * @return null |null
+     * @return null
      */
     public function getId(){
         return $this->id;

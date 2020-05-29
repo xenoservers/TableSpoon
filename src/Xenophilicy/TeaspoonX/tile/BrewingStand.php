@@ -77,7 +77,7 @@ class BrewingStand extends Spawnable implements InventoryHolder, Container, Name
     /** @var CompoundTag */
     private $nbt;
     /** @var BrewingInventory */
-    private $inventory = null;
+    private $inventory;
     
     /**
      * BrewingStand constructor.
