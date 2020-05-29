@@ -1,8 +1,6 @@
-name: TeaSpoon
-main: CortexPE\Main
-version: 1.2.0
-api: 3.9.0
-load: STARTUP
-author: CortexPE
-description: A PLUGIN to Extend PMMP's Functionality without completely changing it.
-website: https://CortexPE.xyz
+name: TableSpoon
+main: Xenophilicy\TableSpoon\TableSpoon
+version: 0.0.1-PRE-ALPHA
+api: 3.0.0
+authors: [CortexPE, Xenophilicy, HyperFlareMC]
+description: Adds cool features to PocketMine
