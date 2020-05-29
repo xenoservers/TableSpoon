@@ -38,6 +38,7 @@ namespace Xenophilicy\TableSpoon\tile;
 use pocketmine\entity\object\ItemEntity;
 use pocketmine\inventory\ChestInventory;
 use pocketmine\inventory\DoubleChestInventory;
+use pocketmine\inventory\Inventory;
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\item\Item;
 use pocketmine\level\Level;
@@ -65,7 +66,7 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
     use NameableTrait, ContainerTrait;
     
     /** @var HopperInventory */
-    private $inventory = null;
+    private $inventory;
     /** @var CompoundTag */
     private $nbt;
     
@@ -92,7 +93,7 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
     }
     
     /**
-     * @return \pocketmine\inventory\Inventory|HopperInventory
+     * @return Inventory|HopperInventory
      */
     public function getRealInventory(){
         return $this->inventory;
@@ -123,7 +124,7 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
     }
     
     /**
-     * @return \pocketmine\inventory\Inventory|HopperInventory
+     * @return Inventory|HopperInventory
      */
     public function getInventory(){
         return $this->inventory;
@@ -223,10 +224,10 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
                             $left = $inv->getLeftSide();
                             $right = $inv->getRightSide();
                             
-                            if($right->canAddItem($targetItem)){
-                                $inv = $right;
-                            }else{
+                            if($left->canAddItem($targetItem)){
                                 $inv = $left;
+                            }else{
+                                $inv = $right;
                             }
                         }
                         
