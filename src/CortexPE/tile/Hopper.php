@@ -208,10 +208,10 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
 							$left = $inv->getLeftSide();
 							$right = $inv->getRightSide();
 
-							if($right->canAddItem($targetItem)){
-								$inv = $right;
-							}else{
+							if($left->canAddItem($targetItem)){
 								$inv = $left;
+							}else{
+								$inv = $right;
 							}
 						}
 
