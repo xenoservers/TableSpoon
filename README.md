@@ -1,4 +1,4 @@
-<h1>TeaSpoon<img src="https://raw.githubusercontent.com/CortexPE/stuff/master/TeaSpoonLogo.png" height="64" width="64" align="left"></img></h1>
+<h1>TableSpoon<img src="https://raw.githubusercontent.com/CortexPE/stuff/master/TeaSpoonLogo.png" height="64" width="64" align="left"></img></h1>
 <br />
 
 [![Poggit](https://poggit.pmmp.io/ci.shield/CortexPE/TeaSpoon/~)](https://poggit.pmmp.io/ci/CortexPE/TeaSpoon/~) [![Donate](https://img.shields.io/badge/donate-PayPal-yellow.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MABFZPDR8F5UG) [![HitCount](http://hits.dwyl.io/CortexPE/TeaSpoon.svg)](http://hits.dwyl.io/CortexPE/TeaSpoon) [![License](https://img.shields.io/badge/license-AGPL%20v3-blue.svg?style=flat-square)](https://github.com/CortexPE/TeaSpoon/blob/master/LICENSE) [![Discord](https://img.shields.io/discord/350333413737365522.svg?style=flat-square&label=discord&colorB=7289da)](https://discord.gg/t5NsTyj)
@@ -7,7 +7,7 @@ A Massive PocketMine-MP plugin designed and is aiming to extend PMMP's functiona
 
 I wouldn't provide any support for using other branches of the plugin. They're still under development and very experimental. I won't be held responsible for any damages or corruptions that occured by using unsupported branches.
 
-A/N: If you don't like it / hate it, Then don't even bother using it. It's that simple... TeaSpoon was made for those who need it. :wink:
+A/N: If you don't like it / hate it, Then don't even bother using it. It's that simple... TableSpoon was made for those who need it. :wink:
 
 Contributions are very welcome :smile:<br />You may contribute by opening a Pull Request and if it has been proven to be correct & working, I'll surely merge it.
 
@@ -25,14 +25,14 @@ Installation is easy, Just download the latest phar from [Poggit](https://poggit
 
 # Issue Reporting
  - ALWAYS use the [LATEST PocketMine-MP Build](https://jenkins.pmmp.io/job/PocketMine-MP/lastSuccessfulBuild/artifact/) to use this plugin
- - Remove any plugins that may interfere with TeaSpoon's current features (if the feature cannot be disabled in the config.yml file)
+ - Remove any plugins that may interfere with TableSpoon's current features (if the feature cannot be disabled in the config.yml file)
  - Including the "Steps to Reproduce" in the issue report would be really helpful in fixing bugs.
- - To help me determine why the issue occurs, including the TeaSpoonDump from ```/bugreport``` lets me view all the necessary server information to easily determine incompatibility issues and mis-configuration issues. <sub>Privacy Concerns? You can check the code for yourself <a href="https://github.com/CortexPE/TeaSpoon/blob/master/src/CortexPE/commands/BugReportCommand.php">here</a> ;)</sub>
+ - To help me determine why the issue occurs, including the TableSpoon from ```/bugreport``` lets me view all the necessary server information to easily determine incompatibility issues and mis-configuration issues. <sub>Privacy Concerns? You can check the code for yourself <a href="https://github.com/CortexPE/TeaSpoon/blob/master/src/CortexPE/commands/BugReportCommand.php">here</a> ;)</sub>
  - The only supported branch is PMMP's 'master' branch. Issues regarding other branches will be closed.
 
 # FAQs
 ### MobAI:
-&nbsp;&nbsp;&nbsp;&nbsp;For now, you can use [PureEntitiesX](https://github.com/RevivalPMMP/PureEntitiesX) while disabling ```entities.register``` in TeaSpoon's Configuration File.
+&nbsp;&nbsp;&nbsp;&nbsp;For now, you can use [PureEntitiesX](https://github.com/RevivalPMMP/PureEntitiesX) while disabling ```entities.register``` in TableSpoon's Configuration File.
 ### Redstone System:
 &nbsp;&nbsp;&nbsp;&nbsp;Being worked on... :wink:
 
