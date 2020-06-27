@@ -16,5 +16,5 @@ You may contribute by opening a Pull Request to add features, fix bugs, or simpl
   - [ ] Fishing
   - [ ] Shulker Boxes
   - [ ] Client Side Inventorys
-  - [ ] Remove lightning rod (Useless)
+  - [X] Remove lightning rod (Useless)
   - [ ] Creeper explosions
