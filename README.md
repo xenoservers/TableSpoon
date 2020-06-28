@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/badge/license-AGPL%20v3-blue.svg?style=flat-square)](https://github.com/XenoServers/TableSpoon/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/490677165289897995.svg?style=flat-square&label=discord&colorB=7289da)](https://discord.xenoservers.net)
 
+# **TableSpoon is NOT YET STABLE!! Do NOT install it if you expect support for anything!**
+
 **PLEASE NOTE: We do NOT provide any support for branches, forks, or unofficial versions of TableSpoon. We are NOT responsible for any damages or corruptions that may occur.**
 
 # Contributions
