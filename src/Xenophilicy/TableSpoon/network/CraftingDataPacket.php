@@ -1,24 +1,5 @@
 <?php
 
-/*
- *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
- *
- * Xenophilicy\TableSpoon/TableSpoon: Translated writeEnchantList() from the NukkitX Project (2/10/2018)
-*/
-
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\network;
@@ -37,20 +18,19 @@ use Xenophilicy\TableSpoon\item\enchantment\Enchantment;
  * Class CraftingDataPacket
  * @package Xenophilicy\TableSpoon\network
  */
-class CraftingDataPacket extends PMCraftingDataPacket {
-    
+class CraftingDataPacket extends PMCraftingDataPacket{
+
     /** @var int */
     public const
-      ENTRY_ENCHANT_LIST = 4, //TODO
-      ENTRY_SHULKER_BOX = 5; //TODO
-    
+        ENTRY_ENCHANT_LIST = 4, //TODO
+        ENTRY_SHULKER_BOX = 5; //TODO
+
     protected function decodePayload(): void{
         $this->decodedEntries = [];
         $recipeCount = $this->getUnsignedVarInt();
         for($i = 0; $i < $recipeCount; ++$i){
             $entry = [];
             $entry["type"] = $recipeType = $this->getVarInt();
-            
             switch($recipeType){
                 case self::ENTRY_SHAPELESS:
                 case self::ENTRY_SHULKER_BOX:
@@ -66,7 +46,6 @@ class CraftingDataPacket extends PMCraftingDataPacket {
                         $entry["output"][] = $this->getSlot();
                     }
                     $entry["uuid"] = $this->getUUID()->toString();
-                    
                     break;
                 case self::ENTRY_SHAPED:
                     $entry["width"] = $this->getVarInt();
@@ -101,10 +80,9 @@ class CraftingDataPacket extends PMCraftingDataPacket {
         }
         $this->getBool(); //cleanRecipes
     }
-    
+
     protected function encodePayload(): void{
         $this->putUnsignedVarInt(count($this->entries));
-        
         $writer = new NetworkBinaryStream();
         foreach($this->entries as $d){
             $entryType = self::writeEntry($d, $writer);
@@ -114,13 +92,26 @@ class CraftingDataPacket extends PMCraftingDataPacket {
             }else{
                 $this->putVarInt(-1);
             }
-            
             $writer->reset();
         }
-        
-        $this->putBool($this->cleanRecipes);
+
+        $this->putUnsignedVarInt(count($this->potionTypeRecipes));
+        foreach($this->potionTypeRecipes as $recipe){
+            $this->putVarInt($recipe->getInputItemId());
+            $this->putVarInt($recipe->getInputItemMeta());
+            $this->putVarInt($recipe->getIngredientItemId());
+            $this->putVarInt($recipe->getIngredientItemMeta());
+            $this->putVarInt($recipe->getOutputItemId());
+            $this->putVarInt($recipe->getOutputItemMeta());
+        }
+        $this->putUnsignedVarInt(count($this->potionContainerRecipes));
+        foreach($this->potionContainerRecipes as $recipe){
+            $this->putVarInt($recipe->getInputItemId());
+            $this->putVarInt($recipe->getIngredientItemId());
+            $this->putVarInt($recipe->getOutputItemId());
+        }
     }
-    
+
     /**
      * @param object $entry
      * @param NetworkBinaryStream $stream
@@ -136,11 +127,9 @@ class CraftingDataPacket extends PMCraftingDataPacket {
         }elseif($entry instanceof EnchantmentList){
             return self::writeEnchantList($entry, $stream);
         }
-        
-        //TODO: add MultiRecipe
         return -1;
     }
-    
+
     /**
      * @param ShapelessRecipe $recipe
      * @param NetworkBinaryStream $stream
@@ -151,17 +140,15 @@ class CraftingDataPacket extends PMCraftingDataPacket {
         foreach($recipe->getIngredientList() as $item){
             $stream->putSlot($item);
         }
-        
         $results = $recipe->getResults();
         $stream->putUnsignedVarInt(count($results));
         foreach($results as $item){
             $stream->putSlot($item);
         }
-        
         $stream->put(str_repeat("\x00", 16)); //Null UUID
         return CraftingDataPacket::ENTRY_SHAPELESS;
     }
-    
+
     /**
      * @param ShapedRecipe $recipe
      * @param NetworkBinaryStream $stream
@@ -170,23 +157,20 @@ class CraftingDataPacket extends PMCraftingDataPacket {
     private static function writeShapedRecipe(ShapedRecipe $recipe, NetworkBinaryStream $stream){
         $stream->putVarInt($recipe->getWidth());
         $stream->putVarInt($recipe->getHeight());
-        
         for($z = 0; $z < $recipe->getHeight(); ++$z){
             for($x = 0; $x < $recipe->getWidth(); ++$x){
                 $stream->putSlot($recipe->getIngredient($x, $z));
             }
         }
-        
         $results = $recipe->getResults();
         $stream->putUnsignedVarInt(count($results));
         foreach($results as $item){
             $stream->putSlot($item);
         }
-        
         $stream->put(str_repeat("\x00", 16)); //Null UUID
         return CraftingDataPacket::ENTRY_SHAPED;
     }
-    
+
     /**
      * @param FurnaceRecipe $recipe
      * @param NetworkBinaryStream $stream
@@ -204,7 +188,7 @@ class CraftingDataPacket extends PMCraftingDataPacket {
             return CraftingDataPacket::ENTRY_FURNACE;
         }
     }
-    
+
     /**
      * @param EnchantmentList $list
      * @param NetworkBinaryStream $stream
@@ -225,5 +209,4 @@ class CraftingDataPacket extends PMCraftingDataPacket {
         }
         return CraftingDataPacket::ENTRY_ENCHANT_LIST;
     }
-    
 }

@@ -7,6 +7,7 @@ namespace Xenophilicy\TableSpoon\item;
 use pocketmine\item\{Item, ItemFactory};
 use Xenophilicy\TableSpoon\TableSpoon;
 
+
 /**
  * Class ItemManager
  * @package Xenophilicy\TableSpoon\item
@@ -34,7 +35,8 @@ class ItemManager {
         ItemFactory::registerItem(new GlassBottle(), true);
         ItemFactory::registerItem(new EnchantedBook(), true);
         ItemFactory::registerItem(new Trident(), true);
-        
+        ItemFactory::registerItem(new ShulkerBox(), true);
+        ItemFactory::registerItem(new UnDyedShulkerBox(), true);
         //ItemFactory::registerItem(new Record(Item::RECORD_13, 0, "Music Disc 13"), true);
         //ItemFactory::registerItem(new Record(Item::RECORD_CAT, 0, "Music Disc cat"), true);
         //ItemFactory::registerItem(new Record(Item::RECORD_BLOCKS, 0, "Music Disc blocks"), true);
@@ -47,7 +49,6 @@ class ItemManager {
         //ItemFactory::registerItem(new Record(Item::RECORD_WARD, 0, "Music Disc ward"), true);
         //ItemFactory::registerItem(new Record(Item::RECORD_11, 0, "Music Disc 11"), true);
         //ItemFactory::registerItem(new Record(Item::RECORD_WAIT, 0, "Music Disc wait"), true);
-        
         Item::initCreativeItems();
     }
 }
