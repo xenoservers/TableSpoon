@@ -14,7 +14,7 @@ use Xenophilicy\TableSpoon\utils\BiomeUtils;
  * Class SnowLayer
  * @package Xenophilicy\TableSpoon\block
  */
-class SnowLayer extends PMSnowLayer {
+class SnowLayer extends PMSnowLayer{
     public function onRandomTick(): void{
         if(TableSpoon::$settings["blocks"]["snow-melts"]){
             $destroy = false;
@@ -34,7 +34,7 @@ class SnowLayer extends PMSnowLayer {
             }
         }
     }
-    
+
     public function ticksRandomly(): bool{
         return true;
     }

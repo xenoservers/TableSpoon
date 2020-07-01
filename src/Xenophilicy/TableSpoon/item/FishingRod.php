@@ -24,7 +24,7 @@ use Xenophilicy\TableSpoon\utils\FishingLootTable;
  * Class FishingRod
  * @package Xenophilicy\TableSpoon\item
  */
-class FishingRod extends Durable {
+class FishingRod extends Durable{
     /**
      * FishingRod constructor.
      * @param int $meta
@@ -32,15 +32,15 @@ class FishingRod extends Durable {
     public function __construct($meta = 0){
         parent::__construct(Item::FISHING_ROD, $meta, "Fishing Rod");
     }
-    
+
     public function getMaxStackSize(): int{
         return 1;
     }
-    
+
     public function getMaxDurability(): int{
         return 355; // TODO: Know why it breaks early at 65
     }
-    
+
     public function onClickAir(Player $player, Vector3 $directionVector): bool{
         if(TableSpoon::$settings["fishing"]["enabled"]){
             $session = TableSpoon::getInstance()->getSessionById($player->getId());
@@ -114,11 +114,11 @@ class FishingRod extends Durable {
         }
         return true;
     }
-    
+
     public function getProjectileEntityType(): string{
         return "FishingHook";
     }
-    
+
     public function getThrowForce(): float{
         return 1.6;
     }

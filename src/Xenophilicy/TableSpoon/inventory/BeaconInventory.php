@@ -13,7 +13,7 @@ use Xenophilicy\TableSpoon\tile\Beacon;
  * Class BeaconInventory
  * @package Xenophilicy\TableSpoon\inventory
  */
-class BeaconInventory extends ContainerInventory {
+class BeaconInventory extends ContainerInventory{
     /**
      * BeaconInventory constructor.
      * @param Beacon $tile
@@ -21,19 +21,19 @@ class BeaconInventory extends ContainerInventory {
     public function __construct(Beacon $tile){
         parent::__construct($tile);
     }
-    
+
     public function getNetworkType(): int{
         return WindowTypes::BEACON;
     }
-    
+
     public function getName(): string{
         return "Beacon";
     }
-    
+
     public function getDefaultSize(): int{
         return 1;
     }
-    
+
     /**
      * @return Vector3
      */

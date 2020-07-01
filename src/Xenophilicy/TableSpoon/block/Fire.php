@@ -12,8 +12,8 @@ use Xenophilicy\TableSpoon\{TableSpoon, Utils};
  * Class Fire
  * @package Xenophilicy\TableSpoon\block
  */
-class Fire extends PMFire {
-    
+class Fire extends PMFire{
+
     public function onScheduledUpdate(): void{
         if($this->meta >= 15){
             $this->level->setBlock($this, BlockFactory::get(Block::AIR));
@@ -22,7 +22,7 @@ class Fire extends PMFire {
             $this->level->setBlock($this, $this);
         }
     }
-    
+
     public function onRandomTick(): void{
         if(isset(TableSpoon::$weatherData[($k = $this->getLevel()->getId())])){
             $weather = TableSpoon::$weatherData[$k];
@@ -30,7 +30,7 @@ class Fire extends PMFire {
             if(!$forever){
                 if($weather->canCalculate()){
                     $rainy = ($weather->isRainy() || $weather->isRainyThunder());
-                    
+
                     if($rainy && (Utils::canSeeSky($this->getLevel(), $this->asVector3()) || Utils::canSeeSky($this->getLevel(), $this->getSide(Vector3::SIDE_NORTH)) || Utils::canSeeSky($this->getLevel(), $this->getSide(Vector3::SIDE_SOUTH)) || Utils::canSeeSky($this->getLevel(), $this->getSide(Vector3::SIDE_EAST)) || Utils::canSeeSky($this->getLevel(), $this->getSide(Vector3::SIDE_WEST)))){
                         $this->level->setBlock($this, BlockFactory::get(Block::AIR));
                     }

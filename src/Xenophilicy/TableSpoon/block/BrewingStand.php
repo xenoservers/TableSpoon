@@ -20,7 +20,7 @@ use Xenophilicy\TableSpoon\tile\BrewingStand as BrewingStandTile;
  * Class BrewingStand
  * @package Xenophilicy\TableSpoon\block
  */
-class BrewingStand extends PMBrewingStand {
+class BrewingStand extends PMBrewingStand{
     public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null): bool{
         $parent = parent::place($item, $blockReplace, $blockClicked, $face, $clickVector, $player);
         if(!$blockReplace->getSide(Vector3::SIDE_DOWN)->isTransparent()){
@@ -33,15 +33,15 @@ class BrewingStand extends PMBrewingStand {
         }
         return $parent;
     }
-    
+
     public function getLightLevel(): int{
         return 1;
     }
-    
+
     public function getBlastResistance(): float{
         return 2.5;
     }
-    
+
     public function onActivate(Item $item, Player $player = null): bool{
         if(!TableSpoon::$settings["blocks"]["brewing-stands"] || (TableSpoon::$settings["player"]["limited-creative"] && $player->isCreative())){
             return true;

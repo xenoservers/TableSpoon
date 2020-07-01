@@ -12,7 +12,7 @@ use Xenophilicy\TableSpoon\Utils;
  * Class Xp
  * @package Xenophilicy\TableSpoon\utils
  */
-class Xp extends Utils {
+class Xp extends Utils{
     public static function getXpDropsForEntity(Entity $e): int{
         switch($e::NETWORK_ID){
             // animals //

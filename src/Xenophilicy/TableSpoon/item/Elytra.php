@@ -10,7 +10,7 @@ use pocketmine\item\{Durable, Item};
  * Class Elytra
  * @package Xenophilicy\TableSpoon\item
  */
-class Elytra extends Durable {
+class Elytra extends Durable{
     /**
      * Elytra constructor.
      * @param int $meta
@@ -18,7 +18,7 @@ class Elytra extends Durable {
     public function __construct($meta = 0){
         parent::__construct(Item::ELYTRA, $meta, "Elytra Wings");
     }
-    
+
     public function getMaxDurability(): int{
         return 433;
     }

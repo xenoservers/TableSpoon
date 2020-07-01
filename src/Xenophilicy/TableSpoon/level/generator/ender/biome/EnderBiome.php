@@ -32,8 +32,8 @@ use pocketmine\level\biome\Biome;
  * Class EnderBiome
  * @package Xenophilicy\TableSpoon\level\generator\ender\biome
  */
-class EnderBiome extends Biome {
-    
+class EnderBiome extends Biome{
+
     public function getName(): string{
         return "Ender";
     }

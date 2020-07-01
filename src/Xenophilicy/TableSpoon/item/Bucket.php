@@ -15,14 +15,14 @@ use Xenophilicy\TableSpoon\Utils;
  * Class Bucket
  * @package Xenophilicy\TableSpoon\item
  */
-class Bucket extends PMBucket {
+class Bucket extends PMBucket{
     public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector): bool{
         if(Utils::getDimension($player->getLevel()) == DimensionIds::NETHER && $this->getOutputBlockID() == Block::WATER){
             return false;
         }
         return parent::onActivate($player, $blockReplace, $blockClicked, $face, $clickVector);
     }
-    
+
     public function getOutputBlockID(): int{
         return $this->meta + 1;
     }

@@ -1,8 +1,6 @@
 VERSION: "1.0.0" # Internal use only
 
 entities:
-  # Enable or disable vanilla entity registration
-  register: true
   # Enable lightning and fire damage
   lightning-fire-damage: true
   # Enable or disable minecart functionality
@@ -14,29 +12,6 @@ entities:
     explosions: true
     # Set End Crystal explosion power
     power: 6
-  creeper:
-    # Enable or disable creeper explosions
-    explosions: false
-    # Enable or disable charged creeper creation
-    charged: true
-    # Enable or disable the ability to use flint and steel to ignite creepers
-    ignite: true
-  golem:
-    # Iron golem configuration
-    iron:
-      # Enable or disable iron golem functionality
-      enabled: true
-    # Snow golem configuration
-    snow:
-      # Enable or disable snow golem functionality
-      enabled: true
-      # Enable or disable snow golem ability for leaving snow trails
-      snow-generation: false
-      # Enable or disable snow golem melting when in hot biomes
-      melting: true
-  xp:
-    # Enable or disable mob XP drops
-    mob-xp: true
 
 enchantments:
   # Enable or disable vanilla enchantment registration
@@ -96,11 +71,6 @@ player:
   fishing: true
 
 blocks:
-  spawners:
-    # Enable or disable mob spawner functionality
-    enabled: true
-    # Enable or disable the ability to drop spawners using silk touch
-    silk-touch: false
   # Enable or disable dragon egg teleportation
   dragon-egg-teleport: true
   # Enable or disable brewing stand functionality

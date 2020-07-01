@@ -13,16 +13,16 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class ElytraRocketBoostTrackingTask
  * @package Xenophilicy\TableSpoon\task
  */
-class ElytraRocketBoostTrackingTask extends Task {
+class ElytraRocketBoostTrackingTask extends Task{
     /** @var Player */
     protected $player;
-    
+
     /** @var int */
     protected $count;
-    
+
     /** @var int */
     private $internalCount = 1;
-    
+
     /**
      * ElytraRocketBoostTrackingTask constructor.
      * @param Player $player
@@ -32,7 +32,7 @@ class ElytraRocketBoostTrackingTask extends Task {
         $this->player = $player;
         $this->count = $count;
     }
-    
+
     /**
      * @param int $currentTick
      */

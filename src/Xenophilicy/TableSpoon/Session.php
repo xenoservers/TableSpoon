@@ -15,7 +15,7 @@ use Xenophilicy\TableSpoon\item\Elytra;
  * Class Session
  * @package Xenophilicy\TableSpoon
  */
-class Session {
+class Session{
     /** @var int */
     public $lastEnderPearlUse = 0, $lastChorusFruitEat = 0, $lastHeldSlot = 0;
     /** @var bool */
@@ -28,7 +28,7 @@ class Session {
     public $vehicle = null;
     /** @var Player */
     private $player;
-    
+
     /**
      * Session constructor.
      * @param Player $player
@@ -36,33 +36,33 @@ class Session {
     public function __construct(Player $player){
         $this->player = $player;
     }
-    
+
     public function __destruct(){
         $this->unsetFishing();
     }
-    
+
     public function unsetFishing(){
         $this->fishing = false;
-        
+
         if($this->fishingHook instanceof FishingHook){
             $this->fishingHook->broadcastEntityEvent(ActorEventPacket::FISH_HOOK_TEASE, null, $this->fishingHook->getViewers());
-            
+
             if(!$this->fishingHook->isFlaggedForDespawn()){
                 $this->fishingHook->flagForDespawn();
             }
-            
+
             $this->fishingHook = null;
         }
     }
-    
+
     public function getPlayer(): Player{
         return $this->player;
     }
-    
+
     public function getServer(): PMServer{
         return $this->player->getServer();
     }
-    
+
     /**
      * @param int $damage
      */
@@ -76,7 +76,7 @@ class Session {
             $elytra->applyDamage($damage);
         }
     }
-    
+
     public function isUsingElytra(): bool{
         if(!TableSpoon::$settings["player"]["elytra"]["enabled"]){
             return false;

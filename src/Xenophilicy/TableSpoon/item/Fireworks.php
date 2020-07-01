@@ -22,15 +22,15 @@ use Xenophilicy\TableSpoon\task\ElytraRocketBoostTrackingTask;
  * Class Fireworks
  * @package Xenophilicy\TableSpoon\item
  */
-class Fireworks extends Item {
-    
+class Fireworks extends Item{
+
     public const TAG_FIREWORKS = "Fireworks";
     public const TAG_EXPLOSIONS = "Explosions";
     public const TAG_FLIGHT = "Flight";
-    
+
     /** @var float */
     public $spread = 5.0;
-    
+
     /**
      * Fireworks constructor.
      * @param int $meta
@@ -38,7 +38,7 @@ class Fireworks extends Item {
     public function __construct($meta = 0){
         parent::__construct(Item::FIREWORKS, $meta, "Fireworks");
     }
-    
+
     public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector): bool{
         if(TableSpoon::$settings["entities"]["fireworks"]){
             if($this->getNamedTag()->hasTag(self::TAG_FIREWORKS, CompoundTag::class)){
@@ -64,7 +64,7 @@ class Fireworks extends Item {
         }
         return false;
     }
-    
+
     public function onClickAir(Player $player, Vector3 $directionVector): bool{
         if(TableSpoon::$settings["player"]["elytra"]["enabled"] && TableSpoon::$settings["player"]["elytra"]["boost"]){
             $session = TableSpoon::getInstance()->getSessionById($player->getId());
@@ -91,7 +91,7 @@ class Fireworks extends Item {
                     if(TableSpoon::$settings["player"]["elytra"]["particles"]){
                         TableSpoon::getInstance()->getScheduler()->scheduleRepeatingTask(new ElytraRocketBoostTrackingTask($player, 6), 4);
                     }
-                    
+
                     if($damage > 0){
                         $ev = new EntityDamageEvent($player, EntityDamageEvent::CAUSE_CUSTOM, 7); // lets wait till PMMP Adds Fireworks damage constant
                         $player->attack($ev);

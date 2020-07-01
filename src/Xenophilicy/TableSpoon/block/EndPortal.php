@@ -17,11 +17,11 @@ use Xenophilicy\TableSpoon\task\DelayedCrossDimensionTeleportTask;
  * Class EndPortal
  * @package Xenophilicy\TableSpoon\block
  */
-class EndPortal extends Solid {
-    
+class EndPortal extends Solid{
+
     /** @var int $id */
     protected $id = Block::END_PORTAL;
-    
+
     /**
      * EndPortal constructor.
      * @param int $meta
@@ -29,35 +29,35 @@ class EndPortal extends Solid {
     public function __construct($meta = 0){
         $this->meta = $meta;
     }
-    
+
     /**
      * @return int
      */
     public function getLightLevel(): int{
         return 1;
     }
-    
+
     /**
      * @return string
      */
     public function getName(): string{
         return "End Portal";
     }
-    
+
     /**
      * @return float
      */
     public function getHardness(): float{
         return -1;
     }
-    
+
     /**
      * @return float
      */
     public function getBlastResistance(): float{
         return 18000000;
     }
-    
+
     /**
      * @param Item $item
      * @return bool
@@ -65,22 +65,22 @@ class EndPortal extends Solid {
     public function isBreakable(Item $item): bool{
         return false;
     }
-    
+
     /**
      * @return bool
      */
     public function canPassThrough(): bool{
         return true;
     }
-    
+
     /**
      * @return bool
      */
     public function hasEntityCollision(): bool{
         return true;
     }
-    
-    
+
+
     /**
      * @param Entity $entity
      *
@@ -102,7 +102,6 @@ class EndPortal extends Solid {
                         }
                     }
                 }
-                // TODO: Add mob teleportation
             }
         }
         return;

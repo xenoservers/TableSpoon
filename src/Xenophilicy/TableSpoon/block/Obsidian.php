@@ -47,7 +47,7 @@ use pocketmine\Player;
  * Class Obsidian
  * @package Xenophilicy\TableSpoon\block
  */
-class Obsidian extends PMObsidian {
+class Obsidian extends PMObsidian{
     public function onActivate(Item $item, Player $player = null): bool{
         if($item instanceof FlintSteel){
             $x_max = $x_min = $this->x;
@@ -89,7 +89,7 @@ class Obsidian extends PMObsidian {
                     }
                 }
             }
-            
+
             $z_max = $z_min = $this->z;
             for($z = $this->z + 1; $this->level->getBlockIdAt($this->x, $this->y, $z) == Block::OBSIDIAN; $z++){
                 $z_max++;
@@ -132,7 +132,7 @@ class Obsidian extends PMObsidian {
         }
         return false;
     }
-    
+
     public function onBreak(Item $item, Player $player = null): bool{
         parent::onBreak($item);
         foreach($this->getAllSides() as $i => $block){

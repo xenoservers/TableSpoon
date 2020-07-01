@@ -25,6 +25,7 @@ class CraftingDataPacket extends PMCraftingDataPacket{
         ENTRY_ENCHANT_LIST = 4, //TODO
         ENTRY_SHULKER_BOX = 5; //TODO
 
+    /** @noinspection PhpUndefinedMethodInspection */
     protected function decodePayload(): void{
         $this->decodedEntries = [];
         $recipeCount = $this->getUnsignedVarInt();

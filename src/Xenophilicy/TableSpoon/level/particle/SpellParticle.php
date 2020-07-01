@@ -12,7 +12,7 @@ use pocketmine\network\mcpe\protocol\LevelEventPacket;
  * Class SpellParticle
  * @package Xenophilicy\TableSpoon\level\particle
  */
-class SpellParticle extends GenericParticle {
+class SpellParticle extends GenericParticle{
     /**
      * SpellParticle constructor.
      *
@@ -25,7 +25,7 @@ class SpellParticle extends GenericParticle {
     public function __construct(Vector3 $pos, $r = 0, $g = 0, $b = 0, $a = 255){
         parent::__construct($pos, LevelEventPacket::EVENT_PARTICLE_SPLASH, (($a & 0xff) << 24) | (($r & 0xff) << 16) | (($g & 0xff) << 8) | ($b & 0xff));
     }
-    
+
     /**
      * @return LevelEventPacket
      */

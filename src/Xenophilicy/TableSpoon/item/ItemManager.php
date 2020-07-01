@@ -12,7 +12,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class ItemManager
  * @package Xenophilicy\TableSpoon\item
  */
-class ItemManager {
+class ItemManager{
     public static function init(){
         ItemFactory::registerItem(new Boat(), true);
         ItemFactory::registerItem(new LingeringPotion(), true);
@@ -21,7 +21,6 @@ class ItemManager {
         ItemFactory::registerItem(new Fireworks(), true);
         ItemFactory::registerItem(new FishingRod(), true);
         ItemFactory::registerItem(new EyeOfEnder(), true);
-        ItemFactory::registerItem(new SpawnEgg(), true);
         ItemFactory::registerItem(new Bow(), true);
         ItemFactory::registerItem(new EndCrystal(), true);
         ItemFactory::registerItem(new Bucket(), true);

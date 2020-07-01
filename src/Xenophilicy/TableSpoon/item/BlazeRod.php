@@ -10,5 +10,5 @@ use pocketmine\item\BlazeRod as PMBlazeRod;
  * Class BlazeRod
  * @package Xenophilicy\TableSpoon\item
  */
-class BlazeRod extends PMBlazeRod {
+class BlazeRod extends PMBlazeRod{
 }

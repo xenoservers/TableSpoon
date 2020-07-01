@@ -19,12 +19,12 @@ class UnDyedShulkerBox extends ShulkerBox{
      * @param NamedTag|null $inventory
      */
     public function __construct(?string $name = null, ?NamedTag $inventory = null){
-		if($name === null){
-			$name = "Shulker Box";
-		}
-		Item::__construct(self::UNDYED_SHULKER_BOX, 0, $name);
-		if($inventory !== null){
-			$this->getNamedTag()->setTag($inventory);
-		}
-	}
+        if($name === null){
+            $name = "Shulker Box";
+        }
+        Item::__construct(self::UNDYED_SHULKER_BOX, 0, $name);
+        if($inventory !== null){
+            $this->getNamedTag()->setTag($inventory);
+        }
+    }
 }

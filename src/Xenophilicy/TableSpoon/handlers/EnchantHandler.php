@@ -8,7 +8,6 @@ use pocketmine\block\Block;
 use pocketmine\entity\Entity;
 use pocketmine\entity\Human;
 use pocketmine\entity\Living;
-use pocketmine\entity\Zombie;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
@@ -20,7 +19,6 @@ use pocketmine\item\Item;
 use pocketmine\item\Pickaxe;
 use pocketmine\item\TieredTool;
 use pocketmine\Player as PMPlayer;
-use Xenophilicy\TableSpoon\entity\mob\Undead;
 use Xenophilicy\TableSpoon\item\enchantment\Enchantment;
 use Xenophilicy\TableSpoon\Utils;
 
@@ -28,7 +26,7 @@ use Xenophilicy\TableSpoon\Utils;
  * Class EnchantHandler
  * @package Xenophilicy\TableSpoon\handlers
  */
-class EnchantHandler implements Listener {
+class EnchantHandler implements Listener{
     /**
      * TODO:
      *  - [X] Smite
@@ -39,11 +37,11 @@ class EnchantHandler implements Listener {
      *  - [X] Lure
      *  - [ ] Frost walker (Very laggy as of now)
      */
-    
+
     /** @var string */
     public const BANE_OF_ARTHROPODS_AFFECTED_ENTITIES = [ // Based on https://minecraft.gamepedia.com/Enchanting#Bane_of_Arthropods ^_^
-      "Spider", "Cave Spider", "Silverfish", "Endermite",];
-    
+        "Spider", "Cave Spider", "Silverfish", "Endermite",];
+
     /**
      * @param EntityDamageEvent $ev
      *
@@ -69,16 +67,13 @@ class EnchantHandler implements Listener {
                             }
                             break;
                         case Enchantment::SMITE:
-                            if($e instanceof Undead || $e instanceof Zombie){
-                                $ev->setModifier($damage + ($lvl * 2.5), EntityDamageEvent::MODIFIER_ARMOR);
-                            }
                             break;
                     }
                 }
             }
         }
     }
-    
+
     /**
      * @param BlockBreakEvent $ev
      *
@@ -149,7 +144,7 @@ class EnchantHandler implements Listener {
             }
         }
     }
-    
+
     /**
      * @param Item[] $drops
      * @param int $amount
@@ -162,7 +157,7 @@ class EnchantHandler implements Listener {
         }
         return $newDrops;
     }
-    
+
     /**
      * @param EntityDeathEvent $ev
      *

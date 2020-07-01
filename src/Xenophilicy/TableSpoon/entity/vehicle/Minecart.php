@@ -23,10 +23,10 @@ use Xenophilicy\TableSpoon\utils\RailUtils;
  * @author larryTheCoder
  * @author Xenophilicy\TableSpoon
  */
-class Minecart extends Vehicle {
-    
+class Minecart extends Vehicle{
+
     public const NETWORK_ID = self::MINECART;
-    
+
     const TYPE_NORMAL = 1;
     const TYPE_CHEST = 2;
     const TYPE_HOPPER = 3;
@@ -47,7 +47,7 @@ class Minecart extends Vehicle {
     private $matrix = [[[0, 0, -1], [0, 0, 1]], [[-1, 0, 0], [1, 0, 0]], [[-1, -1, 0], [1, 0, 0]], [[-1, 0, 0], [1, -1, 0]], [[0, 0, -1], [0, -1, 1]], [[0, -1, -1], [0, 0, 1]], [[0, 0, 1], [1, 0, 0]], [[0, 0, 1], [-1, 0, 0]], [[0, 0, -1], [-1, 0, 0]], [[0, 0, -1], [1, 0, 0]],];
     /** @var float */
     private $currentSpeed = 0;
-    
+
     public function initEntity(): void{
         parent::initEntity();
         // Now with the custom block data
@@ -75,16 +75,16 @@ class Minecart extends Vehicle {
         }
         $this->canInteract = $this->getType() === self::TYPE_NORMAL && $this->displayBlock === null;
     }
-    
+
     public function getType(): int{
         return self::TYPE_NORMAL;
     }
-    
+
     public function saveNBT(): void{
         $this->saveEntityData();
         parent::saveNBT();
     }
-    
+
     private function saveEntityData(){
         $hasDisplay = $this->propertyManager->getByte(self::DATA_MINECART_HAS_DISPLAY) == 1 || $this->displayBlock != null;
         $this->namedtag->setByte("CustomDisplayTile", $hasDisplay ? 1 : 0);
@@ -95,11 +95,11 @@ class Minecart extends Vehicle {
             $this->namedtag->setInt("DisplayOffset", $offSet);
         }
     }
-    
+
     public function getDrops(): array{
         return [Item::get(Item::MINECART, 0, 1),];
     }
-    
+
     public function close(): void{
         parent::close();
         if($this->linkedEntity instanceof Player){
@@ -112,7 +112,7 @@ class Minecart extends Vehicle {
             $this->level->addParticle($particle);
         }
     }
-    
+
     public function onUpdate(int $currentTick): bool{
         parent::onUpdate($currentTick);
         if($this->isFlaggedForDespawn() || !$this->isAlive()){
@@ -173,7 +173,7 @@ class Minecart extends Vehicle {
         $this->timings->stopTiming();
         return !$this->onGround or abs($this->motion->x) > 0.00001 or abs($this->motion->y) > 0.00001 or abs($this->motion->z) > 0.00001;
     }
-    
+
     /**
      * @param int $dx
      * @param int $dy
@@ -216,7 +216,7 @@ class Minecart extends Vehicle {
                 if($speed < 0.01){
                     $this->motion->z += $playerYawNeg * 0.1;
                     $this->motion->z += $playerYawPos * 0.1;
-                    
+
                     $isSlowed = false;
                 }
             }
@@ -306,7 +306,7 @@ class Minecart extends Vehicle {
             }
         }
     }
-    
+
     /**
      * @param $dx
      * @param $dy
@@ -339,7 +339,7 @@ class Minecart extends Vehicle {
             }else{
                 $whatOne = $dx - $nextOne;
                 $whatTwo = $dz - $nextThree;
-                
+
                 $rail = ($whatOne * $nextSeven + $whatTwo * $nextMax) * 2;
             }
             $dx = $nextOne + $nextSeven * $rail;
@@ -356,7 +356,7 @@ class Minecart extends Vehicle {
             return null;
         }
     }
-    
+
     private function applyDrag(){
         if($this->linkedEntity !== null){
             $this->motion->x *= 0.996999979019165;
@@ -368,11 +368,11 @@ class Minecart extends Vehicle {
             $this->motion->z *= 0.9599999785423279;
         }
     }
-    
+
     public function isNormalBlock(Block $block): bool{
         return $block->isSolid() && !$block->isTransparent();
     }
-    
+
     private function setFalling(){
         $this->motion->x = Math::clamp($this->motion->x, -0.4, 0.4);
         $this->motion->z = Math::clamp($this->motion->z, -0.4, 0.4);
@@ -388,7 +388,7 @@ class Minecart extends Vehicle {
             $this->motion->z *= 0.95;
         }
     }
-    
+
     /**
      * @param Entity $entity
      */
@@ -456,7 +456,7 @@ class Minecart extends Vehicle {
             }
         }
     }
-    
+
     /**
      * Used to multiply the minecart current speed
      *
@@ -465,20 +465,20 @@ class Minecart extends Vehicle {
     public function setCurrentSpeed(float $speed){
         $this->currentSpeed = $speed;
     }
-    
+
     public function onInteract(Player $player, Item $item, int $slot, Vector3 $clickPos): bool{
         if($this->linkedEntity != null){
             return false;
         }
-        
+
         // Simple
         return parent::mountEntity($player);
     }
-    
+
     public function getDisplayOffset(): int{
         return $this->propertyManager->hasProperty(self::DATA_MINECART_DISPLAY_OFFSET) ? 0 : $this->propertyManager->getInt(self::DATA_MINECART_DISPLAY_OFFSET);
     }
-    
+
     /**
      * Set the block inside the minecart.
      *
@@ -488,7 +488,7 @@ class Minecart extends Vehicle {
         $this->displayBlock = $block;
         $this->needUpdateBlock = true;
     }
-    
+
     /**
      * Get the block inside the minecart
      *
@@ -497,7 +497,7 @@ class Minecart extends Vehicle {
     public function getBlock(): Block{
         return $this->displayBlock;
     }
-    
+
     /**
      * Unknown
      *

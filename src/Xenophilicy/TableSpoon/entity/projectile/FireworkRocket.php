@@ -33,10 +33,10 @@ use Xenophilicy\TableSpoon\item\Fireworks;
  * Class FireworkRocket
  * @package Xenophilicy\TableSpoon\entity\projectile
  */
-class FireworkRocket extends Projectile {
-    
+class FireworkRocket extends Projectile{
+
     public const NETWORK_ID = self::FIREWORKS_ROCKET;
-    
+
     public $width = 0.25;
     public $height = 0.25;
     public $gravity = 0.0;
@@ -44,7 +44,7 @@ class FireworkRocket extends Projectile {
     public $random;
     public $fireworks;
     private $lifeTime = 0;
-    
+
     /**
      * FireworkRocket constructor.
      * @param Level $level
@@ -58,7 +58,7 @@ class FireworkRocket extends Projectile {
         $this->fireworks = $item;
         parent::__construct($level, $nbt, $shootingEntity);
     }
-    
+
     /**
      * @param Player[]|Player $player
      * @param array $data Properly formatted entity data, defaults to everything
@@ -80,13 +80,13 @@ class FireworkRocket extends Projectile {
             $this->dataPacket($pk);
         }
     }
-    
+
     public function spawnTo(Player $player): void{
         $this->setMotion($this->getDirectionVector());
         $this->level->broadcastLevelSoundEvent($this, LevelSoundEventPacket::SOUND_LAUNCH);
         parent::spawnTo($player);
     }
-    
+
     public function despawnFromAll(): void{
         if(count($this->namedtag->getCompoundTag(Fireworks::TAG_FIREWORKS)->getListTag(Fireworks::TAG_EXPLOSIONS)) > 0){
             foreach($this->getLevel()->getNearbyEntities($this->getBoundingBox()->expand(5, 5, 5)) as $entity){ // 4 1/2 blocks acording to the wiki
@@ -106,7 +106,7 @@ class FireworkRocket extends Projectile {
         parent::flagForDespawn();
         $this->level->broadcastLevelSoundEvent($this, LevelSoundEventPacket::SOUND_BLAST);
     }
-    
+
     public function entityBaseTick(int $tickDiff = 1): bool{
         if($this->lifeTime-- < 0){
             $this->flagForDespawn();
@@ -115,7 +115,7 @@ class FireworkRocket extends Projectile {
             return parent::entityBaseTick($tickDiff);
         }
     }
-    
+
     protected function initEntity(): void{
         parent::initEntity();
         $random = $this->random ?? new Random();

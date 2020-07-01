@@ -17,11 +17,11 @@ use Xenophilicy\TableSpoon\Utils;
  * Class PacketHandler
  * @package Xenophilicy\TableSpoon\handlers
  */
-class PacketHandler implements Listener {
-    
+class PacketHandler implements Listener{
+
     /** @var Plugin */
     public $plugin;
-    
+
     /**
      * PacketHandler constructor.
      * @param Plugin $plugin
@@ -29,7 +29,7 @@ class PacketHandler implements Listener {
     public function __construct(Plugin $plugin){
         $this->plugin = $plugin;
     }
-    
+
     /**
      * @param DataPacketReceiveEvent $ev
      *
@@ -102,7 +102,7 @@ class PacketHandler implements Listener {
               break;*/
         }
     }
-    
+
     /**
      * @param DataPacketSendEvent $ev
      *

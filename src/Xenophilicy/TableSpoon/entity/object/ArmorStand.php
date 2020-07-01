@@ -22,12 +22,12 @@ use Xenophilicy\TableSpoon\utils\ArmorTypes;
  * Class ArmorStand
  * @package Xenophilicy\TableSpoon\entity\object
  */
-class ArmorStand extends Entity {
-    
+class ArmorStand extends Entity{
+
     public const NETWORK_ID = self::ARMOR_STAND;
     public const TAG_HAND_ITEMS = "HandItems";
     public const TAG_ARMOR_ITEMS = "ArmorItems";
-    
+
     // TODO: Poses...
     public $height = 1.975;
     public $width = 0.5;
@@ -44,19 +44,19 @@ class ArmorStand extends Entity {
     protected $leggings;
     /** @var Item */
     protected $boots;
-    
+
     public function initEntity(): void{
         $air = Item::get(Item::AIR)->nbtSerialize();
         if(!$this->namedtag->hasTag(self::TAG_HAND_ITEMS, ListTag::class)){
             $this->namedtag->setTag(new ListTag(self::TAG_HAND_ITEMS, [$air, // itemInHand
-              $air  // itemOffHand
+                $air  // itemOffHand
             ], NBT::TAG_Compound));
         }
         if(!$this->namedtag->hasTag(self::TAG_ARMOR_ITEMS, ListTag::class)){
             $this->namedtag->setTag(new ListTag(self::TAG_ARMOR_ITEMS, [$air, // boots
-              $air, // leggings
-              $air, // chestplate
-              $air  // helmet
+                $air, // leggings
+                $air, // chestplate
+                $air  // helmet
             ], NBT::TAG_Compound));
         }
         $handItems = $this->namedtag->getListTag(self::TAG_HAND_ITEMS);
@@ -71,11 +71,11 @@ class ArmorStand extends Entity {
         $this->setMaxHealth(6);
         parent::initEntity();
     }
-    
+
     public function canCollideWith(Entity $entity): bool{
         return false;
     }
-    
+
     public function onInteract(Player $player, Item $item, int $slot, Vector3 $clickPos): bool{
         if(!$player->isSneaking()){
             $diff = $clickPos->getY() - $this->getY();
@@ -121,7 +121,7 @@ class ArmorStand extends Entity {
                         $this->setItemInHand(Item::get(Item::AIR));
                     }else{
                         $playerInv->addItem(clone $this->getItemInHand());
-                        
+
                         $ic = clone $item;
                         $ic->count--;
                         $this->setItemInHand((clone $ic)->setCount(1));
@@ -138,11 +138,11 @@ class ArmorStand extends Entity {
         }
         return true;
     }
-    
+
     public function getItemInHand(): Item{
         return $this->itemInHand;
     }
-    
+
     /**
      * @param Item $item
      */
@@ -150,11 +150,11 @@ class ArmorStand extends Entity {
         $this->itemInHand = $item;
         $this->sendAll();
     }
-    
+
     public function getChestplate(): Item{
         return $this->chestplate;
     }
-    
+
     /**
      * @param Item $item
      */
@@ -162,7 +162,7 @@ class ArmorStand extends Entity {
         $this->chestplate = $item;
         $this->sendAll();
     }
-    
+
     private function get(string $armorType): Item{ // pure laziness xD
         switch($armorType){
             case ArmorTypes::TYPE_HELMET:
@@ -180,11 +180,11 @@ class ArmorStand extends Entity {
         }
         return Item::get(Item::AIR);
     }
-    
+
     public function getHelmet(): Item{
         return $this->helmet;
     }
-    
+
     /**
      * @param Item $item
      */
@@ -192,11 +192,11 @@ class ArmorStand extends Entity {
         $this->helmet = $item;
         $this->sendAll();
     }
-    
+
     public function getLeggings(): Item{
         return $this->leggings;
     }
-    
+
     /**
      * @param Item $item
      */
@@ -204,11 +204,11 @@ class ArmorStand extends Entity {
         $this->leggings = $item;
         $this->sendAll();
     }
-    
+
     public function getBoots(): Item{
         return $this->boots;
     }
-    
+
     /**
      * @param Item $item
      */
@@ -216,11 +216,11 @@ class ArmorStand extends Entity {
         $this->boots = $item;
         $this->sendAll();
     }
-    
+
     public function getItemOffHand(): Item{
         return $this->itemOffHand;
     }
-    
+
     /**
      * @param Item $item
      */
@@ -228,7 +228,7 @@ class ArmorStand extends Entity {
         $this->itemOffHand = $item;
         $this->sendAll();
     }
-    
+
     /**
      * @param string $armorType
      * @param Item $item
@@ -255,14 +255,14 @@ class ArmorStand extends Entity {
                 break;
         }
     }
-    
+
     public function sendAll(){
         foreach($this->getViewers() as $player){
             $this->sendHandItems($player);
             $this->sendArmorItems($player);
         }
     }
-    
+
     /**
      * @param Player $player
      */
@@ -272,14 +272,14 @@ class ArmorStand extends Entity {
         $pk->inventorySlot = $pk->hotbarSlot = 0;
         $pk->item = $this->getItemInHand();
         $player->dataPacket($pk);
-        
+
         $pk = new MobEquipmentPacket();
         $pk->entityRuntimeId = $this->getId();
         $pk->inventorySlot = $pk->hotbarSlot = 1;
         $pk->item = $this->getItemOffHand();
         $player->dataPacket($pk);
     }
-    
+
     /**
      * @param Player $player
      */
@@ -292,7 +292,7 @@ class ArmorStand extends Entity {
         $pk->feet = $this->getBoots();
         $player->dataPacket($pk);
     }
-    
+
     public function kill(): void{
         $this->level->dropItem($this, Item::get(Item::ARMOR_STAND));
         $this->level->dropItem($this, $this->getItemInHand());
@@ -303,24 +303,24 @@ class ArmorStand extends Entity {
         $this->level->dropItem($this, $this->getBoots());
         parent::kill();
     }
-    
+
     public function spawnTo(Player $player): void{
         parent::spawnTo($player);
         $this->sendArmorItems($player);
         $this->sendHandItems($player);
     }
-    
+
     public function saveNBT(): void{
         parent::saveNBT();
         $this->namedtag->setTag(new ListTag(self::TAG_ARMOR_ITEMS, [$this->boots->nbtSerialize(), $this->leggings->nbtSerialize(), $this->chestplate->nbtSerialize(), $this->helmet->nbtSerialize(),], NBT::TAG_Compound));
         $this->namedtag->setTag(new ListTag(self::TAG_HAND_ITEMS, [$this->getItemInHand()->nbtSerialize(), $this->getItemOffHand()->nbtSerialize(),], NBT::TAG_Compound));
     }
-    
+
     public function applyGravity(): void{
         $this->level->broadcastLevelEvent($this, LevelEventPacket::EVENT_SOUND_ARMOR_STAND_FALL);
         parent::applyGravity();
     }
-    
+
     public function attack(EntityDamageEvent $source): void{
         if($source instanceof EntityDamageByEntityEvent){
             $damager = $source->getDamager();

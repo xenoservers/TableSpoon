@@ -11,7 +11,7 @@ use Xenophilicy\TableSpoon\Utils;
  * Class Math
  * @package Xenophilicy\TableSpoon\utils
  */
-class Math extends Utils {
+class Math extends Utils{
     /**
      * @param float $min
      * @param float $max
@@ -20,7 +20,7 @@ class Math extends Utils {
     public static function getPercentage(float $min, float $max){
         return ((min($min, $max) / max($min, $max)) * 100);
     }
-    
+
     /**
      * @param $value
      * @param $min
@@ -30,7 +30,7 @@ class Math extends Utils {
     public static function clamp($value, $min, $max){
         return $value < $min ? $min : ($value > $max ? $max : $value);
     }
-    
+
     /**
      * @param float $d0
      * @param $d1
@@ -40,13 +40,13 @@ class Math extends Utils {
         if($d0 < 0){
             $d0 = -$d0;
         }
-        
+
         if($d1 < 0){
             $d1 = -$d1;
         }
         return $d0 > $d1 ? $d0 : $d1;
     }
-    
+
     /**
      * @param float $yaw
      * @return float

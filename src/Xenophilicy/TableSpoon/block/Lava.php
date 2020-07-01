@@ -14,8 +14,8 @@ use Xenophilicy\TableSpoon\Utils;
  * Class Lava
  * @package Xenophilicy\TableSpoon\block
  */
-class Lava extends PMLava {
-    
+class Lava extends PMLava{
+
     /**
      * @param Entity $entity
      */
@@ -32,7 +32,7 @@ class Lava extends PMLava {
         }
         $entity->resetFallDistance();
     }
-    
+
     public function getFlowDecayPerBlock(): int{
         return (Utils::getDimension($this->getLevel()) == DimensionIds::NETHER) ? 1 : 2;
     }

@@ -12,7 +12,7 @@ use Xenophilicy\TableSpoon\Utils;
  * Class DyeUtils
  * @package Xenophilicy\TableSpoon\utils
  */
-class DyeUtils extends Utils {
+class DyeUtils extends Utils{
     public const DYE_BLACK = 0;
     public const DYE_RED = 1;
     public const DYE_GREEN = 2;
@@ -29,7 +29,7 @@ class DyeUtils extends Utils {
     public const DYE_MAGENTA = 13;
     public const DYE_ORANGE = 14;
     public const DYE_WHITE = 15;
-    
+
     public static function getDyeColor(int $id): Color{
         switch($id){
             case self::DYE_BLACK:

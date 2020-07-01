@@ -16,7 +16,7 @@ use Xenophilicy\TableSpoon\Utils;
  * Class Firework
  * @package Xenophilicy\TableSpoon\utils
  */
-class Firework extends Utils {
+class Firework extends Utils{
     /**
      * @param FireworksData $data
      * @return CompoundTag

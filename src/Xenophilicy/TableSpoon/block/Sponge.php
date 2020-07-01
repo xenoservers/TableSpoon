@@ -15,13 +15,13 @@ use pocketmine\Player;
  * Class Sponge
  * @package Xenophilicy\TableSpoon\block
  */
-class Sponge extends Transparent {
-    
+class Sponge extends Transparent{
+
     protected $id = self::SPONGE;
-    
+
     public function __construct(){
     }
-    
+
     public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null): bool{
         if($this->getDamage() == 0){
             if(self::absorbWater(new Position($this->x, $this->y, $this->z, $this->getLevel()))){
@@ -33,7 +33,7 @@ class Sponge extends Transparent {
             return $this->getLevel()->setBlock($this, $this, true, true);
         }
     }
-    
+
     /**
      * @param Position $center
      * @return bool
@@ -70,7 +70,7 @@ class Sponge extends Transparent {
                                     $l = true;
                                     $level->setBlock(new Vector3($x, $y, $z), Block::get(0, 0));
                                 }
-                                
+
                             }
                         }
                     }
@@ -79,7 +79,7 @@ class Sponge extends Transparent {
         }
         return $l;
     }
-    
+
     public function getName(): string{
         return "Sponge";
     }

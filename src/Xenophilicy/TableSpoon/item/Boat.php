@@ -32,8 +32,8 @@ use pocketmine\Player;
  * Class Boat
  * @package Xenophilicy\TableSpoon\item
  */
-class Boat extends ItemPM {
-    
+class Boat extends ItemPM{
+
     /**
      * Boat constructor.
      * @param int $meta
@@ -52,18 +52,18 @@ class Boat extends ItemPM {
             $this->name = "Dark Oak Boat";
         }
     }
-    
+
     public function getMaxStackSize(): int{
         return 1;
     }
-    
+
     /**
      * @return bool
      */
     public function canBeActivated(){
         return true;
     }
-    
+
     public function onActivate(Player $player, Block $block, Block $target, int $face, Vector3 $facepos): bool{
         // TODO
         return true;
@@ -91,7 +91,7 @@ class Boat extends ItemPM {
         }
 return true;*/
     }
-    
+
     public function getFuelTime(): int{
         return 1200; //400 in PC
     }

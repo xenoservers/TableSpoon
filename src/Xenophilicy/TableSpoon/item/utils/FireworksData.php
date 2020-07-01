@@ -16,7 +16,7 @@ namespace Xenophilicy\TableSpoon\item\utils;
  * Class FireworksData
  * @package Xenophilicy\TableSpoon\item\utils
  */
-class FireworksData {
+class FireworksData{
     /** @var int */
     public $flight = 1;
     /** @var FireworksExplosion[] */

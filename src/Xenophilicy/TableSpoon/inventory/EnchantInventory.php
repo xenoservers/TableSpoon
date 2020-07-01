@@ -11,15 +11,15 @@ use pocketmine\Player;
  * Class EnchantInventory
  * @package Xenophilicy\TableSpoon\inventory
  */
-class EnchantInventory extends PMEnchantInventory {
+class EnchantInventory extends PMEnchantInventory{
     // TODO: Add Enchantment verification (if possible)
     public $random = null;
-    
+
     public $bookshelfAmount = 0;
-    
+
     public $levels = null;
     public $entries = null;
-    
+
     /*
       public function onOpen(Player $who): void{
         parent::onOpen($who);
@@ -45,7 +45,7 @@ class EnchantInventory extends PMEnchantInventory {
           }
         }
       }*/
-    
+
     public function onClose(Player $who): void{
         $this->dropContents($this->holder->getLevel(), $this->holder->add(0.5, 0.5, 0.5));
         return;

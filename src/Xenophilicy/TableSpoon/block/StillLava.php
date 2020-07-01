@@ -8,11 +8,11 @@ namespace Xenophilicy\TableSpoon\block;
  * Class StillLava
  * @package Xenophilicy\TableSpoon\block
  */
-class StillLava extends Lava {
-    
+class StillLava extends Lava{
+
     /** @var int $id */
     protected $id = self::STILL_LAVA;
-    
+
     /**
      * @return string
      */

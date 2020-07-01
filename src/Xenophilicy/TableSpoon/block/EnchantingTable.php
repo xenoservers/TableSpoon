@@ -18,8 +18,8 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class EnchantingTable
  * @package Xenophilicy\TableSpoon\block
  */
-class EnchantingTable extends PMEnchantingTable {
-    
+class EnchantingTable extends PMEnchantingTable{
+
     public function onActivate(Item $item, Player $player = null): bool{
         if(TableSpoon::$settings["enchantments"]["enchantment-table"] && !(TableSpoon::$settings["player"]["limited-creative"] && $player->isCreative())){
             if($player instanceof Player){
@@ -30,7 +30,7 @@ class EnchantingTable extends PMEnchantingTable {
         }
         return true;
     }
-    
+
     public function countBookshelf(): int{
         $count = 0;
         $level = $this->getLevel();

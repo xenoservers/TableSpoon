@@ -13,8 +13,8 @@ use pocketmine\block\Block;
  * Rewrite by larryTheCoder
  * @package Xenophilicy\TableSpoon\utils
  */
-class RailUtils {
-    
+class RailUtils{
+
     /**
      * @param $block
      * @return bool
@@ -33,6 +33,6 @@ class RailUtils {
                 return false;
         }
     }
-    
+
 }
 

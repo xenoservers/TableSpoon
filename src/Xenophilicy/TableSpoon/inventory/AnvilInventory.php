@@ -11,11 +11,11 @@ use pocketmine\Player;
  * Class AnvilInventory
  * @package Xenophilicy\TableSpoon\inventory
  */
-class AnvilInventory extends PMAnvilInventory {
+class AnvilInventory extends PMAnvilInventory{
     public function getDefaultSize(): int{
         return 3;
     }
-    
+
     public function onClose(Player $who): void{
         foreach($this->getContents() as $item){
             foreach($who->getInventory()->addItem($item) as $doesntFit){

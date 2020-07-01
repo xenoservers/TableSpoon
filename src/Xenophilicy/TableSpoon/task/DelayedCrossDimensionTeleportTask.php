@@ -14,19 +14,19 @@ use Xenophilicy\TableSpoon\{TableSpoon, Utils};
  * Class DelayedCrossDimensionTeleportTask
  * @package Xenophilicy\TableSpoon\task
  */
-class DelayedCrossDimensionTeleportTask extends Task {
+class DelayedCrossDimensionTeleportTask extends Task{
     /** @var Player */
     protected $player;
-    
+
     /** @var int */
     protected $dimension;
-    
+
     /** @var Vector3 */
     protected $position;
-    
+
     /** @var bool */
     protected $respawn;
-    
+
     /**
      * DelayedCrossDimensionTeleportTask constructor.
      * @param Player $player
@@ -40,7 +40,7 @@ class DelayedCrossDimensionTeleportTask extends Task {
         $this->position = $position;
         $this->respawn = $respawn;
     }
-    
+
     /**
      * @param int $currentTick
      * @return bool|void
@@ -57,7 +57,6 @@ class DelayedCrossDimensionTeleportTask extends Task {
         $this->player->dataPacket($pk);
         $this->player->sendPlayStatus(PlayStatusPacket::PLAYER_SPAWN);
         $this->player->teleport($this->position);
-        
         unset(TableSpoon::$onPortal[$this->player->getId()]);
         return true;
     }

@@ -34,23 +34,23 @@ use pocketmine\utils\Random;
  * Class EnderPilar
  * @package Xenophilicy\TableSpoon\level\generator\ender\populator
  */
-class EnderPilar extends Populator {
+class EnderPilar extends Populator{
     private const radii = [3, 4, 3, 5, 3, 4, 3, 3, 5, 4, 5, 3, 5, 4, 4, 5, 5, 4, 4, 4, 5];
-    
+
     /**
      * @param $amount
      */
     public function setRandomAmount($amount){
         //        $randomAmount = $amount;
     }
-    
+
     /**
      * @param $amount
      */
     public function setBaseAmount($amount){
         //        $baseAmount = $amount;
     }
-    
+
     /**
      * @param ChunkManager $level
      * @param int $chunkX

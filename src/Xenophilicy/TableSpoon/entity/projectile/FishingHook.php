@@ -22,10 +22,10 @@ use pocketmine\Server as PMServer;
  * Class FishingHook
  * @package Xenophilicy\TableSpoon\entity\projectile
  */
-class FishingHook extends Projectile {
-    
+class FishingHook extends Projectile{
+
     public const NETWORK_ID = self::FISHING_HOOK;
-    
+
     public $width = 0.25;
     public $length = 0.25;
     public $height = 0.25;
@@ -34,7 +34,7 @@ class FishingHook extends Projectile {
     protected $gravity = 0.1;
     protected $drag = 0.05;
     protected $touchedWater = false;
-    
+
     public function onUpdate(int $currentTick): bool{
         if($this->isFlaggedForDespawn() || !$this->isAlive()){
             return false;
@@ -83,7 +83,7 @@ class FishingHook extends Projectile {
         $this->timings->stopTiming();
         return $hasUpdate;
     }
-    
+
     public function attractFish(){
         $oe = $this->getOwningEntity();
         if($oe instanceof Player){
@@ -93,7 +93,7 @@ class FishingHook extends Projectile {
             PMServer::getInstance()->broadcastPacket($this->getViewers(), $pk);
         }
     }
-    
+
     public function fishBites(){
         $oe = $this->getOwningEntity();
         if($oe instanceof Player){
@@ -103,7 +103,7 @@ class FishingHook extends Projectile {
             PMServer::getInstance()->broadcastPacket($this->getViewers(), $pk);
         }
     }
-    
+
     public function onHitEntity(Entity $entityHit, RayTraceResult $hitResult): void{
         $event = new ProjectileHitEntityEvent($this, $hitResult, $entityHit);
         $event->call();
@@ -118,7 +118,7 @@ class FishingHook extends Projectile {
         $this->isCollided = true;
         $this->flagForDespawn();
     }
-    
+
     public function getResultDamage(): int{
         return 1;
     }

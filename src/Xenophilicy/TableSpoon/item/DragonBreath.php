@@ -10,7 +10,7 @@ use pocketmine\item\Item;
  * Class DragonBreath
  * @package Xenophilicy\TableSpoon\item
  */
-class DragonBreath extends Item {
+class DragonBreath extends Item{
     /**
      * DragonBreath constructor.
      * @param int $meta

@@ -11,7 +11,7 @@ use pocketmine\entity\Entity;
  * Class LeadKnot
  * @package Xenophilicy\TableSpoon\entity\object
  */
-class LeadKnot extends Entity {
+class LeadKnot extends Entity{
     public function onUpdate(int $currentTick): bool{
         return false;
     }

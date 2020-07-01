@@ -28,53 +28,53 @@ use Xenophilicy\TableSpoon\tile\{Beacon as TileBeacon, Tile};
  * Class Beacon
  * @package Xenophilicy\TableSpoon\block
  */
-class Beacon extends Transparent {
-    
+class Beacon extends Transparent{
+
     /**
      * @var int
      */
     protected $id = self::BEACON;
-    
-    
+
+
     /**
      * @param int $meta Meta value of the block type
      */
     public function __construct($meta = 0){
         $this->meta = $meta;
     }
-    
+
     /**
      * @return bool
      */
     public function canBeActivated(): bool{
         return true;
     }
-    
+
     /**
      * @return string
      */
     public function getName(): string{
         return "Beacon";
     }
-    
+
     /**
      * @return int
      */
     public function getLightLevel(): int{
         return 15;
     }
-    
+
     public function getBlastResistance(): float{
         return 15;
     }
-    
+
     /**
      * @return float
      */
     public function getHardness(): float{
         return 3;
     }
-    
+
     /**
      * @param Item $item
      * @param Block $blockReplace
@@ -90,7 +90,7 @@ class Beacon extends Transparent {
         Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
         return true;
     }
-    
+
     /**
      * @param Item $item
      * @param Player|null $player
@@ -120,7 +120,7 @@ class Beacon extends Transparent {
         }
         return true;
     }
-    
+
     /**
      * @param Item $item
      * @param Player|null $player

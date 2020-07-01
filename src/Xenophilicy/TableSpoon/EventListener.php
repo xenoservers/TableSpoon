@@ -9,15 +9,15 @@ namespace Xenophilicy\TableSpoon;
 use pocketmine\block\Block;
 use pocketmine\entity\Entity;
 use pocketmine\event\{level\LevelLoadEvent, Listener};
-use pocketmine\event\entity\{EntityDamageEvent, EntityDeathEvent, EntityTeleportEvent};
+use pocketmine\event\entity\{EntityDamageEvent, EntityTeleportEvent};
 use pocketmine\event\player\{cheat\PlayerIllegalMoveEvent,
-  PlayerDropItemEvent,
-  PlayerGameModeChangeEvent,
-  PlayerInteractEvent,
-  PlayerItemHeldEvent,
-  PlayerLoginEvent,
-  PlayerQuitEvent,
-  PlayerRespawnEvent};
+    PlayerDropItemEvent,
+    PlayerGameModeChangeEvent,
+    PlayerInteractEvent,
+    PlayerItemHeldEvent,
+    PlayerLoginEvent,
+    PlayerQuitEvent,
+    PlayerRespawnEvent};
 use pocketmine\item\Armor;
 use pocketmine\item\Item;
 use pocketmine\level\Level;
@@ -27,17 +27,16 @@ use pocketmine\Player as PMPlayer;
 use pocketmine\plugin\Plugin;
 use Xenophilicy\TableSpoon\level\weather\Weather;
 use Xenophilicy\TableSpoon\utils\ArmorTypes;
-use Xenophilicy\TableSpoon\utils\Xp;
 
 /**
  * Class EventListener
  * @package Xenophilicy\TableSpoon
  */
-class EventListener implements Listener {
-    
+class EventListener implements Listener{
+
     /** @var Plugin */
     public $plugin;
-    
+
     /**
      * EventListener constructor.
      * @param Plugin $plugin
@@ -45,7 +44,7 @@ class EventListener implements Listener {
     public function __construct(Plugin $plugin){
         $this->plugin = $plugin;
     }
-    
+
     /**
      * @param LevelLoadEvent $ev
      *
@@ -70,7 +69,7 @@ class EventListener implements Listener {
         }
         return;
     }
-    
+
     /**
      * @param EntityDamageEvent $ev
      *
@@ -92,7 +91,7 @@ class EventListener implements Listener {
         }
         return;
     }
-    
+
     /**
      * @param PlayerRespawnEvent $ev
      *
@@ -101,7 +100,7 @@ class EventListener implements Listener {
     public function onRespawn(PlayerRespawnEvent $ev){
         if($ev->getPlayer()->isOnFire()) $ev->getPlayer()->setOnFire(0);
     }
-    
+
     /**
      * @param PlayerLoginEvent $ev
      *
@@ -110,7 +109,7 @@ class EventListener implements Listener {
     public function onLogin(PlayerLoginEvent $ev){
         TableSpoon::getInstance()->createSession($ev->getPlayer());
     }
-    
+
     /**
      * @param PlayerQuitEvent $ev
      *
@@ -120,7 +119,7 @@ class EventListener implements Listener {
         TableSpoon::getInstance()->destroySession($ev->getPlayer());
         unset(TableSpoon::$onPortal[$ev->getPlayer()->getId()]);
     }
-    
+
     /**
      * @param PlayerIllegalMoveEvent $ev
      *
@@ -134,21 +133,7 @@ class EventListener implements Listener {
             }
         }
     }
-    
-    /**
-     * @param EntityDeathEvent $ev
-     *
-     * @priority HIGHEST
-     */
-    public function onEntityDeath(EntityDeathEvent $ev){
-        if(TableSpoon::$settings["entities"]["xp"]["mob-xp"]){
-            $xp = Xp::getXpDropsForEntity($ev->getEntity());
-            if($xp > 0){
-                $ev->getEntity()->getLevel()->dropExperience($ev->getEntity()->asVector3(), $xp);
-            }
-        }
-    }
-    
+
     /**
      * @param PlayerItemHeldEvent $ev
      *
@@ -166,7 +151,7 @@ class EventListener implements Listener {
             $session->lastHeldSlot = $ev->getSlot();
         }
     }
-    
+
     /**
      * @param PlayerInteractEvent $ev
      *
@@ -242,7 +227,7 @@ class EventListener implements Listener {
           ($player = $ev->getPlayer())->getLevel()->setBlockDataAt(($blockClicked = $ev->getBlock())->x, $blockClicked->y, $blockClicked->z, ($player->getLevel()->getBlock($blockClicked)->getDamage() + 1) % 16);
         }*/
     }
-    
+
     /**
      * @param PlayerGameModeChangeEvent $ev
      *
@@ -254,7 +239,7 @@ class EventListener implements Listener {
             $ev->getPlayer()->getInventory()->clearAll();
         }
     }
-    
+
     /**
      * @param PlayerDropItemEvent $ev
      *
@@ -266,7 +251,7 @@ class EventListener implements Listener {
             $ev->setCancelled();
         }
     }
-    
+
     /**
      * @param EntityTeleportEvent $ev
      *

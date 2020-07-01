@@ -15,7 +15,7 @@ use Xenophilicy\TableSpoon\tile\BrewingStand;
  * Class BrewingInventory
  * @package Xenophilicy\TableSpoon\inventory
  */
-class BrewingInventory extends ContainerInventory {
+class BrewingInventory extends ContainerInventory{
     public const SLOT_INGREDIENT = 0;
     public const SLOT_LEFT = 1;
     public const SLOT_MIDDLE = 2;
@@ -23,7 +23,7 @@ class BrewingInventory extends ContainerInventory {
     public const SLOT_FUEL = 4;
     /** @var BrewingStand */
     protected $holder;
-    
+
     /**
      * BrewingInventory constructor.
      * @param BrewingStand $holder
@@ -34,32 +34,32 @@ class BrewingInventory extends ContainerInventory {
     public function __construct(BrewingStand $holder, array $items = [], int $size = null, string $title = null){
         parent::__construct($holder, $items, $size, $title);
     }
-    
+
     public function getDefaultSize(): int{
         return 5;
     }
-    
+
     public function getName(): string{
         return "Brewing";
     }
-    
+
     public function getNetworkType(): int{
         return WindowTypes::BREWING_STAND;
     }
-    
+
     public function onSlotChange(int $index, Item $before, bool $send): void{
         $this->holder->scheduleUpdate();
         parent::onSlotChange($index, $before, $send);
     }
-    
+
     public function getIngredient(): Item{
         return $this->getItem(self::SLOT_INGREDIENT);
     }
-    
+
     public function setIngredient(Item $item): void{
         $this->setItem(self::SLOT_INGREDIENT, $item, true);
     }
-    
+
     /**
      * @return Item[]
      */
@@ -70,21 +70,21 @@ class BrewingInventory extends ContainerInventory {
         }
         return $return;
     }
-    
+
     public function onClose(Player $who): void{
         parent::onClose($who);
         $this->holder->saveNBT();
     }
-    
+
     public function onOpen(Player $who): void{
         parent::onOpen($who);
         $this->holder->loadBottles();
     }
-    
+
     public function getFuel(): Item{
         return $this->getItem(self::SLOT_FUEL);
     }
-    
+
     public function setFuel(Item $fuel): void{
         $this->setItem(self::SLOT_FUEL, $fuel);
     }

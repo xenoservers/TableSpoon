@@ -15,7 +15,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class Anvil
  * @package Xenophilicy\TableSpoon\block
  */
-class Anvil extends PMAnvil {
+class Anvil extends PMAnvil{
     public function onActivate(Item $item, Player $player = null): bool{
         if(TableSpoon::$settings["blocks"]["anvils"]){
             if($player instanceof Player){

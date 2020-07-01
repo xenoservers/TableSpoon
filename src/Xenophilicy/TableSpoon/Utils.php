@@ -21,8 +21,8 @@ use Xenophilicy\TableSpoon\utils\EntityUtils;
  * Class Utils
  * @package Xenophilicy\TableSpoon
  */
-class Utils {
-    
+class Utils{
+
     /**
      * @param Level $lvl
      * @param Vector3 $pos
@@ -31,7 +31,7 @@ class Utils {
     public static function canSeeSky(Level $lvl, Vector3 $pos){
         return ($lvl->getHighestBlockAt($pos->getFloorX(), $pos->getFloorZ()) <= $pos->getY());
     }
-    
+
     /**
      * @param Vector3 $pos1
      * @param Vector3 $pos2
@@ -40,19 +40,19 @@ class Utils {
     public static function vector3XZDistance(Vector3 $pos1, Vector3 $pos2){
         return (($pos1->x - $pos2->x) + ($pos1->z - $pos2->z));
     }
-    
+
     public static function getPotionColor(int $effectID): Color{
         return Potion::getPotionEffectsById($effectID)[0]->getColor();
     }
-    
+
     public static function toggleBool(bool $boolean): bool{
         return !$boolean;
     }
-    
+
     public static function boolToString(bool $boolean): string{
         return $boolean ? "true" : "false";
     }
-    
+
     public static function isDelayedTeleportCancellable(Player $player, int $destinationDimension): bool{
         switch($destinationDimension){
             case DimensionIds::NETHER:
@@ -64,7 +64,7 @@ class Utils {
         }
         return false;
     }
-    
+
     /**
      * @param $needle
      * @param $haystack
@@ -73,18 +73,21 @@ class Utils {
     public static function in_arrayi($needle, $haystack){
         return in_array(strtolower($needle), array_map('strtolower', $haystack));
     }
-    
+
     public static function getDimension(Level $level): int{
-        if(TableSpoon::$settings["dimensions"]["nether"]["enabled"] || TableSpoon::$settings["dimensions"]["end"]["enabled"]){
+        if(TableSpoon::$settings["dimensions"]["nether"]["enabled"]){
             if($level->getName() == TableSpoon::$netherLevel->getName()){
                 return DimensionIds::NETHER;
-            }elseif($level->getName() == TableSpoon::$endLevel->getName()){
+            }
+        }
+        if(TableSpoon::$settings["dimensions"]["end"]["enabled"]){
+            if($level->getName() == TableSpoon::$endLevel->getName()){
                 return DimensionIds::THE_END;
             }
         }
         return DimensionIds::OVERWORLD;
     }
-    
+
     /**
      * @param $a
      * @param $b
@@ -99,7 +102,7 @@ class Utils {
         }
         return $x;
     }
-    
+
     public static function stringToASCIIHex(string $string): string{
         $return = "";
         for($i = 0; $i < strlen($string); $i++){
@@ -107,7 +110,7 @@ class Utils {
         }
         return $return;
     }
-    
+
     /**
      * @param Item $item
      * @return EnchantmentInstance[]
@@ -115,7 +118,7 @@ class Utils {
     public static function getEnchantments(Item $item): array{
         /** @var EnchantmentInstance[] $enchantments */
         $enchantments = [];
-        
+
         $ench = $item->getNamedTagEntry(Item::TAG_ENCH);
         if($ench instanceof ListTag){
             /** @var CompoundTag $entry */

@@ -51,14 +51,14 @@ use Xenophilicy\TableSpoon\utils\Math;
  * @author larryTheCoder
  * @package Xenophilicy\TableSpoon\entity\vehicle
  */
-abstract class Vehicle extends PMVehicle {
-    
+abstract class Vehicle extends PMVehicle{
+
     /** @var Entity */
     protected $linkedEntity = null;
     /** @var bool */
     protected $canInteract;
     protected $rollingDirection = true;
-    
+
     /**
      * Vehicle constructor.
      * @param Level $level
@@ -67,50 +67,50 @@ abstract class Vehicle extends PMVehicle {
     public function __construct(Level $level, CompoundTag $nbt){
         parent::__construct($level, $nbt);
     }
-    
+
     public function getRollingDirection(): int{
         return $this->propertyManager->getInt(self::DATA_HURT_DIRECTION);
     }
-    
+
     /**
      * @param int $direction
      */
     public function setRollingDirection(int $direction){
         $this->propertyManager->setInt(self::DATA_HURT_DIRECTION, $direction);
     }
-    
+
     public function getInteractButtonText(): string{
         return "Mount";
     }
-    
+
     public function getLinkedEntity(): ?Entity{
         return $this->linkedEntity;
     }
-    
+
     /**
      * @return bool
      */
     public function canDoInteraction(){
         return $this->linkedEntity == null && $this->canInteract;
     }
-    
+
     public function initEntity(): void{
         parent::initEntity();
-        
+
         $this->setRollingAmplitude(0);
         $this->setDamage(0);
         $this->setRollingDirection(0);
-        
+
         $this->y += $this->baseOffset;
     }
-    
+
     /**
      * @param int $time
      */
     public function setRollingAmplitude(int $time){
         $this->propertyManager->setInt(self::DATA_HURT_TIME, $time);
     }
-    
+
     /**
      * @param int $damage
      */
@@ -120,7 +120,7 @@ abstract class Vehicle extends PMVehicle {
         }
         $this->propertyManager->setInt(self::DATA_HEALTH, $damage);
     }
-    
+
     public function attack(EntityDamageEvent $source): void{
         $damage = null;
         $instantKill = false;
@@ -128,14 +128,14 @@ abstract class Vehicle extends PMVehicle {
             $damage = $source->getDamager();
             $instantKill = $damage instanceof Player && $damage->isCreative();
         }
-        
+
         if(!$instantKill) $this->performHurtAnimation(rand(4, 8)); // Random is fun
-        
+
         if($instantKill || $this->getDamage() <= 0){
             if($this->linkedEntity != null){
                 $this->mountEntity($this->linkedEntity);
             }
-            
+
             if($instantKill){
                 $this->kill();
             }else{
@@ -143,7 +143,7 @@ abstract class Vehicle extends PMVehicle {
             }
         }
     }
-    
+
     /**
      * @param float $damage
      * @return bool
@@ -157,12 +157,12 @@ abstract class Vehicle extends PMVehicle {
         $this->setDamage($this->getDamage() - $damage);
         return true;
     }
-    
+
     public function getDamage(): int{
         // This tag should be DATA_DAMAGE_TAKEN but okay?
         return $this->propertyManager->getInt(self::DATA_HEALTH);
     }
-    
+
     /**
      * Mount or Dismounts an Entity from a vehicle
      *
@@ -216,7 +216,7 @@ abstract class Vehicle extends PMVehicle {
         $this->propertyManager->setVector3(self::DATA_RIDER_SEAT_POSITION, new Vector3(0, $this->baseOffset * 2, 0));
         return true;
     }
-    
+
     public function onUpdate(int $currentTick): bool{
         $hasUpdated = parent::onUpdate($currentTick);
         if($this->isFlaggedForDespawn() || !$this->isAlive()){
@@ -232,11 +232,11 @@ abstract class Vehicle extends PMVehicle {
         }
         return $hasUpdated;
     }
-    
+
     public function getRollingAmplitude(): int{
         return $this->propertyManager->getInt(self::DATA_HURT_TIME);
     }
-    
+
     /**
      * @param Entity $to
      */

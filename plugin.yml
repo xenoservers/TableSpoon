@@ -1,6 +1,6 @@
 name: TableSpoon
 main: Xenophilicy\TableSpoon\TableSpoon
-version: 0.0.1-PRE-ALPHA
+version: 0.0.2-ALPHA
 api: 3.0.0
 authors: [CortexPE, Xenophilicy, HyperFlareMC]
 description: Adds cool features to PocketMine

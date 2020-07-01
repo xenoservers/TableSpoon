@@ -32,20 +32,20 @@ use pocketmine\Server as PMServer;
  * Class Boat
  * @package Xenophilicy\TableSpoon\entity\vehicle
  */
-class Boat extends Vehicle {
-    
+class Boat extends Vehicle{
+
     public const TAG_WOOD_ID = "WoodID";
     public const NETWORK_ID = self::BOAT;
-    
+
     public $height = 0.7;
     public $width = 1.6;
     public $gravity = 0;
     public $drag = 0.1;
-    
+
     /** @var Entity */
     public $linkedEntity = null;
     protected $age = 0;
-    
+
     public function initEntity(): void{
         if(!$this->namedtag->hasTag(self::TAG_WOOD_ID, ByteTag::class)){
             $this->namedtag->setByte(self::TAG_WOOD_ID, 0);
@@ -53,18 +53,18 @@ class Boat extends Vehicle {
         $this->setMaxHealth(4);
         parent::initEntity();
     }
-    
+
     public function getDrops(): array{
         return [ItemItem::get(ItemItem::BOAT, $this->getWoodID(), 1),];
     }
-    
+
     /**
      * @return int
      */
     public function getWoodID(){
         return $this->namedtag->getByte(self::TAG_WOOD_ID);
     }
-    
+
     public function attack(EntityDamageEvent $source): void{
         parent::attack($source);
         if(!$source->isCancelled()){
@@ -73,7 +73,7 @@ class Boat extends Vehicle {
             PMServer::getInstance()->broadcastPacket($this->getViewers(), $pk);
         }
     }
-    
+
     public function entityBaseTick(int $tickDiff = 1): bool{
         return false;/* TODO
 		if($this->closed){

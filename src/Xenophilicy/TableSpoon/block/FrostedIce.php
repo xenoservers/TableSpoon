@@ -10,18 +10,18 @@ use pocketmine\block\{Block, Ice};
  * Class FrostedIce
  * @package Xenophilicy\TableSpoon\block
  */
-class FrostedIce extends Ice {
-    
+class FrostedIce extends Ice{
+
     /** @var int $id */
     protected $id = self::FROSTED_ICE;
-    
+
     /**
      * @return string
      */
     public function getName(): string{
         return "Frosted Ice";
     }
-    
+
     public function onRandomTick(): void{
         $this->meta++;
         $this->getLevel()->setBlock($this->asVector3(), $this, false, false);

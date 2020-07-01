@@ -36,26 +36,26 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class Weather
  * @package Xenophilicy\TableSpoon\level\weather
  */
-class Weather {
-    
+class Weather{
+
     /** @var int */
     public const
-      CLEAR = 0, SUNNY = 0, RAIN = 1, RAINY = 1, RAINY_THUNDER = 2, THUNDER = 3;
-    
+        CLEAR = 0, SUNNY = 0, RAIN = 1, RAINY = 1, RAINY_THUNDER = 2, THUNDER = 3;
+
     private $level;
     private $weatherNow;
     private $strength1;
     private $strength2;
     private $duration;
     private $canCalculate = true;
-    
+
     /** @var Vector3 */
     private $temporalVector;
-    
+
     private $lastUpdate;
-    
+
     private $randomWeatherData = [self::CLEAR, self::RAIN, self::RAINY_THUNDER,];
-    
+
     /**
      * Weather constructor.
      *
@@ -69,7 +69,7 @@ class Weather {
         $this->lastUpdate = $level->getServer()->getTick();
         $this->temporalVector = new Vector3(0, 0, 0);
     }
-    
+
     /**
      * @param $weather
      *
@@ -100,14 +100,14 @@ class Weather {
                 return -1;
         }
     }
-    
+
     /**
      * @param bool $canCalc
      */
     public function setCanCalculate(bool $canCalc){
         $this->canCalculate = $canCalc;
     }
-    
+
     /**
      * @param $currentTick
      */
@@ -142,14 +142,14 @@ class Weather {
             $this->lastUpdate = $currentTick;
         }
     }
-    
+
     /**
      * @return bool
      */
     public function canCalculate(): bool{
         return $this->canCalculate;
     }
-    
+
     /**
      * @param int $wea
      * @param int $duration
@@ -161,13 +161,13 @@ class Weather {
         $this->duration = $duration;
         $this->sendWeatherToAll();
     }
-    
+
     public function sendWeatherToAll(){
         foreach($this->level->getPlayers() as $player){
             $this->sendWeather($player);
         }
     }
-    
+
     /**
      * @param Player $p
      */
@@ -199,21 +199,21 @@ class Weather {
             $p->dataPacket($pk);
         }
     }
-    
+
     /**
      * @return array
      */
     public function getRandomWeatherData(): array{
         return $this->randomWeatherData;
     }
-    
+
     /**
      * @param array $randomWeatherData
      */
     public function setRandomWeatherData(array $randomWeatherData){
         $this->randomWeatherData = $randomWeatherData;
     }
-    
+
     /**
      * @return bool
      */
@@ -223,7 +223,7 @@ class Weather {
         }
         return $this->getWeather() === self::SUNNY;
     }
-    
+
     /**
      * @return int
      */
@@ -233,7 +233,7 @@ class Weather {
         }
         return $this->weatherNow;
     }
-    
+
     /**
      * @return bool
      */
@@ -243,7 +243,7 @@ class Weather {
         }
         return $this->getWeather() === self::RAINY;
     }
-    
+
     /**
      * @return bool
      */
@@ -253,7 +253,7 @@ class Weather {
         }
         return $this->getWeather() === self::RAINY_THUNDER;
     }
-    
+
     /**
      * @return bool
      */
@@ -263,12 +263,12 @@ class Weather {
         }
         return $this->getWeather() === self::THUNDER;
     }
-    
+
     /**
      * @return array
      */
     public function getStrength(): array{
         return [$this->strength1, $this->strength2];
     }
-    
+
 }

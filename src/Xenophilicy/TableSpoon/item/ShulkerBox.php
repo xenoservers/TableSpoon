@@ -53,11 +53,52 @@ class ShulkerBox extends Item{
         }
     }
 
-    public function getMaxStackSize() : int{
+    /**
+     * @param int $meta
+     * @return string
+     */
+    private function getColorName(int $meta): string{
+        switch($meta){
+            case self::ORANGE:
+                return "Orange";
+            case self::MAGENTA:
+                return "Magenta";
+            case self::LIGHT_BLUE:
+                return "Light Blue";
+            case self::YELLOW:
+                return "Yellow";
+            case self::LIME:
+                return "Lime";
+            case self::PINK:
+                return "Pink";
+            case self::GRAY:
+                return "Gray";
+            case self::LIGHT_GRAY:
+                return "Light Gray";
+            case self::CYAN:
+                return "Cyan";
+            case self::PURPLE:
+                return "Purple";
+            case self::BLUE:
+                return "Blue";
+            case self::BROWN:
+                return "Brown";
+            case self::GREEN:
+                return "Green";
+            case self::RED:
+                return "Red";
+            case self::BLACK:
+                return "Black";
+            default:
+                return "White";
+        }
+    }
+
+    public function getMaxStackSize(): int{
         return 1;
     }
 
-    public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector) : bool{
+    public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector): bool{
         $block = BlockFactory::get($this->id, $this->meta, $blockReplace);
         $blockReplace->level->setBlock($blockReplace, $block, true, true);
         $tileNBT = TileShulkerBox::createNBT($blockReplace, $face, $this, $player);
@@ -71,30 +112,5 @@ class ShulkerBox extends Item{
             $this->pop();
         }
         return true;
-    }
-
-    /**
-     * @param int $meta
-     * @return string
-     */
-    private function getColorName(int $meta) : string{
-        switch($meta){
-            case self::ORANGE: return "Orange";
-            case self::MAGENTA: return "Magenta";
-            case self::LIGHT_BLUE: return "Light Blue";
-            case self::YELLOW: return "Yellow";
-            case self::LIME: return "Lime";
-            case self::PINK: return "Pink";
-            case self::GRAY: return "Gray";
-            case self::LIGHT_GRAY: return "Light Gray";
-            case self::CYAN: return "Cyan";
-            case self::PURPLE: return "Purple";
-            case self::BLUE: return "Blue";
-            case self::BROWN: return "Brown";
-            case self::GREEN: return "Green";
-            case self::RED: return "Red";
-            case self::BLACK: return "Black";
-            default: return "White";
-        }
     }
 }

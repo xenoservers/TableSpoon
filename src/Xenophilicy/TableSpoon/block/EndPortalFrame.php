@@ -13,8 +13,8 @@ use pocketmine\Player;
  * Class EndPortalFrame
  * @package Xenophilicy\TableSpoon\block
  */
-class EndPortalFrame extends PMEndPortalFrame {
-    
+class EndPortalFrame extends PMEndPortalFrame{
+
     /**
      * EndPortalFrame constructor.
      * @param int $meta
@@ -22,9 +22,9 @@ class EndPortalFrame extends PMEndPortalFrame {
     public function __construct($meta = 0){
         parent::__construct($meta);
     }
-    
+
     // Code below is ported from ClearSky (Big Thanks to XenialDan)
-    
+
     /**
      * @param Item $item
      * @param Block $block
@@ -40,7 +40,7 @@ class EndPortalFrame extends PMEndPortalFrame {
         $this->getLevel()->setBlock($block, $this, true, true);
         return true;
     }
-    
+
     /**
      * @param Item $item
      * @param Player|null $player
@@ -50,7 +50,7 @@ class EndPortalFrame extends PMEndPortalFrame {
         if(($this->getDamage() & 0x04) === 0 && $player instanceof Player && $item->getId() === Item::ENDER_EYE){
             $this->setDamage($this->getDamage() + 4);
             $this->getLevel()->setBlock($this, $this, true, true);
-            
+
             /*$corners = $this->isValidPortal();
             if(is_array($corners)){
               $this->createPortal($corners);
@@ -59,19 +59,19 @@ class EndPortalFrame extends PMEndPortalFrame {
         }
         return false;
     }
-    
+
     /**
      * @return array
      */
     public function isValidPortal(): array{
         // TODO: Portal Checks
         return [new Vector3(0, 0, 0), // corner 1
-          new Vector3(0, 0, 0), // corner 2
-          new Vector3(0, 0, 0), // corner 3
-          new Vector3(0, 0, 0), // corner 4
+            new Vector3(0, 0, 0), // corner 2
+            new Vector3(0, 0, 0), // corner 3
+            new Vector3(0, 0, 0), // corner 4
         ];
     }
-    
+
     /**
      * @param array|null $corners
      * @return bool

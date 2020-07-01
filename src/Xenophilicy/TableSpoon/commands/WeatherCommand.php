@@ -34,8 +34,8 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class WeatherCommand
  * @package Xenophilicy\TableSpoon\commands
  */
-class WeatherCommand extends VanillaCommand {
-    
+class WeatherCommand extends VanillaCommand{
+
     /**
      * WeatherCommand constructor.
      *
@@ -45,7 +45,7 @@ class WeatherCommand extends VanillaCommand {
         parent::__construct($name, "Changes the Weather", "/weather [level] < get | clear | sunny | rain | rainy_thunder | thunder >");
         $this->setPermission("pocketmine.command.weather");
     }
-    
+
     /**
      * @param CommandSender $sender
      * @param string $currentAlias
@@ -57,12 +57,10 @@ class WeatherCommand extends VanillaCommand {
         if(!$this->testPermission($sender)){
             return true;
         }
-        
         if(count($args) < 1){
             $sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
             return false;
         }
-        
         if($sender instanceof Player){
             if($args[0] == "get"){
                 switch(TableSpoon::$weatherData[$sender->getLevel()->getId()]->getWeather()){
@@ -91,12 +89,10 @@ class WeatherCommand extends VanillaCommand {
                 return false;
             }
         }
-        
         if(count($args) < 2){
             $sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
             return false;
         }
-        
         $level = $sender->getServer()->getLevelByName($args[0]);
         if(!$level instanceof Level){
             $sender->sendMessage(TextFormat::RED . "Couldn't find level: " . $args[0]);
@@ -118,7 +114,6 @@ class WeatherCommand extends VanillaCommand {
                     return true;
             }
         }
-        
         $wea = Weather::getWeatherFromString($args[1]);
         if(!isset($args[1])) $duration = mt_rand(min(TableSpoon::$settings["weather"]["min"], TableSpoon::$settings["weather"]["max"]), max(TableSpoon::$settings["weather"]["min"], TableSpoon::$settings["weather"]["max"]));else $duration = (int)$args[1];
         if($wea >= 0 and $wea <= 3){

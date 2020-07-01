@@ -56,11 +56,11 @@ use Xenophilicy\TableSpoon\utils\DyeUtils;
  * Class Cauldron
  * @package Xenophilicy\TableSpoon\block
  */
-class Cauldron extends Transparent {
-    
+class Cauldron extends Transparent{
+
     protected $id = self::CAULDRON_BLOCK;
     protected $itemId = Item::CAULDRON;
-    
+
     /**
      * Cauldron constructor.
      * @param int $meta
@@ -68,32 +68,32 @@ class Cauldron extends Transparent {
     public function __construct($meta = 0){
         $this->meta = $meta;
     }
-    
+
     public function canBeActivated(): bool{
         return true;
     }
-    
+
     public function getName(): string{
         return "Cauldron";
     }
-    
+
     public function getHardness(): float{
         return 2;
     }
-    
+
     public function getToolType(): int{
         return BlockToolType::TYPE_PICKAXE;
     }
-    
+
     public function getToolHarvestLevel(): int{
         return TieredTool::TIER_WOODEN;
     }
-    
+
     public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null): bool{
         Tile::createTile(Tile::CAULDRON, $this->getLevel(), CauldronTile::createNBT($this, $face, $item, $player));
         return parent::place($item, $blockReplace, $blockClicked, $face, $clickVector, $player);
     }
-    
+
     public function onActivate(Item $item, Player $player = null): bool{
         if(!TableSpoon::$settings["blocks"]["cauldrons"]){
             return false;
@@ -188,7 +188,7 @@ class Cauldron extends Transparent {
             case Item::POTION:
             case Item::SPLASH_POTION:
                 if(!$this->isEmpty() && ( // basically.... mismatched potion ID with cauldron = BOOM!
-                    ($tile->getPotionId() != $item->getDamage() && $item->getDamage() != 0) || ($item->getId() == Item::POTION && $tile->isSplashPotion()) || ($item->getId() == Item::SPLASH_POTION && !$tile->isSplashPotion()) && $item->getDamage() != 0 || ($item->getDamage() == 0 && $tile->hasPotion()))){
+                        ($tile->getPotionId() != $item->getDamage() && $item->getDamage() != 0) || ($item->getId() == Item::POTION && $tile->isSplashPotion()) || ($item->getId() == Item::SPLASH_POTION && !$tile->isSplashPotion()) && $item->getDamage() != 0 || ($item->getDamage() == 0 && $tile->hasPotion()))){
                     $this->meta = 0;
                     $tile->resetPotion();
                     $tile->setSplashPotion(false);
@@ -277,11 +277,11 @@ class Cauldron extends Transparent {
         $this->getLevel()->setBlock($this, $this, true);
         return true;
     }
-    
+
     public function isFull(): bool{
         return $this->meta >= 6;
     }
-    
+
     public function isEmpty(): bool{
         return $this->meta == 0;
     }

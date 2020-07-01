@@ -23,8 +23,8 @@ use Xenophilicy\TableSpoon\utils\FishingLootTable;
  * Class TableSpoon
  * @package Xenophilicy\TableSpoonX
  */
-class TableSpoon extends PluginBase {
-    
+class TableSpoon extends PluginBase{
+
     /** @var Config */
     public static $cacheFile;
     /** @var int[] */
@@ -44,11 +44,11 @@ class TableSpoon extends PluginBase {
     private $sessions = [];
     /** @var BrewingManager */
     private $brewingManager = null;
-    
+
     public static function getInstance(): TableSpoon{
         return self::$instance;
     }
-    
+
     public function onLoad(){
         $this->getLogger()->info("Loading Resources...");
         $this->saveDefaultConfig();
@@ -56,13 +56,14 @@ class TableSpoon extends PluginBase {
         self::$settings = $this->getConfig()->getAll();
         self::$instance = $this;
     }
-    
+
     public function onEnable(){
         $this->initManagers();
         $this->checkConfigVersion();
     }
-    
+
     private function initManagers(){
+        LevelManager::init();
         CommandManager::init();
         Enchantment::init();
         BlockManager::init();
@@ -82,7 +83,7 @@ class TableSpoon extends PluginBase {
             $this->getScheduler()->scheduleRepeatingTask(new TickLevelsTask(), 1);
         }
     }
-    
+
     private function checkConfigVersion(){
         $configVersion = $this->getConfig()->get("VERSION");
         $pluginVersion = $this->getDescription()->getVersion();
@@ -92,11 +93,11 @@ class TableSpoon extends PluginBase {
             return;
         }
     }
-    
+
     public function onDisable(){
         self::$cacheFile->save();
     }
-    
+
     public function createSession(Player $player): bool{
         if(!isset($this->sessions[$player->getId()])){
             $this->sessions[$player->getId()] = new Session($player);
@@ -104,7 +105,7 @@ class TableSpoon extends PluginBase {
         }
         return false;
     }
-    
+
     public function destroySession(Player $player): bool{
         if(isset($this->sessions[$player->getId()])){
             unset($this->sessions[$player->getId()]);
@@ -112,7 +113,7 @@ class TableSpoon extends PluginBase {
         }
         return false;
     }
-    
+
     /**
      * @param int $id
      * @return Session|null
@@ -124,7 +125,7 @@ class TableSpoon extends PluginBase {
             return null;
         }
     }
-    
+
     /**
      * @param string $name
      * @return Session|null
@@ -137,7 +138,7 @@ class TableSpoon extends PluginBase {
         }
         return null;
     }
-    
+
     public function getBrewingManager(): BrewingManager{
         return $this->brewingManager;
     }

@@ -20,12 +20,12 @@ use Xenophilicy\TableSpoon\Utils;
  * Class EntityUtils
  * @package Xenophilicy\TableSpoon\utils
  */
-class EntityUtils extends Utils {
+class EntityUtils extends Utils{
     /** @var Entity[] */ // These has to be set into the entity ebject... ¯\_(ツ)_/¯
     public static $ridingEntity = [];
     /** @var Entity[] */
     public static $riddenByEntity = [];
-    
+
     public static function leashEntityToPlayer(Player $player, Entity $entity): bool{ // TODO: fix this
         $entityDPM = $entity->getDataPropertyManager();
         if($entityDPM->getByte(Entity::DATA_FLAG_LEASHED) != 1){
@@ -39,7 +39,7 @@ class EntityUtils extends Utils {
             return false;
         }
     }
-    
+
     public static function isInsideOfPortal(Entity $entity): bool{
         if($entity->level === null){
             return false;
@@ -50,7 +50,7 @@ class EntityUtils extends Utils {
         }
         return false;
     }
-    
+
     public static function isInsideOfEndPortal(Entity $entity): bool{
         if($entity->level === null){
             return false;
@@ -61,7 +61,7 @@ class EntityUtils extends Utils {
         }
         return false;
     }
-    
+
     // Creds: Altay
     public static function mountEntity(Entity $vehicle, Entity $entity, int $type = EntityLink::TYPE_RIDER, bool $send = true): void{
         if(!isset(self::$ridingEntity[$entity->getId()]) and $entity !== $vehicle){
@@ -70,16 +70,16 @@ class EntityUtils extends Utils {
             if($send){
                 $dpm = $vehicle->getDataPropertyManager();
                 $dpm->setVector3(Entity::DATA_RIDER_SEAT_POSITION, new Vector3(0, self::getMountedYOffset($vehicle), 0));
-                
+
                 if(!($vehicle instanceof Minecart)){
                     $dpm->setByte(Entity::DATA_RIDER_ROTATION_LOCKED, 1);
                     $dpm->setFloat(Entity::DATA_RIDER_MAX_ROTATION, 90);
                     $dpm->setFloat(Entity::DATA_RIDER_MIN_ROTATION, -90);
                 }
-                
+
                 $entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_RIDING, true);
                 $entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_WASD_CONTROLLED, true);
-                
+
                 $pk = new SetActorLinkPacket();
                 $pk->link = new EntityLink($entity->getId(), $vehicle->getId(), $type);
                 Server::getInstance()->broadcastPacket($entity->getViewers(), $pk);
@@ -89,7 +89,7 @@ class EntityUtils extends Utils {
             }
         }
     }
-    
+
     private static function getMountedYOffset(Entity $entity): float{
         switch($entity->getId()){
             case Entity::BOAT:
@@ -97,7 +97,7 @@ class EntityUtils extends Utils {
         }
         return 0;
     }
-    
+
     public static function dismountEntity(Entity $vehicle, Entity $entity, bool $send = true): void{
         if(isset(self::$ridingEntity[$entity->getId()])){
             unset(self::$ridingEntity[$entity->getId()]);
@@ -105,16 +105,16 @@ class EntityUtils extends Utils {
             if($send){
                 $entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_RIDING, false);
                 $entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_WASD_CONTROLLED, false);
-                
+
                 $dpm = $vehicle->getDataPropertyManager();
                 $dpm->removeProperty(Entity::DATA_RIDER_SEAT_POSITION);
-                
+
                 if(!($vehicle instanceof Minecart)){
                     $dpm->removeProperty(Entity::DATA_RIDER_ROTATION_LOCKED);
                     $dpm->removeProperty(Entity::DATA_RIDER_MAX_ROTATION);
                     $dpm->removeProperty(Entity::DATA_RIDER_MIN_ROTATION);
                 }
-                
+
                 $pk = new SetActorLinkPacket();
                 $pk->link = new EntityLink($entity->getId(), $vehicle->getId(), EntityLink::TYPE_REMOVE);
                 Server::getInstance()->broadcastPacket($entity->getViewers(), $pk);
@@ -124,7 +124,7 @@ class EntityUtils extends Utils {
             }
         }
     }
-    
+
     /**
      * Returns if the structure is valid & the axis
      *
@@ -137,7 +137,7 @@ class EntityUtils extends Utils {
         $block2 = ($level->getBlock($head->subtract(0, 2, 0))->getId() == Block::SNOW_BLOCK);
         return [($block1 && $block2), "Y"];
     }
-    
+
     /**
      * Returns if the structure is valid & the axis
      *
@@ -148,15 +148,15 @@ class EntityUtils extends Utils {
         $level = $head->getLevel();
         $block1 = ($level->getBlock($head->subtract(0, 1, 0))->getId() == Block::IRON_BLOCK);
         $block2 = ($level->getBlock($head->subtract(0, 2, 0))->getId() == Block::IRON_BLOCK);
-        
+
         // ARMS ON X AXIS
         $block3 = $level->getBlock($head->subtract(1, 1, 0));
         $block4 = $level->getBlock($head->add(1, -1, 0));
-        
+
         // ARMS ON Z AXIS
         $block5 = $level->getBlock($head->subtract(0, 1, 1));
         $block6 = $level->getBlock($head->add(0, -1, 1));
-        
+
         if($block1 && $block2){
             if($block3->getId() == Block::IRON_BLOCK && $block4->getId() == Block::IRON_BLOCK){
                 return [true, "X"];

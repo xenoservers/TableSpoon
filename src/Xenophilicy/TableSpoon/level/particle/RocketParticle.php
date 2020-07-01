@@ -11,7 +11,7 @@ use pocketmine\math\Vector3;
  * Class RocketParticle
  * @package Xenophilicy\TableSpoon\level\particle
  */
-class RocketParticle extends GenericParticle {
+class RocketParticle extends GenericParticle{
     /**
      * RocketParticle constructor.
      * @param Vector3 $pos

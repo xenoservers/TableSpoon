@@ -30,8 +30,8 @@ use pocketmine\utils\TextFormat;
  * Class WorldCommand
  * @package Xenophilicy\TableSpoon\commands
  */
-class WorldCommand extends VanillaCommand {
-    
+class WorldCommand extends VanillaCommand{
+
     /**
      * WorldCommand constructor.
      * @param $name
@@ -40,7 +40,7 @@ class WorldCommand extends VanillaCommand {
         parent::__construct($name, "Teleport to a world", "/world [target player] <world name>");
         $this->setPermission("pocketmine.command.world");
     }
-    
+
     /**
      * @param CommandSender $sender
      * @param string $currentAlias
@@ -51,7 +51,6 @@ class WorldCommand extends VanillaCommand {
         if(!$this->testPermission($sender)){
             return true;
         }
-        
         if($sender instanceof Player){
             if(count($args) == 1){
                 $sender->getServer()->loadLevel($args[0]);

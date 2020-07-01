@@ -11,13 +11,13 @@ use Xenophilicy\TableSpoon\block\Rail;
  *
  * @package Xenophilicy\TableSpoon\utils
  */
-class Orientation {
-    
+class Orientation{
+
     // The type of the rail
     const STRAIGHT = 0;
     const ASCENDING = 1;
     const CURVED = 2;
-    
+
     /** @var int */
     private $meta;
     /** @var int */
@@ -26,7 +26,7 @@ class Orientation {
     private $connectingDirections;
     /** @var int|null */
     private $ascendingDirection;
-    
+
     /**
      * Orientation constructor.
      * @param int $meta
@@ -42,16 +42,17 @@ class Orientation {
         $this->connectingDirections[$to] = $to;
         $this->ascendingDirection = $ascendingDirection;
     }
-    
+
     /**
      * Get all of the possible orientation that
      * been made with rail.
      *
      * @return Orientation[]
+     * @noinspection PhpUndefinedClassConstantInspection
      */
     public static function getMetadata(): array{
         $railMetadata = [];
-        
+
         $railMetadata[] = new Orientation(0, self::STRAIGHT, Vector3::SIDE_NORTH, Vector3::SIDE_SOUTH, null);
         $railMetadata[] = new Orientation(1, self::STRAIGHT, Vector3::SIDE_EAST, Vector3::SIDE_WEST, null);
         $railMetadata[] = new Orientation(2, self::ASCENDING, Vector3::SIDE_EAST, Vector3::SIDE_WEST, Vector3::SIDE_EAST);
@@ -64,7 +65,7 @@ class Orientation {
         $railMetadata[] = new Orientation(9, self::CURVED, Vector3::SIDE_NORTH, Vector3::SIDE_EAST, null);
         return $railMetadata;
     }
-    
+
     /**
      * Get orientation metadata by their damage or
      * meta.
@@ -78,7 +79,7 @@ class Orientation {
         }
         return Rail::$railMetadata[$meta];
     }
-    
+
     /**
      * Gets the metadata for a straight railways.
      *
@@ -96,7 +97,7 @@ class Orientation {
         }
         return Rail::$railMetadata[Rail::STRAIGHT_NORTH_SOUTH];
     }
-    
+
     /**
      * Gets the metadata for the ascending rail.
      *
@@ -116,7 +117,7 @@ class Orientation {
         }
         return Rail::$railMetadata[Rail::ASCENDING_EAST];
     }
-    
+
     /**
      * Get if the rail could be curved to the specific
      * direction based on the given parameters.
@@ -129,14 +130,14 @@ class Orientation {
         $origin = [Rail::CURVED_SOUTH_EAST, Rail::CURVED_SOUTH_WEST, Rail::CURVED_NORTH_WEST, Rail::CURVED_NORTH_EAST];
         foreach($origin as $side){
             $o = Rail::$railMetadata[$side];
-            
+
             if(isset($o->connectingDirections[$face1]) && isset($o->connectingDirections[$face2])){
                 return $o;
             }
         }
         return Rail::$railMetadata[Rail::CURVED_SOUTH_EAST];
     }
-    
+
     /**
      * Get if the rail that could possibly changes it
      * orientation to either straight or curved.
@@ -149,14 +150,14 @@ class Orientation {
         $origin = Orientation::getHorizontalRails();
         foreach($origin as $side){
             $o = Rail::$railMetadata[$side];
-            
+
             if(isset($o->connectingDirections[$face1]) && isset($o->connectingDirections[$face2])){
                 return $o;
             }
         }
         return Rail::$railMetadata[Rail::STRAIGHT_NORTH_SOUTH];
     }
-    
+
     /**
      * Gets all the horizontal rails as array
      *
@@ -165,7 +166,7 @@ class Orientation {
     public static function getHorizontalRails(): array{
         return [Rail::STRAIGHT_NORTH_SOUTH, Rail::STRAIGHT_EAST_WEST, Rail::CURVED_SOUTH_EAST, Rail::CURVED_SOUTH_WEST, Rail::CURVED_NORTH_WEST, Rail::CURVED_NORTH_EAST];
     }
-    
+
     /**
      * Returns the metadata of this orientation
      *
@@ -174,7 +175,7 @@ class Orientation {
     public function getDamage(): int{
         return $this->meta;
     }
-    
+
     /**
      * Gets if the of the rail has its own possible
      * connections to the other rail.
@@ -191,7 +192,7 @@ class Orientation {
         }
         return true;
     }
-    
+
     /**
      * Get the possible connections that this
      * rail could connects with.
@@ -201,7 +202,7 @@ class Orientation {
     public function connectingDirections(): array{
         return $this->connectingDirections;
     }
-    
+
     /**
      * Get the ascending direction for this
      * rail metadata.
@@ -211,7 +212,7 @@ class Orientation {
     public function ascendingDirection(){
         return $this->ascendingDirection;
     }
-    
+
     /**
      * Gets if this rail could be straight
      *
@@ -220,7 +221,7 @@ class Orientation {
     public function isStraight(): bool{
         return $this->state == self::STRAIGHT;
     }
-    
+
     /**
      * Checks if this rail is ascending
      *
@@ -229,7 +230,7 @@ class Orientation {
     public function isAscending(): bool{
         return $this->state == self::ASCENDING;
     }
-    
+
     /**
      * Checks if this rail is curved
      *
