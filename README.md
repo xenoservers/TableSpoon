@@ -13,6 +13,8 @@ Highly maintained and updated fork of [TeaSpoon](https://github.com/CortexPE/Tea
 We are NOT responsible for any damages or corruptions that may occur by using this plugins.**
 ***
 
+### Bug reports or feature request
+If you'd like to open an issue to request something be changed or fixed, please be sure to use one of the supplied templates to do so. This helps us keep things organized and clean.
 
 ### Contributions
 You may contribute by opening a pull request to add features, fix bugs, or simply edit the project how you think it
