@@ -26,6 +26,8 @@ You may contribute by opening a pull request to add features, fix bugs, or simpl
 * Enchantment tables and anvils are not functional
 
 ### Our current todo list
+- [ ] Implement rail system
+- [ ] Implement new and missing blocks
 - [ ] Fix Hoppers
 - [ ] Fireworks
 - [ ] Fishing

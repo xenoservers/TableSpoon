@@ -111,13 +111,9 @@ class PacketHandler implements Listener{
     public function onPacketSend(DataPacketSendEvent $ev){
         $pk = $ev->getPacket();
         $p = $ev->getPlayer();
-        switch(true){
-            case ($pk instanceof StartGamePacket):
-                if(TableSpoon::$settings["dimensions"]["nether"]["enabled"] || TableSpoon::$settings["dimensions"]["end"]["enabled"]){
-                    $spawnSettings = $pk->spawnSettings;
-                    $pk->spawnSettings = new SpawnSettings($spawnSettings->getBiomeType(), $spawnSettings->getBiomeName(), Utils::getDimension($p->getLevel()));
-                }
-                break;
+        if($pk instanceof StartGamePacket && (TableSpoon::$settings["dimensions"]["nether"]["enabled"] || TableSpoon::$settings["dimensions"]["end"]["enabled"])){
+            $spawnSettings = $pk->spawnSettings;
+            $pk->spawnSettings = new SpawnSettings($spawnSettings->getBiomeType(), $spawnSettings->getBiomeName(), Utils::getDimension($p->getLevel()));
         }
     }
 }
