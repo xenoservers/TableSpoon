@@ -50,7 +50,6 @@ class Rail extends PMRail{
         self::$railMetadata = Orientation::getMetadata();
     }
 
-    /** @noinspection PhpUndefinedClassConstantInspection */
     public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null): bool{
         $down = $this->getSide(Vector3::SIDE_DOWN);
         if(is_null($down) || $down->isTransparent()){

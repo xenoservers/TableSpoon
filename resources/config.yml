@@ -1,4 +1,4 @@
-VERSION: "1.0.0" # Internal use only
+VERSION: "1.0.1" # Internal use only
 
 entities:
   # Enable lightning and fire damage
@@ -27,8 +27,6 @@ dimensions:
     enabled: true
     # Set the name of the nether level
     name: "nether"
-    # Enable or disable the ability to teleport to the nether like vanilla
-    vanilla-teleport: false
   # End dimension configuration
   end:
     # Enable or disable the End dimension
@@ -53,12 +51,8 @@ player:
   limited-creative: false
   # Choose whether to clear a player's inventory when they switch gamemodes
   clear-inv: false
-  # Instant armor equip configuration
-  instant-armor:
-    # Choose whether to allow players to right click armor to equip
-    enabled: true
-    # Enable or disable the ability to replace current armor
-    replace: false
+  # Choose whether to allow players to right click armor to equip
+  instant-armor: true
   # Elytra configuration
   elytra:
     # Enable or disable elytra functionality

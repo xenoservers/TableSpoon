@@ -8,27 +8,29 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use Xenophilicy\TableSpoon\block\BlockManager;
+use Xenophilicy\TableSpoon\block\multiblock\MultiBlockFactory;
 use Xenophilicy\TableSpoon\commands\CommandManager;
 use Xenophilicy\TableSpoon\entity\EntityManager;
 use Xenophilicy\TableSpoon\handlers\{EnchantHandler, PacketHandler};
 use Xenophilicy\TableSpoon\inventory\BrewingManager;
 use Xenophilicy\TableSpoon\item\{enchantment\Enchantment, ItemManager};
+use Xenophilicy\TableSpoon\level\LevelManager;
 use Xenophilicy\TableSpoon\level\weather\Weather;
 use Xenophilicy\TableSpoon\network\PacketManager;
+use Xenophilicy\TableSpoon\player\PlayerSession;
+use Xenophilicy\TableSpoon\player\PlayerSessionManager;
 use Xenophilicy\TableSpoon\task\TickLevelsTask;
 use Xenophilicy\TableSpoon\tile\Tile;
 use Xenophilicy\TableSpoon\utils\FishingLootTable;
 
 /**
  * Class TableSpoon
- * @package Xenophilicy\TableSpoonX
+ * @package Xenophilicy\TableSpoon
  */
 class TableSpoon extends PluginBase{
 
     /** @var Config */
     public static $cacheFile;
-    /** @var int[] */
-    public static $onPortal = [];
     /** @var Level */
     public static $netherLevel;
     /** @var Level */
@@ -37,10 +39,11 @@ class TableSpoon extends PluginBase{
     public static $weatherData = [];
     /** @var array */
     public static $settings;
+    /** @var Level */
     public static $overworldLevel;
     /** @var TableSpoon */
     private static $instance;
-    /** @var Session[] */
+    /** @var PlayerSession[] */
     private $sessions = [];
     /** @var BrewingManager */
     private $brewingManager = null;
@@ -64,6 +67,7 @@ class TableSpoon extends PluginBase{
 
     private function initManagers(){
         LevelManager::init();
+        PlayerSessionManager::init();
         CommandManager::init();
         Enchantment::init();
         BlockManager::init();
@@ -72,6 +76,7 @@ class TableSpoon extends PluginBase{
         Tile::init();
         FishingLootTable::init();
         PacketManager::init();
+        MultiBlockFactory::init();
         $this->brewingManager = new BrewingManager();
         $this->brewingManager->init();
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
@@ -100,7 +105,7 @@ class TableSpoon extends PluginBase{
 
     public function createSession(Player $player): bool{
         if(!isset($this->sessions[$player->getId()])){
-            $this->sessions[$player->getId()] = new Session($player);
+            $this->sessions[$player->getId()] = new PlayerSession($player);
             return true;
         }
         return false;
@@ -116,7 +121,7 @@ class TableSpoon extends PluginBase{
 
     /**
      * @param int $id
-     * @return Session|null
+     * @return PlayerSession|null
      */
     public function getSessionById(int $id){
         if(isset($this->sessions[$id])){
@@ -128,7 +133,7 @@ class TableSpoon extends PluginBase{
 
     /**
      * @param string $name
-     * @return Session|null
+     * @return PlayerSession|null
      */
     public function getSessionByName(string $name){
         foreach($this->sessions as $session){

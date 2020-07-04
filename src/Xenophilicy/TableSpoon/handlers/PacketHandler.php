@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\handlers;
@@ -9,7 +8,7 @@ use pocketmine\network\mcpe\protocol\{PlayerActionPacket, StartGamePacket, types
 use pocketmine\Player as PMPlayer;
 use pocketmine\plugin\Plugin;
 use Xenophilicy\TableSpoon\network\InventoryTransactionPacket;
-use Xenophilicy\TableSpoon\Session;
+use Xenophilicy\TableSpoon\player\PlayerSession;
 use Xenophilicy\TableSpoon\TableSpoon;
 use Xenophilicy\TableSpoon\Utils;
 
@@ -41,7 +40,7 @@ class PacketHandler implements Listener{
         switch(true){
             case ($pk instanceof PlayerActionPacket):
                 $session = TableSpoon::getInstance()->getSessionById($p->getId());
-                if($session instanceof Session){
+                if($session instanceof PlayerSession){
                     switch($pk->action){
                         case PlayerActionPacket::ACTION_DIMENSION_CHANGE_ACK:
                         case PlayerActionPacket::ACTION_DIMENSION_CHANGE_REQUEST:

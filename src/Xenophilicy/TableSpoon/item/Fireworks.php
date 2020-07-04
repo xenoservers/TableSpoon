@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\item;
@@ -14,7 +13,7 @@ use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use pocketmine\Player;
 use pocketmine\utils\Random;
 use Xenophilicy\TableSpoon\entity\projectile\FireworkRocket;
-use Xenophilicy\TableSpoon\Session;
+use Xenophilicy\TableSpoon\player\PlayerSession;
 use Xenophilicy\TableSpoon\TableSpoon;
 use Xenophilicy\TableSpoon\task\ElytraRocketBoostTrackingTask;
 
@@ -68,7 +67,7 @@ class Fireworks extends Item{
     public function onClickAir(Player $player, Vector3 $directionVector): bool{
         if(TableSpoon::$settings["player"]["elytra"]["enabled"] && TableSpoon::$settings["player"]["elytra"]["boost"]){
             $session = TableSpoon::getInstance()->getSessionById($player->getId());
-            if($session instanceof Session){
+            if($session instanceof PlayerSession){
                 if($session->usingElytra && !$player->isOnGround()){
                     if($player->getGamemode() != Player::CREATIVE && $player->getGamemode() != Player::SPECTATOR){
                         $this->pop();

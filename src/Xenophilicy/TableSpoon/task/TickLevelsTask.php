@@ -1,11 +1,10 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\task;
 
 use pocketmine\scheduler\Task;
-use Xenophilicy\TableSpoon\LevelManager;
+use Xenophilicy\TableSpoon\level\LevelManager;
 use Xenophilicy\TableSpoon\TableSpoon;
 
 /**
@@ -13,6 +12,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * @package Xenophilicy\TableSpoon\task
  */
 class TickLevelsTask extends Task{
+
     /**
      * @param int $currentTick
      */

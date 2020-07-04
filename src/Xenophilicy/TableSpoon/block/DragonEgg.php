@@ -102,7 +102,6 @@ class DragonEgg extends Fallable{
                 $x = $this->getX() + mt_rand(-15, 15);
                 $y = $this->getY() + mt_rand(-7, 7);
                 $z = $this->getZ() + mt_rand(-15, 15);
-
                 if($level->getBlockIdAt($x, $y, $z) == Block::AIR && $level->isInWorld($x, $y, $z)){
                     $level->setBlock($this, new Air(), true, true);
                     $oldPos = $this->asVector3();

@@ -55,7 +55,7 @@ class WorldCommand extends VanillaCommand{
             if(count($args) == 1){
                 $sender->getServer()->loadLevel($args[0]);
                 if(($level = $sender->getServer()->getLevelByName($args[0])) !== null){
-                    $sender->teleport($level->getSafeSpawn());
+                    $sender->teleport($level->getSpawnLocation());
                     $sender->sendMessage("Teleported to Level: " . $level->getName());
                     return true;
                 }else{
@@ -70,7 +70,7 @@ class WorldCommand extends VanillaCommand{
                         $sender->sendMessage("Player not found.");
                         return false;
                     }
-                    $player->teleport($level->getSafeSpawn());
+                    $player->teleport($level->getSpawnLocation());
                     $player->sendMessage("Teleported to Level: " . $level->getName());
                     return true;
                 }else{

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\inventory;
@@ -12,6 +11,7 @@ use pocketmine\Player;
  * @package Xenophilicy\TableSpoon\inventory
  */
 class AnvilInventory extends PMAnvilInventory{
+
     public function getDefaultSize(): int{
         return 3;
     }

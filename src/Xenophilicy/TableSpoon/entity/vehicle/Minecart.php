@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\entity\vehicle;
@@ -339,7 +338,6 @@ class Minecart extends Vehicle{
             }else{
                 $whatOne = $dx - $nextOne;
                 $whatTwo = $dz - $nextThree;
-
                 $rail = ($whatOne * $nextSeven + $whatTwo * $nextMax) * 2;
             }
             $dx = $nextOne + $nextSeven * $rail;
@@ -467,11 +465,9 @@ class Minecart extends Vehicle{
     }
 
     public function onInteract(Player $player, Item $item, int $slot, Vector3 $clickPos): bool{
-        if($this->linkedEntity != null){
+        if(!is_null($this->linkedEntity)){
             return false;
         }
-
-        // Simple
         return parent::mountEntity($player);
     }
 
@@ -505,7 +501,7 @@ class Minecart extends Vehicle{
      * @return bool
      */
     public function setOffset(int $offset): bool{
-        if($this->displayBlock !== null){
+        if(!is_null($this->displayBlock)){
             $this->propertyManager->setInt(self::DATA_MINECART_DISPLAY_OFFSET, $offset);
             return true;
         }

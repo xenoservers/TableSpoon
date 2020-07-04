@@ -1,30 +1,7 @@
 <?php
-
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://itxtech.org
- *
- * Added Lingering Potions - @Xenophilicy\TableSpoon (4/22/2018)
- *
- */
-
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\inventory;
-
 
 use pocketmine\inventory\CraftingManager;
 use pocketmine\item\Item;
@@ -44,7 +21,7 @@ class BrewingManager extends CraftingManager{
         parent::__construct();
     }
 
-    public function init(): void{ // cant make this static lol it conflicts with the PMMP one
+    public function init(): void{
         $this->registerBrewingStand();
     }
 
@@ -179,9 +156,8 @@ class BrewingManager extends CraftingManager{
         $this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::SPLASH_POTION, Potion::LONG_NIGHT_VISION, 1), Item::get(Item::REDSTONE_DUST, 0, 1), Item::get(Item::SPLASH_POTION, Potion::NIGHT_VISION, 1)));
         $this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::SPLASH_POTION, Potion::INVISIBILITY, 1), Item::get(Item::FERMENTED_SPIDER_EYE, 0, 1), Item::get(Item::SPLASH_POTION, Potion::NIGHT_VISION, 1)));
         $this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::SPLASH_POTION, Potion::LONG_INVISIBILITY, 1), Item::get(Item::REDSTONE_DUST, 0, 1), Item::get(Item::SPLASH_POTION, Potion::INVISIBILITY, 1)));
-        $this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::SPLASH_POTION, Potion::LONG_INVISIBILITY, 1), Item::get(Item::FERMENTED_SPIDER_EYE, 0, 1), Item::get(Item::SPLASH_POTION, Potion::LONG_NIGHT_VISION, 1)));
-        //===================================================================分隔符=======================================================================
-        //普通药水升级成喷溅
+        $this->registerBrewingRecipe(new BrewingRecipe(Item::get(Item::SPLASH_POTION, Potion::LONG_INVISIBILITY, 1),
+            Item::get(Item::FERMENTED_SPIDER_EYE, 0, 1), Item::get(Item::SPLASH_POTION, Potion::LONG_NIGHT_VISION, 1)));
         $ref = new ReflectionClass(Potion::class);
         $potions = array_diff_assoc($ref->getConstants(), $ref->getParentClass()->getConstants());
         foreach($potions as $potion){

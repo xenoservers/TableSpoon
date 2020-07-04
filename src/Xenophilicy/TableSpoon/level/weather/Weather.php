@@ -1,25 +1,6 @@
 <?php
-
 declare(strict_types=1);
 
-/*
- *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author iTX Technologies
- * @link https://itxtech.org
- *
- */
 
 // Modded by @Xenophilicy\TableSpoon to make it more realistic + performance improvements
 
@@ -116,7 +97,7 @@ class Weather{
             $tickDiff = $currentTick - $this->lastUpdate;
             $this->duration -= $tickDiff;
             if($this->duration <= 0){
-                $duration = mt_rand(min(TableSpoon::$settings["weather"]["duration"]["min"], TableSpoon::$settings["weather"]["duration"]["max"]), max(TableSpoon::$settings["weather"]["duration"]["min"], TableSpoon::$settings["weather"]["duration"]["max"]));
+                $duration = mt_rand(min(TableSpoon::$settings["weather"]["duration"]["minimum"], TableSpoon::$settings["weather"]["duration"]["maximum"]), max(TableSpoon::$settings["weather"]["duration"]["minimum"], TableSpoon::$settings["weather"]["duration"]["maximum"]));
                 if($this->weatherNow === self::SUNNY){
                     $weather = $this->randomWeatherData[array_rand($this->randomWeatherData)];
                     $this->setWeather($weather, $duration);

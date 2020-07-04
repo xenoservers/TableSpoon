@@ -48,7 +48,6 @@ class Orientation{
      * been made with rail.
      *
      * @return Orientation[]
-     * @noinspection PhpUndefinedClassConstantInspection
      */
     public static function getMetadata(): array{
         $railMetadata = [];

@@ -64,7 +64,7 @@ class EnderPilar extends Populator{
             $x = $random->nextRange(0, 15);
             $z = $random->nextRange(0, 15);
             $height = mt_rand(76, 103);
-            $radius = self::radii[array_rand(self::radii)];
+            $radius = array_rand(self::radii);
             for($ny = 0; $ny < $height; $ny++){
                 for($r = ($radius / 10); $r < $radius; $r += ($radius / 10)){
                     $nd = 360 / (2 * pi() * $r);

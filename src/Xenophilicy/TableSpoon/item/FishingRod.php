@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\item;
@@ -15,7 +14,7 @@ use pocketmine\math\Vector3;
 use pocketmine\Player;
 use Xenophilicy\TableSpoon\entity\projectile\FishingHook;
 use Xenophilicy\TableSpoon\item\enchantment\Enchantment;
-use Xenophilicy\TableSpoon\Session;
+use Xenophilicy\TableSpoon\player\PlayerSession;
 use Xenophilicy\TableSpoon\TableSpoon;
 use Xenophilicy\TableSpoon\Utils;
 use Xenophilicy\TableSpoon\utils\FishingLootTable;
@@ -44,7 +43,7 @@ class FishingRod extends Durable{
     public function onClickAir(Player $player, Vector3 $directionVector): bool{
         if(TableSpoon::$settings["fishing"]["enabled"]){
             $session = TableSpoon::getInstance()->getSessionById($player->getId());
-            if($session instanceof Session){
+            if($session instanceof PlayerSession){
                 if(!$session->fishing){
                     $nbt = Entity::createBaseNBT($player->add(0, $player->getEyeHeight(), 0), $directionVector, $player->yaw, $player->pitch);
                     /** @var FishingHook $projectile */
