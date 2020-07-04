@@ -84,7 +84,6 @@ class Utils{
      * @return Position
      */
     public static function genNetherSpawn(Position $pos, Level $level): Position{
-        $level->
         $x = (int)ceil($pos->getX() / 8);
         $y = (int)ceil($pos->getY());
         $z = (int)ceil($pos->getZ() / 8);
