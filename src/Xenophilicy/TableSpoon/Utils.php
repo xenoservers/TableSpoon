@@ -113,7 +113,7 @@ class Utils{
                 $level->setBlock(new Vector3($pos->x + $x, $pos->y - 1, $pos->z + $z), new Obsidian());
             }
         }
-        return new Position($pos->x-1, $pos->y, $pos->z-1, $level);
+        return new Position($pos->x - 1, $pos->y, $pos->z - 1, $level);
     }
 
     private static function checkBlock(Block $block): bool{

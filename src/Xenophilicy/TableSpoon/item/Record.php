@@ -43,7 +43,7 @@ class Record extends Item{
     }
 
     public function getRecordName(): string{
-        $names = [Item::RECORD_13 => "13", Item::RECORD_CAT => "cat", Item::RECORD_BLOCKS => "blocks", Item::RECORD_CHIRP => "chirp", Item::RECORD_FAR => "far", Item::RECORD_MALL => "mall", Item::RECORD_MELLOHI => "mellohi", Item::RECORD_STAL => "stal", Item::RECORD_STRAD => "strad", Item::RECORD_WARD => "ward", Item::RECORD_11 => "11", Item::RECORD_WAIT => "wait",];
+        $names = [Item::RECORD_13 => "13", Item::RECORD_CAT => "cat", Item::RECORD_BLOCKS => "blocks", Item::RECORD_CHIRP => "chirp", Item::RECORD_FAR => "far", Item::RECORD_MALL => "mall", Item::RECORD_MELLOHI => "mellohi", Item::RECORD_STAL => "stal", Item::RECORD_STRAD => "strad", Item::RECORD_WARD => "ward", Item::RECORD_11 => "11", Item::RECORD_WAIT => "wait"];
         return $names[$this->getId()];
     }
 }

@@ -41,7 +41,7 @@ class BrewingStand extends Spawnable implements InventoryHolder, Container, Name
     public const
         MAX_BREW_TIME = 400, MAX_FUEL = 20;
     /** @var int[] */
-    public const INGREDIENTS = [Item::NETHER_WART, Item::GLOWSTONE_DUST, Item::REDSTONE, Item::FERMENTED_SPIDER_EYE, Item::MAGMA_CREAM, Item::SUGAR, Item::GLISTERING_MELON, Item::SPIDER_EYE, Item::GHAST_TEAR, Item::BLAZE_POWDER, Item::GOLDEN_CARROT, Item::PUFFERFISH, Item::RABBIT_FOOT, Item::GUNPOWDER, Item::DRAGON_BREATH,]; // used for hoppers...
+    public const INGREDIENTS = [Item::NETHER_WART, Item::GLOWSTONE_DUST, Item::REDSTONE, Item::FERMENTED_SPIDER_EYE, Item::MAGMA_CREAM, Item::SUGAR, Item::GLISTERING_MELON, Item::SPIDER_EYE, Item::GHAST_TEAR, Item::BLAZE_POWDER, Item::GOLDEN_CARROT, Item::PUFFERFISH, Item::RABBIT_FOOT, Item::GUNPOWDER, Item::DRAGON_BREATH]; // used for hoppers...
     /** @var bool */
     public $brewing = false;
     /** @var CompoundTag */

@@ -47,7 +47,7 @@ class EndCrystal extends Entity{
      * @param Vector3 $pos
      */
     public function setBeamTarget(Vector3 $pos){
-        $this->namedtag->setTag(new ListTag("BeamTarget", [new DoubleTag("", $pos->getX()), new DoubleTag("", $pos->getY()), new DoubleTag("", $pos->getZ()),]));
+        $this->namedtag->setTag(new ListTag("BeamTarget", [new DoubleTag("", $pos->getX()), new DoubleTag("", $pos->getY()), new DoubleTag("", $pos->getZ())]));
     }
 
     public function attack(EntityDamageEvent $source): void{

@@ -81,7 +81,7 @@ class PlayerSession{
     }
 
     public function onEnterPortal(PortalMultiBlock $block): void{
-        $ev = new PlayerEnterPortalEvent($this->player, $block, $this->player->isCreative() ? 0 : $block->getTeleportationDuration());
+        $ev = new PlayerEnterPortalEvent($this->player, $block, $block->getTeleportationDuration($this->player));
         $ev->call();
         if(!$ev->isCancelled()){
             $this->inPortal = new PlayerPortalInfo($block, $ev->getTeleportDuration());

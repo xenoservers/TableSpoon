@@ -86,7 +86,7 @@ class Beacon extends Transparent{
      */
     public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null): bool{
         $this->getLevel()->setBlock($this, $this, true, true);
-        $nbt = new CompoundTag("", [new StringTag("id", Tile::BEACON), new ByteTag("isMovable", 0), new IntTag("primary", 0), new IntTag("secondary", 0), new IntTag("x", $blockReplace->x), new IntTag("y", $blockReplace->y), new IntTag("z", $blockReplace->z),]);
+        $nbt = new CompoundTag("", [new StringTag("id", Tile::BEACON), new ByteTag("isMovable", 0), new IntTag("primary", 0), new IntTag("secondary", 0), new IntTag("x", $blockReplace->x), new IntTag("y", $blockReplace->y), new IntTag("z", $blockReplace->z)]);
         Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
         return true;
     }
@@ -107,7 +107,7 @@ class Beacon extends Transparent{
                 /** @var TileBeacon $beacon */
                 $beacon = $t;
             }else{
-                $nbt = new CompoundTag("", [new StringTag("id", Tile::BEACON), new ByteTag("isMovable", 0), new IntTag("primary", 0), new IntTag("secondary", 0), new IntTag("x", $this->x), new IntTag("y", $this->y), new IntTag("z", $this->z),]);
+                $nbt = new CompoundTag("", [new StringTag("id", Tile::BEACON), new ByteTag("isMovable", 0), new IntTag("primary", 0), new IntTag("secondary", 0), new IntTag("x", $this->x), new IntTag("y", $this->y), new IntTag("z", $this->z)]);
                 $beacon = Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
             }
             if($player->isCreative() && TableSpoon::$settings["player"]["limited-creative"]){

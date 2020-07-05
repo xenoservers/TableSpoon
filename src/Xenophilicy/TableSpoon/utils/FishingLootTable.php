@@ -115,9 +115,9 @@ class FishingLootTable{
                     if(TableSpoon::$settings["enchantments"]["vanilla"]){
 
                         if($item->getId() == Item::BOW){
-                            $rand = [Enchantment::POWER, Enchantment::PUNCH, Enchantment::FLAME, Enchantment::INFINITY,];
+                            $rand = [Enchantment::POWER, Enchantment::PUNCH, Enchantment::FLAME, Enchantment::INFINITY];
                         }elseif($item->getId() == Item::FISHING_ROD){
-                            $rand = [Enchantment::LUCK_OF_THE_SEA, Enchantment::LURE, Enchantment::UNBREAKING,];
+                            $rand = [Enchantment::LUCK_OF_THE_SEA, Enchantment::LURE, Enchantment::UNBREAKING];
                         }
 
                         if(isset($rand)){

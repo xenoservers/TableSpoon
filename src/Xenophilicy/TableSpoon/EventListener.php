@@ -33,7 +33,6 @@ use pocketmine\network\mcpe\protocol\StartGamePacket;
 use pocketmine\network\mcpe\protocol\types\SpawnSettings;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
-use Xenophilicy\TableSpoon\level\LevelManager;
 use Xenophilicy\TableSpoon\level\weather\Weather;
 use Xenophilicy\TableSpoon\player\PlayerSession;
 use Xenophilicy\TableSpoon\player\PlayerSessionManager;
@@ -77,9 +76,8 @@ class EventListener implements Listener{
      * @priority LOWEST
      */
     public function onLevelLoad(LevelLoadEvent $ev){
-        LevelManager::init();
         $level = $ev->getLevel();
-        $TEMPORARY_ENTITIES = [Entity::XP_ORB, Entity::LIGHTNING_BOLT,];
+        $TEMPORARY_ENTITIES = [Entity::XP_ORB, Entity::LIGHTNING_BOLT];
         $lvlWeather = TableSpoon::$weatherData[$level->getId()] = new Weather($level, 0);
         if(TableSpoon::$settings["weather"]["enabled"]){
             $lvlWeather->setCanCalculate(($level->getName() != TableSpoon::$settings["dimensions"]["nether"]["name"] && $level->getName() != TableSpoon::$settings["dimensions"]["end"]["name"]));
@@ -188,7 +186,7 @@ class EventListener implements Listener{
         $item = $event->getItem();
         $player = $event->getPlayer();
         $check = ($event->getAction() == PlayerInteractEvent::RIGHT_CLICK_BLOCK || $event->getAction() == PlayerInteractEvent::RIGHT_CLICK_AIR);
-        $isBlocked = (in_array($event->getBlock()->getId(), [Block::ITEM_FRAME_BLOCK,]));
+        $isBlocked = (in_array($event->getBlock()->getId(), [Block::ITEM_FRAME_BLOCK]));
         if(!$check || $isBlocked) return;
         if(!$event->getItem() instanceof Armor) return;
         $inventory = $player->getArmorInventory();

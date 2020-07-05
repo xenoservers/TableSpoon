@@ -52,7 +52,7 @@ class LingeringPotion extends Throwable{
 
         $aec = null;
 
-        $nbt = new CompoundTag("", [new ListTag("Pos", [new DoubleTag("", $this->getX()), new DoubleTag("", $this->getY()), new DoubleTag("", $this->getZ()),]), new ListTag("Motion", [new DoubleTag("", 0), new DoubleTag("", 0), new DoubleTag("", 0),]), new ListTag("Rotation", [new FloatTag("", 0), new FloatTag("", 0),]),]);
+        $nbt = new CompoundTag("", [new ListTag("Pos", [new DoubleTag("", $this->getX()), new DoubleTag("", $this->getY()), new DoubleTag("", $this->getZ())]), new ListTag("Motion", [new DoubleTag("", 0), new DoubleTag("", 0), new DoubleTag("", 0)]), new ListTag("Rotation", [new FloatTag("", 0), new FloatTag("", 0)])]);
         $nbt->setInt(AreaEffectCloud::TAG_AGE, 0);
         $nbt->setShort(AreaEffectCloud::TAG_POTION_ID, $this->getPotionId());
         $nbt->setFloat(AreaEffectCloud::TAG_RADIUS, 3);

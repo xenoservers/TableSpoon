@@ -43,7 +43,7 @@ class Minecart extends Vehicle{
     public $needUpdateBlock = false;
     /** @var float */
     protected $baseOffset = 0.35;
-    private $matrix = [[[0, 0, -1], [0, 0, 1]], [[-1, 0, 0], [1, 0, 0]], [[-1, -1, 0], [1, 0, 0]], [[-1, 0, 0], [1, -1, 0]], [[0, 0, -1], [0, -1, 1]], [[0, -1, -1], [0, 0, 1]], [[0, 0, 1], [1, 0, 0]], [[0, 0, 1], [-1, 0, 0]], [[0, 0, -1], [-1, 0, 0]], [[0, 0, -1], [1, 0, 0]],];
+    private $matrix = [[[0, 0, -1], [0, 0, 1]], [[-1, 0, 0], [1, 0, 0]], [[-1, -1, 0], [1, 0, 0]], [[-1, 0, 0], [1, -1, 0]], [[0, 0, -1], [0, -1, 1]], [[0, -1, -1], [0, 0, 1]], [[0, 0, 1], [1, 0, 0]], [[0, 0, 1], [-1, 0, 0]], [[0, 0, -1], [-1, 0, 0]], [[0, 0, -1], [1, 0, 0]]];
     /** @var float */
     private $currentSpeed = 0;
 
@@ -96,7 +96,7 @@ class Minecart extends Vehicle{
     }
 
     public function getDrops(): array{
-        return [Item::get(Item::MINECART, 0, 1),];
+        return [Item::get(Item::MINECART, 0, 1)];
     }
 
     public function close(): void{

@@ -110,7 +110,7 @@ class Ender extends Generator{
         for($x = 0; $x < 16; ++$x){
             for($z = 0; $z < 16; ++$z){
                 $biome = Biome::getBiome(Biome::END);
-                $biome->setGroundCover([Block::get(Block::OBSIDIAN, 0),]);
+                $biome->setGroundCover([Block::get(Block::OBSIDIAN, 0)]);
                 $chunk->setBiomeId($x, $z, $biome->getId());
                 for($y = 0; $y < 128; ++$y){
                     $noiseValue = (abs($this->emptyHeight - $y) / $this->emptyHeight) * $this->emptyAmplitude - $noise[$x][$z][$y];

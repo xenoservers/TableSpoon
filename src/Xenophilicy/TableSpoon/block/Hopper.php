@@ -62,7 +62,7 @@ class Hopper extends Transparent{
                     }
                     $player->addWindow($t->getInventory());
                 }else{
-                    $nbt = new CompoundTag("", [new ListTag("Items", []), new StringTag("id", Tile::HOPPER), new IntTag("x", $this->x), new IntTag("y", $this->y), new IntTag("z", $this->z),]);
+                    $nbt = new CompoundTag("", [new ListTag("Items", []), new StringTag("id", Tile::HOPPER), new IntTag("x", $this->x), new IntTag("y", $this->y), new IntTag("z", $this->z)]);
                     /** @var HopperTile $t */
                     $t = Tile::createTile(Tile::HOPPER, $this->getLevel(), $nbt);
                     if($player->isCreative() and TableSpoon::$settings["player"]["limited-creative"]){
@@ -76,11 +76,11 @@ class Hopper extends Transparent{
     }
 
     public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null): bool{
-        $faces = [0 => 0, 1 => 0, 2 => 3, 3 => 2, 4 => 5, 5 => 4,];
+        $faces = [0 => 0, 1 => 0, 2 => 3, 3 => 2, 4 => 5, 5 => 4];
         $this->meta = $faces[$face];
         $this->getLevel()->setBlock($blockReplace, $this, true, true);
 
-        $nbt = new CompoundTag("", [new ListTag("Items", []), new StringTag("id", Tile::HOPPER), new IntTag("x", $this->x), new IntTag("y", $this->y), new IntTag("z", $this->z),]);
+        $nbt = new CompoundTag("", [new ListTag("Items", []), new StringTag("id", Tile::HOPPER), new IntTag("x", $this->x), new IntTag("y", $this->y), new IntTag("z", $this->z)]);
 
         if($item->hasCustomName()){
             $nbt->setString("CustomName", $item->getCustomName());

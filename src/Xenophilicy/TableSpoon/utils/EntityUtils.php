@@ -20,7 +20,7 @@ use Xenophilicy\TableSpoon\Utils;
  * @package Xenophilicy\TableSpoon\utils
  */
 class EntityUtils extends Utils{
-    /** @var Entity[] */ // These has to be set into the entity ebject... ¯\_(ツ)_/¯
+    /** @var Entity[] */
     public static $ridingEntity = [];
     /** @var Entity[] */
     public static $riddenByEntity = [];
@@ -69,18 +69,15 @@ class EntityUtils extends Utils{
             if($send){
                 $dpm = $vehicle->getDataPropertyManager();
                 $dpm->setVector3(Entity::DATA_RIDER_SEAT_POSITION, new Vector3(0, self::getMountedYOffset($vehicle), 0));
-
                 if(!($vehicle instanceof Minecart)){
                     $dpm->setByte(Entity::DATA_RIDER_ROTATION_LOCKED, 1);
                     $dpm->setFloat(Entity::DATA_RIDER_MAX_ROTATION, 90);
                     $dpm->setFloat(Entity::DATA_RIDER_MIN_ROTATION, -90);
                 }
-
                 $entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_RIDING, true);
                 $entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_WASD_CONTROLLED, true);
-
                 $pk = new SetActorLinkPacket();
-                $pk->link = new EntityLink($entity->getId(), $vehicle->getId(), $type);
+                $pk->link = new EntityLink($entity->getId(), $vehicle->getId(), $type, true, true);
                 Server::getInstance()->broadcastPacket($entity->getViewers(), $pk);
                 if($entity instanceof Player){
                     $entity->dataPacket($pk);
@@ -104,18 +101,15 @@ class EntityUtils extends Utils{
             if($send){
                 $entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_RIDING, false);
                 $entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_WASD_CONTROLLED, false);
-
                 $dpm = $vehicle->getDataPropertyManager();
                 $dpm->removeProperty(Entity::DATA_RIDER_SEAT_POSITION);
-
                 if(!($vehicle instanceof Minecart)){
                     $dpm->removeProperty(Entity::DATA_RIDER_ROTATION_LOCKED);
                     $dpm->removeProperty(Entity::DATA_RIDER_MAX_ROTATION);
                     $dpm->removeProperty(Entity::DATA_RIDER_MIN_ROTATION);
                 }
-
                 $pk = new SetActorLinkPacket();
-                $pk->link = new EntityLink($entity->getId(), $vehicle->getId(), EntityLink::TYPE_REMOVE);
+                $pk->link = new EntityLink($entity->getId(), $vehicle->getId(), EntityLink::TYPE_REMOVE, true, true);
                 Server::getInstance()->broadcastPacket($entity->getViewers(), $pk);
                 if($entity instanceof Player){
                     $entity->sendDataPacket($pk);
@@ -147,15 +141,12 @@ class EntityUtils extends Utils{
         $level = $head->getLevel();
         $block1 = ($level->getBlock($head->subtract(0, 1, 0))->getId() == Block::IRON_BLOCK);
         $block2 = ($level->getBlock($head->subtract(0, 2, 0))->getId() == Block::IRON_BLOCK);
-
         // ARMS ON X AXIS
         $block3 = $level->getBlock($head->subtract(1, 1, 0));
         $block4 = $level->getBlock($head->add(1, -1, 0));
-
         // ARMS ON Z AXIS
         $block5 = $level->getBlock($head->subtract(0, 1, 1));
         $block6 = $level->getBlock($head->add(0, -1, 1));
-
         if($block1 && $block2){
             if($block3->getId() == Block::IRON_BLOCK && $block4->getId() == Block::IRON_BLOCK){
                 return [true, "X"];

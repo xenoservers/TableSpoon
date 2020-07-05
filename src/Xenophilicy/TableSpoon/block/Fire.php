@@ -29,7 +29,6 @@ class Fire extends PMFire{
             if(!$forever){
                 if($weather->canCalculate()){
                     $rainy = ($weather->isRainy() || $weather->isRainyThunder());
-
                     if($rainy && (Utils::canSeeSky($this->getLevel(), $this->asVector3()) || Utils::canSeeSky($this->getLevel(), $this->getSide(Vector3::SIDE_NORTH)) || Utils::canSeeSky($this->getLevel(), $this->getSide(Vector3::SIDE_SOUTH)) || Utils::canSeeSky($this->getLevel(), $this->getSide(Vector3::SIDE_EAST)) || Utils::canSeeSky($this->getLevel(), $this->getSide(Vector3::SIDE_WEST)))){
                         $this->level->setBlock($this, BlockFactory::get(Block::AIR));
                     }

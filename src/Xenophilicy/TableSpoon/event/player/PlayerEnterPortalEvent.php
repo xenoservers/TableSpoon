@@ -27,12 +27,12 @@ class PlayerEnterPortalEvent extends DimensionPortalsEvent implements Cancellabl
      * PlayerEnterPortalEvent constructor.
      * @param Player $player
      * @param PortalMultiBlock $block
-     * @param int $teleport_duration
+     * @param int $teleportDuration
      */
-    public function __construct(Player $player, PortalMultiBlock $block, int $teleport_duration){
+    public function __construct(Player $player, PortalMultiBlock $block, int $teleportDuration){
         $this->player = $player;
         $this->block = $block;
-        $this->teleportDuration = $teleport_duration;
+        $this->teleportDuration = $teleportDuration;
     }
 
     public function getPlayer(): Player{

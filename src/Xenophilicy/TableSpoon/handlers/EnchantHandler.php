@@ -39,7 +39,7 @@ class EnchantHandler implements Listener{
 
     /** @var string */
     public const BANE_OF_ARTHROPODS_AFFECTED_ENTITIES = [ // Based on https://minecraft.gamepedia.com/Enchanting#Bane_of_Arthropods ^_^
-        "Spider", "Cave Spider", "Silverfish", "Endermite",];
+        "Spider", "Cave Spider", "Silverfish", "Endermite"];
 
     /**
      * @param EntityDamageEvent $ev

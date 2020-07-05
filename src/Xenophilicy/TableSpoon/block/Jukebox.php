@@ -65,7 +65,7 @@ class Jukebox extends Solid{
         $this->getLevel()->setBlock($blockReplace, $this, true, true);
         $tile = $this->getLevel()->getTile($this);
         if(!($tile instanceof JukeboxTile)){
-            $nbt = new CompoundTag("", [new StringTag(Tile::TAG_ID, Tile::JUKEBOX), new IntTag(Tile::TAG_X, (int)$this->getX()), new IntTag(Tile::TAG_Y, (int)$this->getY()), new IntTag(Tile::TAG_Z, (int)$this->getZ()),]);
+            $nbt = new CompoundTag("", [new StringTag(Tile::TAG_ID, Tile::JUKEBOX), new IntTag(Tile::TAG_X, (int)$this->getX()), new IntTag(Tile::TAG_Y, (int)$this->getY()), new IntTag(Tile::TAG_Z, (int)$this->getZ())]);
             Tile::createTile(Tile::JUKEBOX, $this->getLevel(), $nbt);
         }
         return true;
@@ -83,7 +83,7 @@ class Jukebox extends Solid{
                 }
             }
         }else{
-            $nbt = new CompoundTag("", [new StringTag(Tile::TAG_ID, Tile::JUKEBOX), new IntTag(Tile::TAG_X, (int)$this->getX()), new IntTag(Tile::TAG_Y, (int)$this->getY()), new IntTag(Tile::TAG_Z, (int)$this->getZ()),]);
+            $nbt = new CompoundTag("", [new StringTag(Tile::TAG_ID, Tile::JUKEBOX), new IntTag(Tile::TAG_X, (int)$this->getX()), new IntTag(Tile::TAG_Y, (int)$this->getY()), new IntTag(Tile::TAG_Z, (int)$this->getZ())]);
             /** @var JukeboxTile $tile */
             $tile = Tile::createTile(Tile::JUKEBOX, $this->getLevel(), $nbt);
 

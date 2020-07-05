@@ -34,7 +34,7 @@ class Firework extends Utils{
             $value[] = $tag;
         }
         $explosions = new ListTag("Explosions", $value, NBT::TAG_Compound);
-        $root->setTag(new CompoundTag("Fireworks", [$explosions, new ByteTag("Flight", $data->flight),]));
+        $root->setTag(new CompoundTag("Fireworks", [$explosions, new ByteTag("Flight", $data->flight)]));
         return $root;
     }
 }

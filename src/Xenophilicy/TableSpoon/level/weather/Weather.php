@@ -20,8 +20,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
 class Weather{
 
     /** @var int */
-    public const
-        CLEAR = 0, SUNNY = 0, RAIN = 1, RAINY = 1, RAINY_THUNDER = 2, THUNDER = 3;
+    public const CLEAR = 0, SUNNY = 0, RAIN = 1, RAINY = 1, RAINY_THUNDER = 2, THUNDER = 3;
 
     private $level;
     private $weatherNow;
@@ -35,7 +34,7 @@ class Weather{
 
     private $lastUpdate;
 
-    private $randomWeatherData = [self::CLEAR, self::RAIN, self::RAINY_THUNDER,];
+    private $randomWeatherData = [self::CLEAR, self::RAIN, self::RAINY_THUNDER];
 
     /**
      * Weather constructor.
@@ -61,7 +60,7 @@ class Weather{
             if($weather <= 3){
                 return $weather;
             }
-            return -1; // invalid weather
+            return -1;
         }
         switch(strtolower($weather)){
             case "clear":
@@ -153,7 +152,7 @@ class Weather{
      * @param Player $p
      */
     public function sendWeather(Player $p){
-        $pks = [new LevelEventPacket(), new LevelEventPacket(),];
+        $pks = [new LevelEventPacket(), new LevelEventPacket()];
         $pks[0]->evid = LevelEventPacket::EVENT_STOP_RAIN;
         $pks[0]->data = $this->strength1;
         $pks[1]->evid = LevelEventPacket::EVENT_STOP_THUNDER;
