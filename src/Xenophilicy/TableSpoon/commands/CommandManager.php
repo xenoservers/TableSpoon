@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\commands;
 
-use pocketmine\Server as PMServer;
+use pocketmine\Server;
 use Xenophilicy\TableSpoon\TableSpoon;
 
 /**
@@ -17,6 +17,6 @@ class CommandManager{
         if(TableSpoon::$settings["weather"]["enabled"]){
             $cmds[] = new WeatherCommand("weather");
         }
-        PMServer::getInstance()->getCommandMap()->registerAll("pocketmine", $cmds);
+        Server::getInstance()->getCommandMap()->registerAll("pocketmine", $cmds);
     }
 }

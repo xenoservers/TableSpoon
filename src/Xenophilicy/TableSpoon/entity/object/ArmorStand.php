@@ -47,14 +47,12 @@ class ArmorStand extends Entity{
     public function initEntity(): void{
         $air = Item::get(Item::AIR)->nbtSerialize();
         if(!$this->namedtag->hasTag(self::TAG_HAND_ITEMS, ListTag::class)){
-            $this->namedtag->setTag(new ListTag(self::TAG_HAND_ITEMS, [
-                $air, // itemInHand
+            $this->namedtag->setTag(new ListTag(self::TAG_HAND_ITEMS, [$air, // itemInHand
                 $air  // itemOffHand
             ], NBT::TAG_Compound));
         }
         if(!$this->namedtag->hasTag(self::TAG_ARMOR_ITEMS, ListTag::class)){
-            $this->namedtag->setTag(new ListTag(self::TAG_ARMOR_ITEMS, [
-                $air, // boots
+            $this->namedtag->setTag(new ListTag(self::TAG_ARMOR_ITEMS, [$air, // boots
                 $air, // leggings
                 $air, // chestplate
                 $air  // helmet

@@ -1,9 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
-// Modded by @Xenophilicy\TableSpoon to make it more realistic + performance improvements
-
 namespace Xenophilicy\TableSpoon\level\weather;
 
 use pocketmine\entity\Entity;
@@ -98,7 +95,7 @@ class Weather{
             if($this->duration <= 0){
                 $duration = mt_rand(min(TableSpoon::$settings["weather"]["duration"]["minimum"], TableSpoon::$settings["weather"]["duration"]["maximum"]), max(TableSpoon::$settings["weather"]["duration"]["minimum"], TableSpoon::$settings["weather"]["duration"]["maximum"]));
                 if($this->weatherNow === self::SUNNY){
-                    $weather = $this->randomWeatherData[array_rand($this->randomWeatherData)];
+                    $weather = array_rand($this->randomWeatherData);
                     $this->setWeather($weather, $duration);
                 }else{
                     $weather = self::SUNNY;
@@ -108,15 +105,18 @@ class Weather{
             if(($this->weatherNow == self::RAINY_THUNDER or $this->weatherNow == self::THUNDER) and is_int($this->duration / 200)){
                 $players = $this->level->getPlayers();
                 if(count($players) > 0){
-                    $p = $players[mt_rand(0, count($players))];
-                    $x = $p->x + mt_rand(-64, 64);
-                    $z = $p->z + mt_rand(-64, 64);
-                    $y = $this->level->getHighestBlockAt((int)$x, (int)$z);
-                    if(TableSpoon::$settings["weather"]["lightning"]){
-                        $nbt = Entity::createBaseNBT(new Vector3($x, $y, $z));
-                        $lightning = Entity::createEntity("Lightning", $this->level, $nbt);
-                        $lightning->spawnToAll();
+                    $p = array_rand($players);
+                    if($p instanceof Player){
+                        $x = $p->x + mt_rand(-64, 64);
+                        $z = $p->z + mt_rand(-64, 64);
+                        $y = $this->level->getHighestBlockAt((int)$x, (int)$z);
+                        if(TableSpoon::$settings["weather"]["lightning"]){
+                            $nbt = Entity::createBaseNBT(new Vector3($x, $y, $z));
+                            $lightning = Entity::createEntity("Lightning", $this->level, $nbt);
+                            $lightning->spawnToAll();
+                        }
                     }
+
                 }
             }
             $this->lastUpdate = $currentTick;

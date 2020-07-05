@@ -64,15 +64,21 @@ class Utils{
         return in_array(strtolower($needle), array_map('strtolower', $haystack));
     }
 
-    public static function getDimension(Level $level): int{
-        if(TableSpoon::$settings["dimensions"]["nether"]["enabled"]){
-            if($level->getName() == TableSpoon::$netherLevel->getName()){
-                return DimensionIds::NETHER;
+    /**
+     * @param $level
+     * @return int
+     */
+    public static function getDimension($level): int{
+        if($level instanceof Level){
+            if(TableSpoon::$settings["dimensions"]["nether"]["enabled"]){
+                if($level->getName() == TableSpoon::$netherLevel->getName()){
+                    return DimensionIds::NETHER;
+                }
             }
-        }
-        if(TableSpoon::$settings["dimensions"]["end"]["enabled"]){
-            if($level->getName() == TableSpoon::$endLevel->getName()){
-                return DimensionIds::THE_END;
+            if(TableSpoon::$settings["dimensions"]["end"]["enabled"]){
+                if($level->getName() == TableSpoon::$endLevel->getName()){
+                    return DimensionIds::THE_END;
+                }
             }
         }
         return DimensionIds::OVERWORLD;

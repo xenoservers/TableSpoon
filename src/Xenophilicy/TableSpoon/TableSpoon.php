@@ -29,6 +29,8 @@ use Xenophilicy\TableSpoon\utils\FishingLootTable;
  */
 class TableSpoon extends PluginBase{
 
+    public const CONFIG_VERSION = "1.0.2";
+
     /** @var Config */
     public static $cacheFile;
     /** @var Level */
@@ -92,7 +94,7 @@ class TableSpoon extends PluginBase{
     private function checkConfigVersion(){
         $configVersion = $this->getConfig()->get("VERSION");
         $pluginVersion = $this->getDescription()->getVersion();
-        if(version_compare("1.0.0", $configVersion, "gt")){
+        if(version_compare(self::CONFIG_VERSION, $configVersion, "gt")){
             $this->getLogger()->warning("You have updated TableSpoon to v" . $pluginVersion . " but have a config from v$configVersion! Please delete your old config for new features to be enabled and to prevent unwanted errors!");
             $this->getServer()->getPluginManager()->disablePlugin($this);
             return;

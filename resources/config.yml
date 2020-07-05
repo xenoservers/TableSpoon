@@ -1,12 +1,12 @@
-VERSION: "1.0.1" # Internal use only
+VERSION: "1.0.2" # Internal use only
 
 entities:
   # Enable lightning and fire damage
   lightning-fire-damage: true
   # Enable or disable minecart functionality
-  minecarts: true
+  minecarts: false
   # Enable or disable fireworks
-  fireworks: true
+  fireworks: false
   end-crystal:
     # Enable or disable End Crystal explosions
     explosions: true
@@ -18,7 +18,7 @@ enchantments:
   vanilla: true
   # Enable or disable enchantment tables
   # WARNING: This feature is currently handled by the client and can be exploited
-  enchantment-table: true
+  enchantment-table: false
 
 dimensions:
   # Nether dimension configuration
@@ -30,7 +30,7 @@ dimensions:
   # End dimension configuration
   end:
     # Enable or disable the End dimension
-    enabled: true
+    enabled: false
     # Set the name of the end level
     name: "end"
 
@@ -56,32 +56,32 @@ player:
   # Elytra configuration
   elytra:
     # Enable or disable elytra functionality
-    enabled: true
+    enabled: false
     # Enable or disable elytra boosting functionality
     boost: true
     # Enable or disable elytra particles
     particles: true
   # Enable or disable fishing functionality
-  fishing: true
+  fishing: false
 
 blocks:
   # Enable or disable dragon egg teleportation
   dragon-egg-teleport: true
   # Enable or disable brewing stand functionality
-  brewing-stands: true
+  brewing-stands: false
   # Enable or disable cauldron functionality
-  cauldrons: true
+  cauldrons: false
   # Enable or disable shulker box functionality
   shulker-box: true
   # Enable or disable snow melting
   snow-melts: true
   # Enable or disable hopper functionality
-  hoppers: true
+  hoppers: false
   # Enable or disable anvil functionality
   # WARNING: This feature is currently handled by the client and can be exploited
-  anvils: true
+  anvils: false
   beacons:
     # Enable or disable beacon functionality
-    enabled: true
+    enabled: false
     # Enable or disable beacon effects
     effects: true

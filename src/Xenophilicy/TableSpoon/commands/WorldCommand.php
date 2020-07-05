@@ -1,30 +1,11 @@
 <?php
-
-/*
- *     __                           _
- *    / /  _____   _____ _ __ _   _| |
- *   / /  / _ \ \ / / _ \ '__| | | | |
- *  / /__|  __/\ V /  __/ |  | |_| | |
- *  \____/\___| \_/ \___|_|   \__, |_|
- *                            |___/
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * @author LeverylTeam
- * @link https://github.com/LeverylTeam
- *
-*/
-
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\commands;
 
 use pocketmine\command\{CommandSender, defaults\VanillaCommand};
 use pocketmine\Player;
-use pocketmine\utils\TextFormat;
+use pocketmine\utils\TextFormat as TF;
 
 /**
  * Class WorldCommand
@@ -37,7 +18,7 @@ class WorldCommand extends VanillaCommand{
      * @param $name
      */
     public function __construct($name){
-        parent::__construct($name, "Teleport to a world", "/world [target player] <world name>");
+        parent::__construct($name, "Teleport to a world");
         $this->setPermission("pocketmine.command.world");
     }
 
@@ -48,41 +29,40 @@ class WorldCommand extends VanillaCommand{
      * @return bool|mixed
      */
     public function execute(CommandSender $sender, $currentAlias, array $args){
-        if(!$this->testPermission($sender)){
-            return true;
+        if(!$this->testPermission($sender)) return false;
+        if(!$sender instanceof Player){
+            $sender->sendMessage(TF::RED . "This command must be executed as a player");
+            return false;
         }
-        if($sender instanceof Player){
-            if(count($args) == 1){
-                $sender->getServer()->loadLevel($args[0]);
-                if(($level = $sender->getServer()->getLevelByName($args[0])) !== null){
-                    $sender->teleport($level->getSpawnLocation());
-                    $sender->sendMessage("Teleported to Level: " . $level->getName());
-                    return true;
-                }else{
-                    $sender->sendMessage(TextFormat::RED . "World: \"" . $args[0] . "\" Does not exist");
-                    return false;
-                }
-            }elseif(count($args) > 1 && count($args) < 3){
-                $sender->getServer()->loadLevel($args[1]);
-                if(($level = $sender->getServer()->getLevelByName($args[1])) !== null){
-                    $player = $sender->getServer()->getPlayer($args[0]);
-                    if($player === null){
-                        $sender->sendMessage("Player not found.");
-                        return false;
-                    }
-                    $player->teleport($level->getSpawnLocation());
-                    $player->sendMessage("Teleported to Level: " . $level->getName());
-                    return true;
-                }else{
-                    $sender->sendMessage(TextFormat::RED . "World: \"" . $args[1] . "\" Does not exist");
-                    return false;
-                }
-            }else{
-                $sender->sendMessage("Usage: /world [target player] <world name>");
+        if(count($args) === 1){
+            $level = array_shift($args);
+            $sender->getServer()->loadLevel($level);
+            if(($level = $sender->getServer()->getLevelByName($level)) == null){
+                $sender->sendMessage(TF::RED . "That world doesn't exist");
                 return false;
             }
+            $sender->teleport($level->getSpawnLocation());
+            $sender->sendMessage(TF::GREEN . "Teleported to world " . TF::YELLOW . $level->getName());
+            return true;
+        }elseif(count($args) === 2){
+            $name = array_shift($args);
+            $level = array_shift($args);
+            $sender->getServer()->loadLevel($level);
+            if(($level = $sender->getServer()->getLevelByName($level)) == null){
+                $sender->sendMessage(TF::RED . "That world does not exist");
+                return false;
+            }
+            $player = $sender->getServer()->getPlayer($name);
+            if($player === null){
+                $sender->sendMessage(TF::RED . "That player isn't online");
+                return false;
+            }
+            $player->teleport($level->getSpawnLocation());
+            $player->sendMessage(TF::GREEN . "Teleported to world " . TF::YELLOW . $level->getName());
+            $player->sendMessage(TF::GREEN . "Teleported player " . TF::AQUA . $player->getName() . TF::GREEN . " to world " . TF::YELLOW . $level->getName());
+            return true;
         }else{
-            $sender->sendMessage(TextFormat::RED . "This command must be executed as a player");
+            $sender->sendMessage(TF::RED . "Usage: /world [player] <world>");
             return false;
         }
     }

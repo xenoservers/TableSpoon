@@ -34,7 +34,7 @@ class WeatherCommand extends VanillaCommand{
      * @return bool
      */
     public function execute(CommandSender $sender, $currentAlias, array $args){
-        if(!$this->testPermission($sender)) return true;
+        if(!$this->testPermission($sender)) return false;
         if(count($args) === 1){
             if(!$sender instanceof Player){
                 $sender->sendMessage(TF::RED . "You must specify a level");
@@ -48,7 +48,7 @@ class WeatherCommand extends VanillaCommand{
         }elseif(count($args) === 2){
             $level = $sender->getServer()->getLevelByName($args[0]);
             if(!$level instanceof Level){
-                $sender->sendMessage(TF::RED . "Couldn't find level " . $args[0]);
+                $sender->sendMessage(TF::RED . "That world doesn't exist");
                 return false;
             }
             if($args[1] === "get"){
