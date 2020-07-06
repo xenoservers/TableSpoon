@@ -10,10 +10,10 @@ Highly maintained and updated fork of [TeaSpoon](https://github.com/CortexPE/Tea
 ***
 **PLEASE NOTE: We do NOT provide any support for branches, forks, or unofficial versions of TableSpoon nor do we
  support any unofficial or beta releases of PocketMine. We are NOT responsible for any damages or corruptions that
-  may occur by using this plugins. You assume ALL responsibility and accept the risks by using this plugin.**
+  may occur by using this plugin. You assume ALL responsibility and accept the risks by using this plugin.**
 
 
-TableSpoon is not yet complete which means it **ships with many known and unknown issues and bugs** that you should be
+TableSpoon is not yet complete which means it **ships with many unknown issues and bugs** that you should be
  aware of before attempting to use certain features. Do not expect anything to "just work" as nothing is guaranteed
   at this point in development (extremely alpha stage, duh). By using our releases, you acknowledge that there may be
    non-commercialized/production features not implemented, misbehaving, or simply broken. **This is normal**, we will
@@ -33,7 +33,7 @@ You may contribute by opening a pull request to add features, fix bugs, or simpl
   branch.
  
 ### Known issues (also see our todo list)
-* Nether portal doesn't get created in Nether level
+* A nether portal doesn't get created in Nether level
 * End portal teleports over void
 * Enchantment tables and anvils are not functional
 

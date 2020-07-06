@@ -14,11 +14,11 @@ use Xenophilicy\TableSpoon\entity\EntityManager;
 use Xenophilicy\TableSpoon\handlers\{EnchantHandler, PacketHandler};
 use Xenophilicy\TableSpoon\inventory\BrewingManager;
 use Xenophilicy\TableSpoon\item\{enchantment\Enchantment, ItemManager};
-use Xenophilicy\TableSpoon\level\LevelManager;
 use Xenophilicy\TableSpoon\level\weather\Weather;
 use Xenophilicy\TableSpoon\network\PacketManager;
 use Xenophilicy\TableSpoon\player\PlayerSession;
 use Xenophilicy\TableSpoon\player\PlayerSessionManager;
+use Xenophilicy\TableSpoon\task\DelayedLevelLoadTask;
 use Xenophilicy\TableSpoon\task\TickLevelsTask;
 use Xenophilicy\TableSpoon\tile\Tile;
 use Xenophilicy\TableSpoon\utils\FishingLootTable;
@@ -68,7 +68,7 @@ class TableSpoon extends PluginBase{
     }
 
     private function initManagers(){
-        LevelManager::init();
+        $this->getScheduler()->scheduleTask(new DelayedLevelLoadTask());
         PlayerSessionManager::init();
         CommandManager::init();
         Enchantment::init();
