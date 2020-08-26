@@ -18,8 +18,8 @@ use Xenophilicy\TableSpoon\tile\Tile;
  * Class ShulkerBox
  * @package Xenophilicy\TableSpoon\item
  */
-class ShulkerBox extends Item{
-
+class ShulkerBox extends Item {
+    
     const WHITE = 0;
     const ORANGE = 1;
     const MAGENTA = 2;
@@ -36,7 +36,7 @@ class ShulkerBox extends Item{
     const GREEN = 13;
     const RED = 14;
     const BLACK = 15;
-
+    
     /**
      * @param int $meta
      * @param string|null $name
@@ -51,7 +51,7 @@ class ShulkerBox extends Item{
             $this->getNamedTag()->setTag($inventory);
         }
     }
-
+    
     /**
      * @param int $meta
      * @return string
@@ -92,11 +92,11 @@ class ShulkerBox extends Item{
                 return "White";
         }
     }
-
+    
     public function getMaxStackSize(): int{
         return 1;
     }
-
+    
     public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector): bool{
         $block = BlockFactory::get($this->id, $this->meta, $blockReplace);
         $blockReplace->level->setBlock($blockReplace, $block, true, true);

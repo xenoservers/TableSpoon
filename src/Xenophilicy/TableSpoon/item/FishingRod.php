@@ -23,7 +23,7 @@ use Xenophilicy\TableSpoon\utils\FishingLootTable;
  * Class FishingRod
  * @package Xenophilicy\TableSpoon\item
  */
-class FishingRod extends Durable{
+class FishingRod extends Durable {
     /**
      * FishingRod constructor.
      * @param int $meta

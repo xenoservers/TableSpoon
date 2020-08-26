@@ -16,8 +16,8 @@ use Xenophilicy\TableSpoon\tile\{ShulkerBox as TileShulkerBox, Tile};
  * Class ShulkerBox
  * @package Xenophilicy\TableSpoon\block
  */
-class ShulkerBox extends Transparent{
-
+class ShulkerBox extends Transparent {
+    
     /**
      * ShulkerBox constructor.
      * @param int $id
@@ -27,23 +27,23 @@ class ShulkerBox extends Transparent{
         $this->id = $id;
         $this->meta = $meta;
     }
-
+    
     public function getResistance(): float{
         return 30;
     }
-
+    
     public function getHardness(): float{
         return 2;
     }
-
+    
     public function getToolType(): int{
         return BlockToolType::TYPE_PICKAXE;
     }
-
+    
     public function getName(): string{
         return "Shulker Box";
     }
-
+    
     public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null): bool{
         $this->getLevel()->setBlock($blockReplace, $this, true, true);
         $nbt = TileShulkerBox::createNBT($this, $face, $item, $player);
@@ -55,7 +55,7 @@ class ShulkerBox extends Transparent{
         ($inv = $player->getInventory())->clear($inv->getHeldItemIndex());
         return true;
     }
-
+    
     public function onBreak(Item $item, Player $player = null): bool{
         $t = $this->getLevel()->getTile($this);
         if($t instanceof TileShulkerBox){
@@ -74,7 +74,7 @@ class ShulkerBox extends Transparent{
         $this->getLevel()->setBlock($this, Block::get(Block::AIR), true, true);
         return true;
     }
-
+    
     public function onActivate(Item $item, Player $player = null): bool{
         if(TableSpoon::$settings["blocks"]["shulker-box"]){
             if($player instanceof Player){
@@ -90,7 +90,7 @@ class ShulkerBox extends Transparent{
         }
         return true;
     }
-
+    
     public function getDrops(Item $item): array{
         return [];
     }

@@ -19,12 +19,12 @@ use Xenophilicy\TableSpoon\Utils;
  * Class EntityUtils
  * @package Xenophilicy\TableSpoon\utils
  */
-class EntityUtils extends Utils{
+class EntityUtils extends Utils {
     /** @var Entity[] */
     public static $ridingEntity = [];
     /** @var Entity[] */
     public static $riddenByEntity = [];
-
+    
     public static function leashEntityToPlayer(Player $player, Entity $entity): bool{ // TODO: fix this
         $entityDPM = $entity->getDataPropertyManager();
         if($entityDPM->getByte(Entity::DATA_FLAG_LEASHED) != 1){
@@ -38,7 +38,7 @@ class EntityUtils extends Utils{
             return false;
         }
     }
-
+    
     public static function isInsideOfPortal(Entity $entity): bool{
         if($entity->level === null){
             return false;
@@ -49,7 +49,7 @@ class EntityUtils extends Utils{
         }
         return false;
     }
-
+    
     public static function isInsideOfEndPortal(Entity $entity): bool{
         if($entity->level === null){
             return false;
@@ -60,7 +60,7 @@ class EntityUtils extends Utils{
         }
         return false;
     }
-
+    
     // Creds: Altay
     public static function mountEntity(Entity $vehicle, Entity $entity, int $type = EntityLink::TYPE_RIDER, bool $send = true): void{
         if(!isset(self::$ridingEntity[$entity->getId()]) and $entity !== $vehicle){
@@ -85,7 +85,7 @@ class EntityUtils extends Utils{
             }
         }
     }
-
+    
     private static function getMountedYOffset(Entity $entity): float{
         switch($entity->getId()){
             case Entity::BOAT:
@@ -93,7 +93,7 @@ class EntityUtils extends Utils{
         }
         return 0;
     }
-
+    
     public static function dismountEntity(Entity $vehicle, Entity $entity, bool $send = true): void{
         if(isset(self::$ridingEntity[$entity->getId()])){
             unset(self::$ridingEntity[$entity->getId()]);
@@ -117,10 +117,9 @@ class EntityUtils extends Utils{
             }
         }
     }
-
+    
     /**
      * Returns if the structure is valid & the axis
-     *
      * @param Block $head
      * @return array
      */
@@ -130,10 +129,9 @@ class EntityUtils extends Utils{
         $block2 = ($level->getBlock($head->subtract(0, 2, 0))->getId() == Block::SNOW_BLOCK);
         return [($block1 && $block2), "Y"];
     }
-
+    
     /**
      * Returns if the structure is valid & the axis
-     *
      * @param Block $head
      * @return array
      */

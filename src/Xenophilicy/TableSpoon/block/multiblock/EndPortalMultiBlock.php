@@ -15,7 +15,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class EndPortalMultiblock
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
-class EndPortalMultiBlock extends PortalMultiBlock{
+class EndPortalMultiBlock extends PortalMultiBlock {
 
     public function getTargetWorldInstance(): Level{
         return TableSpoon::$endLevel;

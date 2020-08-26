@@ -33,48 +33,47 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class DragonEgg
  * @package Xenophilicy\TableSpoon\block
  */
-class DragonEgg extends Fallable{
-
+class DragonEgg extends Fallable {
+    
     /** @var int $id */
     protected $id = self::DRAGON_EGG;
-
+    
     /**
      * DragonEgg constructor.
-     *
      * @param int $meta
      */
     public function __construct($meta = 0){
         $this->meta = $meta;
     }
-
+    
     /**
      * @return string
      */
     public function getName(): string{
         return "Dragon Egg";
     }
-
+    
     /**
      * @return float
      */
     public function getHardness(): float{
         return 4.5;
     }
-
+    
     /**
      * @return float
      */
     public function getBlastResistance(): float{
         return 45;
     }
-
+    
     /**
      * @return int
      */
     public function getLightLevel(): int{
         return 1;
     }
-
+    
     /**
      * @param Item $item
      * @return bool
@@ -82,14 +81,14 @@ class DragonEgg extends Fallable{
     public function isBreakable(Item $item): bool{
         return false;
     }
-
+    
     /**
      * @return bool
      */
     public function canBeActivated(): bool{
         return true;
     }
-
+    
     /**
      * @param Item $item
      * @param Player|null $player

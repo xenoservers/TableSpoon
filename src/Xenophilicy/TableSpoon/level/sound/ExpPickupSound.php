@@ -11,10 +11,9 @@ use pocketmine\network\mcpe\protocol\LevelEventPacket;
  * Class ExpPickupSound
  * @package Xenophilicy\TableSpoon\level\sound
  */
-class ExpPickupSound extends GenericSound{
+class ExpPickupSound extends GenericSound {
     /**
      * ExpPickupSound constructor.
-     *
      * @param Vector3 $pos
      * @param int $pitch
      */

@@ -13,8 +13,8 @@ use pocketmine\Player;
  * Class Pumpkin
  * @package Xenophilicy\TableSpoon\block
  */
-class Pumpkin extends PMPumpkin{
-
+class Pumpkin extends PMPumpkin {
+    
     public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null): bool{
         return parent::place($item, $blockReplace, $blockClicked, $face, $clickVector, $player);
     }

@@ -44,17 +44,17 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class Beacon
  * @package Xenophilicy\TableSpoon\tile
  */
-class Beacon extends Spawnable implements InventoryHolder{
-
+class Beacon extends Spawnable implements InventoryHolder {
+    
     public const BEACON = "beacon";
-
+    
     public const TAG_LEVELS = "levels";
     public const TAG_PRIMARY = "primary";
     public const TAG_SECONDARY = "secondary";
     public const TAG_MOVABLE = "isMovable";
-
+    
     const PYRAMID_BLOCKS = [BlockIds::DIAMOND_BLOCK, BlockIds::EMERALD_BLOCK, BlockIds::GOLD_BLOCK, BlockIds::IRON_BLOCK];
-
+    
     /** @var BeaconInventory $inventory */
     protected $inventory;
     /** @var int $tier */
@@ -69,10 +69,9 @@ class Beacon extends Spawnable implements InventoryHolder{
     private $ticks;
     /** @var string[] $viewers */
     private $viewers = [];
-
+    
     /**
      * Beacon constructor.
-     *
      * @param Level $level
      * @param CompoundTag $nbt
      */
@@ -81,7 +80,7 @@ class Beacon extends Spawnable implements InventoryHolder{
         $this->ticks = $this->getLevel()->getServer()->getTick();
         $this->scheduleUpdate();
     }
-
+    
     /**
      * @param CompoundTag $nbt
      * @param Vector3 $pos
@@ -95,7 +94,7 @@ class Beacon extends Spawnable implements InventoryHolder{
         $nbt->setInt(self::TAG_SECONDARY, 0);
         $nbt->setByte(self::TAG_MOVABLE, 1);
     }
-
+    
     /**
      * @return bool
      */
@@ -140,7 +139,7 @@ class Beacon extends Spawnable implements InventoryHolder{
         $this->timings->stopTiming();
         return true;
     }
-
+    
     private function checkViewers(): void{
         $viewers = $this->level->getChunkPlayers($this->getFloorX() >> 4, $this->getFloorZ() >> 4);
         $names = [];
@@ -165,7 +164,7 @@ class Beacon extends Spawnable implements InventoryHolder{
         }
         $this->viewers = $names;
     }
-
+    
     /**
      * @return int
      */
@@ -180,18 +179,17 @@ class Beacon extends Spawnable implements InventoryHolder{
         if($this->checkShape($this->getSide(0, 4), 4)) $layers++;
         return $layers;
     }
-
+    
     /**
      * @param Vector3 $pos
      * @param int $layer
-     *
      * @return bool
      */
     public function checkShape(Vector3 $pos, $layer = 1): bool{
         for($x = $pos->x - $layer; $x <= $pos->x + $layer; $x++) for($z = $pos->z - $layer; $z <= $pos->z + $layer; $z++) if(!in_array($this->getLevel()->getBlockIdAt($x, $pos->y, $z), [Block::DIAMOND_BLOCK, Block::IRON_BLOCK, Block::EMERALD_BLOCK, Block::GOLD_BLOCK])) return false;
         return true;
     }
-
+    
     public function spawnToAll(){
         if($this->closed){
             return;
@@ -199,7 +197,7 @@ class Beacon extends Spawnable implements InventoryHolder{
         // TODO: activate beam if no block above
         parent::spawnToAll();
     }
-
+    
     /**
      * @return bool
      */
@@ -210,7 +208,7 @@ class Beacon extends Spawnable implements InventoryHolder{
         }
         return false;
     }
-
+    
     /**
      * @param CompoundTag $nbt
      */
@@ -220,11 +218,10 @@ class Beacon extends Spawnable implements InventoryHolder{
         $nbt->setInt(self::TAG_SECONDARY, 0);
         $nbt->setByte(self::TAG_MOVABLE, 1);
     }
-
+    
     /**
      * @param CompoundTag $nbt
      * @param Player $player
-     *
      * @return bool
      */
     public function updateCompoundTag(CompoundTag $nbt, Player $player): bool{
@@ -232,86 +229,83 @@ class Beacon extends Spawnable implements InventoryHolder{
         $this->primary = max(0, $nbt->getInt(self::TAG_PRIMARY, 0, true));
         $this->secondary = max(0, $nbt->getInt(self::TAG_SECONDARY, 0, true));
         $this->movable = (bool)max(0, $nbt->getByte(self::TAG_MOVABLE, 0, true));
-
+        
         $this->scheduleUpdate();
         $this->spawnToAll();
         return true;
     }
-
+    
     /**
      * @return BeaconInventory
      */
     public function getInventory(): BeaconInventory{
         return $this->inventory;
     }
-
+    
     public function close(): void{
         if(!$this->closed){
             $this->inventory->removeAllViewers(true);
             $this->inventory = null;
-
+            
             parent::close();
         }
     }
-
+    
     /**
      * @return int
      */
     public function getTier(): int{
         return $this->tier;
     }
-
+    
     /**
      * @return int
      */
     public function getPrimary(): int{
         return $this->primary;
     }
-
+    
     /**
      * @param int $primary
-     *
      * @return self
      */
     public function setPrimary(int $primary): self{
         $this->primary = $primary;
         return $this;
     }
-
+    
     /**
      * @return int
      */
     public function getSecondary(): int{
         return $this->secondary;
     }
-
+    
     /**
      * @param int $secondary
-     *
      * @return self
      */
     public function setSecondary(int $secondary): self{
         $this->secondary = $secondary;
         return $this;
     }
-
+    
     /**
      * @return bool
      */
     public function isMovable(): bool{
         return (bool)$this->movable;
     }
-
+    
     /**
      * @param bool $movable
-     *
      * @return self
      */
     public function setMovable(bool $movable): self{
         $this->movable = $movable;
         return $this;
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -320,10 +314,10 @@ class Beacon extends Spawnable implements InventoryHolder{
         $this->primary = max(0, $nbt->getInt(self::TAG_PRIMARY, 0, true));
         $this->secondary = max(0, $nbt->getInt(self::TAG_SECONDARY, 0, true));
         $this->movable = (bool)max(1, $nbt->getByte(self::TAG_MOVABLE, 1, true));
-
+        
         $this->inventory = new BeaconInventory($this);
     }
-
+    
     /**
      * @inheritDoc
      */

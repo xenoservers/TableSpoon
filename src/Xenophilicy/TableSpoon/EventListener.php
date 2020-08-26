@@ -91,7 +91,6 @@ class EventListener implements Listener{
                 }
             }
         }
-        return;
     }
 
     /**
@@ -113,7 +112,6 @@ class EventListener implements Listener{
                 }
             }
         }
-        return;
     }
 
     /**
@@ -257,7 +255,7 @@ class EventListener implements Listener{
         $dimensionId = Utils::getDimension($world);
         if($dimensionId === $packet->spawnSettings->getDimension()) return;
         $event->setCancelled();
-        if($world === null) $target->sendDataPacket(clone $packet);
+        $target->sendDataPacket(clone $packet);
         $pk = clone $packet;
         $pk->spawnSettings = new SpawnSettings($packet->spawnSettings->getBiomeType(), $packet->spawnSettings->getBiomeName(), Utils::getDimension($world));
         $target->sendDataPacket($pk);

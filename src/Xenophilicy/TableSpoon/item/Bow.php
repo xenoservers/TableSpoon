@@ -18,7 +18,7 @@ use Xenophilicy\TableSpoon\entity\projectile\Arrow;
  * Class Bow
  * @package Xenophilicy\TableSpoon\item
  */
-class Bow extends PMBow{
+class Bow extends PMBow {
     public function onReleaseUsing(Player $player): bool{
         if($player->isSurvival() and !$player->getInventory()->contains(Item::get(Item::ARROW, 0, 1))){
             $player->getInventory()->sendContents($player);

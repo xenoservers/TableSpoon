@@ -11,10 +11,9 @@ use pocketmine\network\mcpe\protocol\LevelEventPacket;
  * Class SpellParticle
  * @package Xenophilicy\TableSpoon\level\particle
  */
-class SpellParticle extends GenericParticle{
+class SpellParticle extends GenericParticle {
     /**
      * SpellParticle constructor.
-     *
      * @param Vector3 $pos
      * @param int $r
      * @param int $g

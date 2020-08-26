@@ -20,7 +20,7 @@ use Xenophilicy\TableSpoon\block\EndPortalFrame;
  * Class EndPortalFrameMultiBlock
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
-class EndPortalFrameMultiBlock implements MultiBlock{
+class EndPortalFrameMultiBlock implements MultiBlock {
 
     private const SIDES = [Vector3::SIDE_NORTH, Vector3::SIDE_EAST, Vector3::SIDE_SOUTH, Vector3::SIDE_WEST];
 

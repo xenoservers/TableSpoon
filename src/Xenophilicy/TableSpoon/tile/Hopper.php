@@ -30,14 +30,14 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class Hopper
  * @package Xenophilicy\TableSpoon\tile
  */
-class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
+class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
     use NameableTrait, ContainerTrait;
-
+    
     /** @var HopperInventory */
     private $inventory;
     /** @var CompoundTag */
     private $nbt;
-
+    
     /**
      * Hopper constructor.
      * @param Level $level
@@ -45,41 +45,41 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
      */
     public function __construct(Level $level, CompoundTag $nbt){
         parent::__construct($level, $nbt);
-
+        
         $this->inventory = new HopperInventory($this);
-
+        
         $this->loadItems($nbt);
         $this->scheduleUpdate();
     }
-
+    
     protected static function createAdditionalNBT(CompoundTag $nbt, Vector3 $pos, ?int $face = null, ?Item $item = null, ?Player $player = null): void{
         $nbt->setTag(new ListTag("Items", [], NBT::TAG_Compound));
         if($item !== null and $item->hasCustomName()){
             $nbt->setString("CustomName", $item->getCustomName());
         }
     }
-
+    
     /**
      * @return Inventory|HopperInventory
      */
     public function getRealInventory(){
         return $this->inventory;
     }
-
+    
     public function getSize(): int{
         return 5;
     }
-
+    
     public function getDefaultName(): string{
         return "Hopper";
     }
-
+    
     public function addAdditionalSpawnData(CompoundTag $nbt): void{
         if($this->hasName()){
             $nbt->setTag($this->nbt->getTag("CustomName"));
         }
     }
-
+    
     public function close(): void{
         if(!$this->isClosed()){
             foreach($this->getInventory()->getViewers() as $viewer){
@@ -88,14 +88,14 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
             parent::close();
         }
     }
-
+    
     /**
      * @return Inventory|HopperInventory
      */
     public function getInventory(){
         return $this->inventory;
     }
-
+    
     public function onUpdate(): bool{
         if((Server::getInstance()->getTick() % 8) == 0 && TableSpoon::$settings["blocks"]["hoppers"]){
             if(!($this->getBlock() instanceof HopperBlock)){
@@ -247,16 +247,16 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
         }
         return true;
     }
-
+    
     public function saveNBT(): CompoundTag{
         $this->saveItems($this->nbt);
         return parent::saveNBT();
     }
-
+    
     protected function readSaveData(CompoundTag $nbt): void{
         $this->nbt = $nbt;
     }
-
+    
     protected function writeSaveData(CompoundTag $nbt): void{
     }
 }

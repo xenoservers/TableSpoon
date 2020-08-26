@@ -10,13 +10,13 @@ use pocketmine\item\Item;
  * Class SlimeBlock
  * @package Xenophilicy\TableSpoon\block
  */
-class SlimeBlock extends Solid{
-
+class SlimeBlock extends Solid {
+    
     /**
      * @var int $id
      */
     protected $id = Block::SLIME_BLOCK;
-
+    
     /**
      * SlimeBlock constructor.
      * @param int $meta
@@ -24,28 +24,28 @@ class SlimeBlock extends Solid{
     public function __construct($meta = 0){
         $this->meta = $meta;
     }
-
+    
     /**
      * @return string
      */
     public function getName(): string{
         return "Slime Block";
     }
-
+    
     /**
      * @return float
      */
     public function getHardness(): float{
         return 0;
     }
-
+    
     /**
      * @return bool
      */
     public function hasEntityCollision(): bool{
         return true;
     }
-
+    
     /**
      * @param Item $item
      * @return array

@@ -11,7 +11,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class ItemManager
  * @package Xenophilicy\TableSpoon\item
  */
-class ItemManager{
+class ItemManager {
     public static function init(){
         ItemFactory::registerItem(new Boat(), true);
         ItemFactory::registerItem(new LingeringPotion(), true);

@@ -10,7 +10,7 @@ use pocketmine\block\BlockFactory;
  * Class BlockManager
  * @package Xenophilicy\TableSpoon\block
  */
-class BlockManager{
+class BlockManager {
     public static function init(): void{
         BlockFactory::registerBlock(new Portal(), true);
         BlockFactory::registerBlock(new EndPortal(), true);

@@ -11,7 +11,7 @@ use pocketmine\nbt\tag\NamedTag;
  * Class UnDyedShulkerBox
  * @package Xenophilicy\TableSpoon\item
  */
-class UnDyedShulkerBox extends ShulkerBox{
+class UnDyedShulkerBox extends ShulkerBox {
 
     /**
      * @param string|null $name

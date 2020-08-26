@@ -12,11 +12,11 @@ use pocketmine\Player;
  * Class Portal
  * @package Xenophilicy\TableSpoon\block
  */
-class Portal extends Transparent{
-
+class Portal extends Transparent {
+    
     /** @var int $id */
     protected $id = Block::PORTAL;
-
+    
     /**
      * Portal constructor.
      * @param int $meta
@@ -24,49 +24,49 @@ class Portal extends Transparent{
     public function __construct($meta = 0){
         $this->meta = $meta;
     }
-
+    
     /**
      * @return string
      */
     public function getName(): string{
         return "Portal";
     }
-
+    
     /**
      * @return float
      */
     public function getHardness(): float{
         return -1;
     }
-
+    
     /**
      * @return float
      */
     public function getResistance(): float{
         return 0;
     }
-
+    
     /**
      * @return int
      */
     public function getToolType(): int{
         return BlockToolType::TYPE_PICKAXE;
     }
-
+    
     /**
      * @return bool
      */
     public function canPassThrough(): bool{
         return true;
     }
-
+    
     /**
      * @return bool
      */
     public function hasEntityCollision(): bool{
         return true;
     }
-
+    
     /**
      * @param Item $item
      * @param Player|null $player
@@ -110,7 +110,7 @@ class Portal extends Transparent{
         }
         return true;
     }
-
+    
     /**
      * @param Item $item
      * @param Block $block

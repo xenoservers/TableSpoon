@@ -12,7 +12,7 @@ use Xenophilicy\TableSpoon\event\DimensionPortalsEvent;
  * Class PlayerEnterPortalEvent
  * @package Xenophilicy\TableSpoon\event\player
  */
-class PlayerEnterPortalEvent extends DimensionPortalsEvent implements Cancellable{
+class PlayerEnterPortalEvent extends DimensionPortalsEvent implements Cancellable {
 
     /** @var Player */
     private $player;

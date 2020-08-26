@@ -11,8 +11,8 @@ use Closure;
  * Class ArrayUtils
  * @package Xenophilicy\TableSpoon\utils
  */
-final class ArrayUtils{
-
+final class ArrayUtils {
+    
     /**
      * @param mixed[] $array
      * @param Closure $condition
@@ -25,7 +25,7 @@ final class ArrayUtils{
                 return $element;
             }
         }
-
+        
         return $fallback;
     }
 }

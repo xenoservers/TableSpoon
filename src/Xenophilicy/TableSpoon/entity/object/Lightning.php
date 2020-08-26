@@ -16,7 +16,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class Lightning
  * @package Xenophilicy\TableSpoon\entity\object
  */
-class Lightning extends Animal{
+class Lightning extends Animal {
 
     public const NETWORK_ID = self::LIGHTNING_BOLT;
 

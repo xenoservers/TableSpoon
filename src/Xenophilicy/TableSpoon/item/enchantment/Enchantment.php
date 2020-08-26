@@ -10,7 +10,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class Enchantment
  * @package Xenophilicy\TableSpoon\item\enchantment
  */
-class Enchantment extends EnchantmentPM{
+class Enchantment extends EnchantmentPM {
     public static function init(): void{
         if(TableSpoon::$settings["enchantments"]["vanilla"]){
             self::registerEnchantment(new Enchantment(self::SMITE, "%enchantment.weapon.smite", self::RARITY_UNCOMMON, self::SLOT_SWORD, self::SLOT_NONE, 5));

@@ -9,7 +9,7 @@ use pocketmine\item\Item;
  * Class EyeOfEnder
  * @package Xenophilicy\TableSpoon\item
  */
-class EyeOfEnder extends Item{
+class EyeOfEnder extends Item {
     /**
      * EyeOfEnder constructor.
      * @param int $meta

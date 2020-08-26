@@ -14,7 +14,7 @@ use pocketmine\Player;
  * Class GlassBottle
  * @package Xenophilicy\TableSpoon\item
  */
-class GlassBottle extends PMGlassBottle{
+class GlassBottle extends PMGlassBottle {
     public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector): bool{
         if(in_array($blockClicked->getId(), [Block::STILL_WATER, Block::FLOWING_WATER]) || in_array($blockReplace->getId(), [Block::STILL_WATER, Block::FLOWING_WATER])){
             if($player->isSurvival()){

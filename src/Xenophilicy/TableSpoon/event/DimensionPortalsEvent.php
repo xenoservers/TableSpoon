@@ -9,5 +9,5 @@ use pocketmine\event\Event;
  * Class DimensionPortalsEvent
  * @package Xenophilicy\TableSpoon\event
  */
-abstract class DimensionPortalsEvent extends Event{
+abstract class DimensionPortalsEvent extends Event {
 }

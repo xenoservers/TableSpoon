@@ -17,7 +17,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class MultiBlockFactory
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
-final class MultiBlockFactory{
+final class MultiBlockFactory {
 
     /** @var MultiBlock[] */
     private static $blocks = [];

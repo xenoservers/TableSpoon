@@ -14,8 +14,8 @@ use Xenophilicy\TableSpoon\Utils;
  * Class Bed
  * @package Xenophilicy\TableSpoon\block
  */
-class Bed extends PMBed{
-
+class Bed extends PMBed {
+    
     /**
      * @param Item $item
      * @param Player|null $player

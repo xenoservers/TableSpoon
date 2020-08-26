@@ -22,14 +22,14 @@ use Xenophilicy\TableSpoon\utils\ArrayUtils;
  * Class NetherPortalFrameMultiBlock
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
-class NetherPortalFrameMultiBlock implements MultiBlock{
-
+class NetherPortalFrameMultiBlock implements MultiBlock {
+    
     /** @var int */
     private $frameBlock;
-
+    
     /** @var float */
     private $lengthSquared;
-
+    
     /**
      * NetherPortalFrameMultiBlock constructor.
      */
@@ -37,7 +37,7 @@ class NetherPortalFrameMultiBlock implements MultiBlock{
         $this->frameBlock = (new Obsidian())->getId();
         $this->lengthSquared = (new Vector2(21, 21))->lengthSquared();
     }
-
+    
     public function interact(Block $wrapping, Player $player, Item $item, int $face): bool{
         if($item->getId() === ItemIds::FLINT_AND_STEEL){
             $affectedBlock = $wrapping->getSide($face);
@@ -61,7 +61,7 @@ class NetherPortalFrameMultiBlock implements MultiBlock{
         }
         return false;
     }
-
+    
     /**
      * @param Level $Level
      * @param Vector3 $origin
@@ -79,8 +79,8 @@ class NetherPortalFrameMultiBlock implements MultiBlock{
             $coordinates_hash = Level::blockHash($coordinates->x, $coordinates->y, $coordinates->z);
             $block = $Level->getBlockAt($coordinates->x, $coordinates->y, $coordinates->z);
             if($block->getId() === Block::AIR && ArrayUtils::firstOrDefault($blocks, static function(int $hash, Block $block) use ($coordinates_hash) : bool{
-                    return $hash === $coordinates_hash;
-                }) === null){
+                  return $hash === $coordinates_hash;
+              }) === null){
                 $this->visit($coordinates, $blocks, $direction);
                 if($direction === Vector3::SIDE_WEST){
                     $visits->push($coordinates->getSide(Vector3::SIDE_NORTH));
@@ -95,7 +95,7 @@ class NetherPortalFrameMultiBlock implements MultiBlock{
         }
         return $blocks;
     }
-
+    
     /**
      * @param Vector3 $coords
      * @param array<int, Block> $blocks
@@ -104,7 +104,7 @@ class NetherPortalFrameMultiBlock implements MultiBlock{
     public function visit(Vector3 $coords, array &$blocks, int $direction): void{
         $blocks[Level::blockHash($coords->x, $coords->y, $coords->z)] = BlockFactory::get(Block::PORTAL, $direction - 2);
     }
-
+    
     /**
      * @param Block $block
      * @param int $bHash
@@ -113,17 +113,17 @@ class NetherPortalFrameMultiBlock implements MultiBlock{
      */
     private function isValid(Block $block, int $bHash, array $portals): bool{
         return $block->getId() === $this->frameBlock || ArrayUtils::firstOrDefault($portals, static function(int $hash, Block $b) use ($bHash) : bool{
-                return $b->getId() === Block::PORTAL;
-            }) !== null;
+              return $b->getId() === Block::PORTAL;
+          }) !== null;
     }
-
+    
     public function update(Block $wrapping): bool{
         return false;
     }
-
+    
     public function onPlayerMoveInside(Player $player, Block $block): void{
     }
-
+    
     public function onPlayerMoveOutside(Player $player, Block $block): void{
     }
 }

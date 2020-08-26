@@ -14,7 +14,7 @@ use Xenophilicy\TableSpoon\player\PlayerSessionManager;
  * Class PortalMultiBlock
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
-abstract class PortalMultiBlock implements MultiBlock{
+abstract class PortalMultiBlock implements MultiBlock {
 
     /**
      * PortalMultiBlock constructor.

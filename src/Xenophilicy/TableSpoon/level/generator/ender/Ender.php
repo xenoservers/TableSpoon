@@ -36,8 +36,8 @@ use Xenophilicy\TableSpoon\level\generator\{biome\Biome, ender\populator\EnderPi
  * Class Ender
  * @package Xenophilicy\TableSpoon\level\generator\ender
  */
-class Ender extends Generator{
-
+class Ender extends Generator {
+    
     private static $GAUSSIAN_KERNEL = null;
     private static $SMOOTH_SIZE = 1;
     /** @var ChunkManager */
@@ -54,7 +54,7 @@ class Ender extends Generator{
     private $generationPopulators = [];
     /** @var Simplex */
     private $noiseBase;
-
+    
     /**
      * Ender constructor.
      * @param array $options
@@ -64,7 +64,7 @@ class Ender extends Generator{
             self::generateKernel();
         }
     }
-
+    
     private static function generateKernel(){
         self::$GAUSSIAN_KERNEL = [];
         $bellSize = 1 / self::$SMOOTH_SIZE;
@@ -78,19 +78,19 @@ class Ender extends Generator{
             }
         }
     }
-
+    
     public function getName(): string{
         return "Ender";
     }
-
+    
     public function getWaterHeight(): int{
         return $this->waterHeight;
     }
-
+    
     public function getSettings(): array{
         return [];
     }
-
+    
     public function init(ChunkManager $level, Random $random): void{
         $this->level = $level;
         $this->random = $random;
@@ -102,7 +102,7 @@ class Ender extends Generator{
         $pilar->setRandomAmount(0);
         $this->populators[] = $pilar;
     }
-
+    
     public function generateChunk(int $chunkX, int $chunkZ): void{
         $this->random->setSeed(0xa6fe78dc ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
         $noise = $this->noiseBase->getFastNoise3D(16, 128, 16, 4, 8, 4, $chunkX * 16, 0, $chunkZ * 16);
@@ -127,7 +127,7 @@ class Ender extends Generator{
             $populator->populate($this->level, $chunkX, $chunkZ, $this->random);
         }
     }
-
+    
     public function populateChunk(int $chunkX, int $chunkZ): void{
         $this->random->setSeed(0xa6fe78dc ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
         foreach($this->populators as $populator){
@@ -137,7 +137,7 @@ class Ender extends Generator{
         $biome = Biome::getBiome($chunk->getBiomeId(7, 7));
         $biome->populateChunk($this->level, $chunkX, $chunkZ, $this->random);
     }
-
+    
     public function getSpawn(): Vector3{
         return new Vector3(100, 48, 0);
     }

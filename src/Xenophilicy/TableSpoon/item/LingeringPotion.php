@@ -33,7 +33,7 @@ use pocketmine\Player;
  * Class LingeringPotion
  * @package Xenophilicy\TableSpoon\item
  */
-class LingeringPotion extends ProjectileItem{
+class LingeringPotion extends ProjectileItem {
 
     public const TAG_POTION_ID = "PotionId";
 

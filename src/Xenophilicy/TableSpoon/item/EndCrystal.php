@@ -13,7 +13,7 @@ use pocketmine\Player;
  * Class EndCrystal
  * @package Xenophilicy\TableSpoon\item
  */
-class EndCrystal extends Item{
+class EndCrystal extends Item {
     /**
      * EndCrystal constructor.
      * @param int $meta

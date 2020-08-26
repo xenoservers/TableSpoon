@@ -14,7 +14,7 @@ use pocketmine\event\player\PlayerMoveEvent;
  * Class MultiBlockEventHandler
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
-final class MultiBlockEventHandler implements Listener{
+final class MultiBlockEventHandler implements Listener {
 
     /**
      * @param BlockUpdateEvent $event

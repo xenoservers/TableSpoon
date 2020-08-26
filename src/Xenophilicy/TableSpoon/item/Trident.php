@@ -12,7 +12,7 @@ use function min;
  * Class Trident
  * @package Xenophilicy\TableSpoon\item
  */
-class Trident extends Tool{
+class Trident extends Tool {
 
     public const TAG_TRIDENT = "Trident";
 

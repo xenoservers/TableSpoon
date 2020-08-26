@@ -58,10 +58,10 @@ class FireworkRocket extends Projectile{
         $this->fireworks = $item;
         parent::__construct($level, $nbt, $shootingEntity);
     }
-
+    
     /**
      * @param Player[]|Player $player
-     * @param array $data Properly formatted entity data, defaults to everything
+     * @param array|null $data Properly formatted entity data, defaults to everything
      */
     public function sendData($player, array $data = null): void{
         if(!is_array($player)){

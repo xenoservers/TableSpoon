@@ -10,7 +10,7 @@ use pocketmine\item\Item;
  * Class Lead
  * @package Xenophilicy\TableSpoon\item
  */
-class Lead extends Item{
+class Lead extends Item {
     /**
      * Lead constructor.
      * @param int $meta

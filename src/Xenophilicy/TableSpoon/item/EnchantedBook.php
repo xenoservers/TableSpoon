@@ -10,7 +10,7 @@ use pocketmine\item\Item;
  * Class EnchantedBook
  * @package Xenophilicy\TableSpoon\item
  */
-class EnchantedBook extends Item{
+class EnchantedBook extends Item {
     /**
      * EnchantedBook constructor.
      * @param int $meta

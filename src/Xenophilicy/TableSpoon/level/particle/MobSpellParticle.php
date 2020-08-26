@@ -10,10 +10,9 @@ use pocketmine\math\Vector3;
  * Class MobSpellParticle
  * @package Xenophilicy\TableSpoon\level\particle
  */
-class MobSpellParticle extends GenericParticle{
+class MobSpellParticle extends GenericParticle {
     /**
      * MobSpellParticle constructor.
-     *
      * @param Vector3 $pos
      * @param int $r
      * @param int $g

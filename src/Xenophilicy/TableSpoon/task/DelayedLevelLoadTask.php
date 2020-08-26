@@ -12,7 +12,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class DelayedLevelLoadTask
  * @package Xenophilicy\TableSpoon\task
  */
-class DelayedLevelLoadTask extends Task{
+class DelayedLevelLoadTask extends Task {
     
     /**
      * @param int $currentTick

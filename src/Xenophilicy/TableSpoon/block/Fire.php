@@ -11,8 +11,8 @@ use Xenophilicy\TableSpoon\{TableSpoon, Utils};
  * Class Fire
  * @package Xenophilicy\TableSpoon\block
  */
-class Fire extends PMFire{
-
+class Fire extends PMFire {
+    
     public function onScheduledUpdate(): void{
         if($this->meta >= 15){
             $this->level->setBlock($this, BlockFactory::get(Block::AIR));
@@ -21,7 +21,7 @@ class Fire extends PMFire{
             $this->level->setBlock($this, $this);
         }
     }
-
+    
     public function onRandomTick(): void{
         if(isset(TableSpoon::$weatherData[($k = $this->getLevel()->getId())])){
             $weather = TableSpoon::$weatherData[$k];

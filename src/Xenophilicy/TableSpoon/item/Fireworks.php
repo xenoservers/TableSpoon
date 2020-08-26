@@ -21,7 +21,7 @@ use Xenophilicy\TableSpoon\task\ElytraRocketBoostTrackingTask;
  * Class Fireworks
  * @package Xenophilicy\TableSpoon\item
  */
-class Fireworks extends Item{
+class Fireworks extends Item {
 
     public const TAG_FIREWORKS = "Fireworks";
     public const TAG_EXPLOSIONS = "Explosions";

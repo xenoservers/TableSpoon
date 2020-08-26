@@ -12,7 +12,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class ElytraRocketBoostTrackingTask
  * @package Xenophilicy\TableSpoon\task
  */
-class ElytraRocketBoostTrackingTask extends Task{
+class ElytraRocketBoostTrackingTask extends Task {
     /** @var Player */
     protected $player;
 

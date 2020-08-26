@@ -12,10 +12,10 @@ use pocketmine\Player;
  * Class EndPortalFrame
  * @package Xenophilicy\TableSpoon\block
  */
-class EndPortalFrame extends PMEndPortalFrame{
-
+class EndPortalFrame extends PMEndPortalFrame {
+    
     public $eye = false;
-
+    
     /**
      * EndPortalFrame constructor.
      * @param int $meta
@@ -23,9 +23,9 @@ class EndPortalFrame extends PMEndPortalFrame{
     public function __construct($meta = 0){
         parent::__construct($meta);
     }
-
+    
     // Code below is ported from ClearSky (Big Thanks to XenialDan)
-
+    
     /**
      * @param Item $item
      * @param Block $block
@@ -41,7 +41,7 @@ class EndPortalFrame extends PMEndPortalFrame{
         $this->getLevel()->setBlock($block, $this, true, true);
         return true;
     }
-
+    
     /**
      * @param Item $item
      * @param Player|null $player
@@ -59,7 +59,7 @@ class EndPortalFrame extends PMEndPortalFrame{
         }
         return false;
     }
-
+    
     //    /**
     //     * @return array
     //     */

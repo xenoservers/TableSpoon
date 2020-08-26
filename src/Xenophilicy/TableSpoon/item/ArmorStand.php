@@ -15,7 +15,7 @@ use Xenophilicy\TableSpoon\entity\object\ArmorStand as ArmorStandEntity;
  * Class ArmorStand
  * @package Xenophilicy\TableSpoon\item
  */
-class ArmorStand extends Item{
+class ArmorStand extends Item {
     /**
      * ArmorStand constructor.
      * @param int $meta

@@ -16,7 +16,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class NetherPortalMultiBlock
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
-class NetherPortalMultiBlock extends PortalMultiBlock{
+class NetherPortalMultiBlock extends PortalMultiBlock {
 
     /** @var int */
     private $frameID;

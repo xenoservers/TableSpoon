@@ -35,12 +35,12 @@ use pocketmine\nbt\tag\ShortTag;
  * Class AreaEffectCloud
  * @package Xenophilicy\TableSpoon\entity\object
  */
-class AreaEffectCloud extends Entity{
+class AreaEffectCloud extends Entity {
 
     public const NETWORK_ID = self::AREA_EFFECT_CLOUD;
     /** @var string */
     public const
-        TAG_POTION_ID = "PotionId", TAG_AGE = "Age", TAG_RADIUS = "Radius", TAG_RADIUS_ON_USE = "RadiusOnUse", TAG_RADIUS_PER_TICK = "RadiusPerTick", TAG_WAIT_TIME = "WaitTime", TAG_TILE_X = "TileX", TAG_TILE_Y = "TileY", TAG_TILE_Z = "TileZ", TAG_DURATION = "Duration", TAG_DURATION_ON_USE = "DurationOnUse";
+      TAG_POTION_ID = "PotionId", TAG_AGE = "Age", TAG_RADIUS = "Radius", TAG_RADIUS_ON_USE = "RadiusOnUse", TAG_RADIUS_PER_TICK = "RadiusPerTick", TAG_WAIT_TIME = "WaitTime", TAG_TILE_X = "TileX", TAG_TILE_Y = "TileY", TAG_TILE_Z = "TileZ", TAG_DURATION = "Duration", TAG_DURATION_ON_USE = "DurationOnUse";
     public $width = 5;
     public $length = 5;
     public $height = 1;

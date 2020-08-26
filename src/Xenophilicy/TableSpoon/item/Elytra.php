@@ -9,7 +9,7 @@ use pocketmine\item\{Durable, Item};
  * Class Elytra
  * @package Xenophilicy\TableSpoon\item
  */
-class Elytra extends Durable{
+class Elytra extends Durable {
     /**
      * Elytra constructor.
      * @param int $meta

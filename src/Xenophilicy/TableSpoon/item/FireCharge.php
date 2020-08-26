@@ -14,7 +14,7 @@ use Xenophilicy\TableSpoon\block\Portal;
  * Class FireCharge
  * @package Xenophilicy\TableSpoon\item
  */
-class FireCharge extends Item{
+class FireCharge extends Item {
     /**
      * FireCharge constructor.
      * @param int $meta

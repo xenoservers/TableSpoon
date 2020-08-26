@@ -12,7 +12,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class LevelManager
  * @package Xenophilicy\TableSpoon\level
  */
-class LevelManager{
+class LevelManager {
     public static $loaded = false;
 
     public static function init(){

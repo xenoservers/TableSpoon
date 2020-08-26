@@ -45,6 +45,5 @@ class EnchantInventory extends PMEnchantInventory{
 
     public function onClose(Player $who): void{
         $this->dropContents($this->holder->getLevel(), $this->holder->add(0.5, 0.5, 0.5));
-        return;
     }
 }

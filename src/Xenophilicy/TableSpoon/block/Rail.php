@@ -15,12 +15,11 @@ use Xenophilicy\TableSpoon\utils\Orientation;
  * This is the class where the block being checking to
  * intersect with the other rail. This follows the minecraft
  * vanilla rails.
- *
  * @author larryTheCoder
  * @package Xenophilicy\TableSpoon\block
  */
-class Rail extends PMRail{
-
+class Rail extends PMRail {
+    
     // Rail curves and orientation
     const STRAIGHT_NORTH_SOUTH = 0;
     const STRAIGHT_EAST_WEST = 1;
@@ -32,39 +31,39 @@ class Rail extends PMRail{
     const CURVED_SOUTH_WEST = 7;
     const CURVED_NORTH_WEST = 8;
     const CURVED_NORTH_EAST = 9;
-
+    
     /** @var Orientation[] */
     public static $railMetadata;
-
+    
     protected $id = self::RAIL;
-
+    
     protected $canBePowered = false;
-
+    
     /**
      * Rail constructor.
      * @param int $meta
      */
     public function __construct(int $meta = 0){
         parent::__construct($meta);
-
+        
         self::$railMetadata = Orientation::getMetadata();
     }
-
+    
     public function place(Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, Player $player = null): bool{
         $down = $this->getSide(Vector3::SIDE_DOWN);
         if(is_null($down) || $down->isTransparent()){
             return false;
         }
-
+        
         // Horizontal rules
         $railsAround = $this->checkRailsAroundAffected();
         $railSides = count($railsAround);
-
+        
         /** @var int[] $sides */
         $sides = array_keys($railsAround);
         /** @var Rail[] $rails */
         $rails = array_values($railsAround);
-
+        
         if($railSides === 1){
             // only 1 sides
             $damage = $this->connectTo($rails[0], $sides[0]);
@@ -93,7 +92,7 @@ class Rail extends PMRail{
                     $this->setDamage($damage->getDamage());
                 }else{
                     $rail = [];
-
+                    
                     // Curves see: wiki#Placement
                     $curves = [self::CURVED_SOUTH_EAST, self::CURVED_NORTH_EAST, self::CURVED_SOUTH_WEST, self::CURVED_NORTH_WEST];
                     foreach($curves as $side){
@@ -111,7 +110,7 @@ class Rail extends PMRail{
                             $rail = $railTemp;
                         }
                     }
-
+                    
                     $railSouth = $railsAround[$rail[0]];
                     $railEast = $railsAround[$rail[1]];
                     $damage = $this->connectMultiples($railSouth, $rail[0], $railEast, $rail[1]);
@@ -121,18 +120,17 @@ class Rail extends PMRail{
             // TODO: Support redstone powered rails
             //}
         }
-
+        
         // If there are no other rails adjacent it will be
         // placed as a straight track oriented north-south.
         $this->getLevel()->setBlock($this, $this);
         return true;
     }
-
+    
     /**
      * Get the rails around the adjacent block.
      * This will only return the blocks that with its
      * horizontal sides.
-     *
      * @return Rail[]
      */
     private function checkRailsAroundAffected(): array{
@@ -146,7 +144,7 @@ class Rail extends PMRail{
         }
         return $array;
     }
-
+    
     /**
      * @param array $faces
      * @return Rail[]
@@ -169,7 +167,7 @@ class Rail extends PMRail{
         }
         return $result;
     }
-
+    
     /**
      * @return Rail[]
      */
@@ -177,7 +175,7 @@ class Rail extends PMRail{
         $result = [];
         $origin = $this->getOrientation()->connectingDirections();
         $railsAround = $this->checkRailsAround($origin);
-
+        
         foreach($railsAround as $side => $rail){
             if($rail->getOrientation()->hasConnectingDirections(Vector3::getOppositeSide($side))){
                 $result[$side] = $rail;
@@ -185,16 +183,15 @@ class Rail extends PMRail{
         }
         return $result;
     }
-
-
+    
+    
     public function getOrientation(): Orientation{
         return self::$railMetadata[$this->getDamage()];
     }
-
+    
     /**
      * Connects to a rail and return the specific orientation
      * for the connection.
-     *
      * @param Rail $other The rail class itself
      * @param int $face Faces of the rail
      * @return Orientation The orientation that should be changed with this rail.
@@ -225,7 +222,7 @@ class Rail extends PMRail{
         }
         return self::$railMetadata[self::STRAIGHT_NORTH_SOUTH];
     }
-
+    
     /**
      * @param Orientation $origin
      */
@@ -235,22 +232,20 @@ class Rail extends PMRail{
             $this->getLevel()->setBlock($this, $this, true, true);
         }
     }
-
+    
     /**
      * This checks if the rail could be
      * curved or not.
-     *
      * @return bool
      */
     public function canBeCurved(): bool{
         return true;
     }
-
+    
     /**
      * Connect to a multiple rail once at a time.
      * And return an orientation that should be intersect with
      * these rails.
-     *
      * @param Rail $rail1 The rail class itself
      * @param int $face1 The rail1 orientation
      * @param Rail $rail2 The rail class itself
@@ -260,11 +255,11 @@ class Rail extends PMRail{
     public function connectMultiples(Rail $rail1, int $face1, Rail $rail2, int $face2): Orientation{
         $this->connectTo($rail1, $face1);
         $this->connectTo($rail2, $face2);
-
+        
         if(Vector3::getOppositeSide($face1) === $face2){
             $delta1 = $this->y = $rail1->y;
             $delta2 = $this->y = $rail2->y;
-
+            
             if($delta1 === -1){
                 return Orientation::getAscendingData($face1);
             }elseif($delta2 === -2){

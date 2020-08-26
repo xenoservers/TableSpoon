@@ -16,7 +16,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class EndCrystal
  * @package Xenophilicy\TableSpoon\entity\object
  */
-class EndCrystal extends Entity{
+class EndCrystal extends Entity {
 
     public const TAG_SHOW_BOTTOM = "ShowBottom";
 
