@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Xenophilicy\TableSpoon\player;
 
 use pocketmine\Player;
-use pocketmine\scheduler\ClosureTask;
 use Xenophilicy\TableSpoon\TableSpoon;
+use Xenophilicy\TableSpoon\task\SessionManagerTask;
 
 /**
  * Class SessionManger
@@ -14,17 +14,13 @@ use Xenophilicy\TableSpoon\TableSpoon;
 final class PlayerSessionManager{
 
     /** @var PlayerSession[] */
-    private static $players = [];
+    public static $players = [];
 
     /** @var int[] */
-    private static $ticking = [];
+    public static $ticking = [];
 
     public static function init(): void{
-        TableSpoon::getInstance()->getScheduler()->scheduleRepeatingTask(new ClosureTask(static function(): void{
-            foreach(self::$ticking as $playerID){
-                self::$players[$playerID]->tick();
-            }
-        }), 1);
+        TableSpoon::getInstance()->getScheduler()->scheduleRepeatingTask(new SessionManagerTask(), 1);
     }
 
     public static function create(Player $player): void{
