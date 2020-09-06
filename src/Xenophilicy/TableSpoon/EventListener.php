@@ -180,7 +180,7 @@ class EventListener implements Listener{
      * @ignoreCancelled true
      */
     public function onInteract(PlayerInteractEvent $event){
-        if(!TableSpoon::$settings["player"]["instant-armor"]["enabled"]) return;
+        if(!TableSpoon::$settings["player"]["instant-armor"]) return;
         $item = $event->getItem();
         $player = $event->getPlayer();
         $check = ($event->getAction() == PlayerInteractEvent::RIGHT_CLICK_BLOCK || $event->getAction() == PlayerInteractEvent::RIGHT_CLICK_AIR);
