@@ -13,7 +13,7 @@ use Xenophilicy\TableSpoon\tile\Hopper;
  * Class HopperInventory
  * @package Xenophilicy\TableSpoon\inventory
  */
-class HopperInventory extends ContainerInventory{
+class HopperInventory extends ContainerInventory {
     /**
      * HopperInventory constructor.
      * @param Hopper $tile
@@ -21,22 +21,22 @@ class HopperInventory extends ContainerInventory{
     public function __construct(Hopper $tile){
         parent::__construct($tile);
     }
-
+    
     /**
      * @return Vector3
      */
     public function getHolder(){
         return $this->holder;
     }
-
+    
     public function getDefaultSize(): int{
         return 5;
     }
-
+    
     public function getNetworkType(): int{
         return WindowTypes::HOPPER;
     }
-
+    
     public function getName(): string{
         return "Hopper";
     }

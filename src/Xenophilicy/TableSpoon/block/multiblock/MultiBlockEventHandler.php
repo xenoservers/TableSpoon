@@ -15,7 +15,7 @@ use pocketmine\event\player\PlayerMoveEvent;
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
 final class MultiBlockEventHandler implements Listener {
-
+    
     /**
      * @param BlockUpdateEvent $event
      * @priority NORMAL
@@ -27,7 +27,7 @@ final class MultiBlockEventHandler implements Listener {
             $event->setCancelled();
         }
     }
-
+    
     /**
      * @param PlayerInteractEvent $event
      * @priority NORMAL
@@ -41,7 +41,7 @@ final class MultiBlockEventHandler implements Listener {
             }
         }
     }
-
+    
     /**
      * @param PlayerMoveEvent $event
      * @priority MONITOR

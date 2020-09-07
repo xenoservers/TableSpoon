@@ -22,11 +22,11 @@ class FireCharge extends Item {
     public function __construct($meta = 0){
         parent::__construct(self::FIRE_CHARGE, $meta, "Fire Charge");
     }
-
+    
     public function canBeActivated(): bool{
         return true;
     }
-
+    
     public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $facePos): bool{
         $target = $blockClicked;
         $level = $player->getLevel();
@@ -73,7 +73,7 @@ class FireCharge extends Item {
                     }
                 }
             }
-
+            
             $z_max = $tz;
             $z_min = $tz;
             for($z = $tz + 1; $level->getBlock($temporalVector->setComponents($tx, $ty, $z))->getId() == Block::OBSIDIAN; $z++){
@@ -113,11 +113,11 @@ class FireCharge extends Item {
                 }
             }
         }
-
+        
         if(($blockClicked instanceof Solid)){
             $level->setBlock($blockReplace, BlockFactory::get(Block::FIRE), true, true);
             $level->broadcastLevelSoundEvent($blockReplace->add(0.5, 0.5, 0.5), LevelSoundEventPacket::SOUND_IGNITE);
-
+            
             if($player->isSurvival()){
                 --$this->count;
             }

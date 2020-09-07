@@ -16,15 +16,15 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
 class EndPortalMultiBlock extends PortalMultiBlock {
-
+    
     public function getTargetWorldInstance(): Level{
         return TableSpoon::$endLevel;
     }
-
+    
     public function interact(Block $wrapping, Player $player, Item $item, int $face): bool{
         return false;
     }
-
+    
     public function update(Block $wrapping): bool{
         return false;
     }

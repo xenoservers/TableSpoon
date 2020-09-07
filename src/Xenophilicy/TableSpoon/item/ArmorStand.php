@@ -23,10 +23,10 @@ class ArmorStand extends Item {
     public function __construct(int $meta = 0){
         parent::__construct(self::ARMOR_STAND, $meta, "Armor Stand");
     }
-
+    
     public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector): bool{
         $entity = Entity::createEntity(Entity::ARMOR_STAND, $player->getLevel(), Entity::createBaseNBT($blockReplace->add(0.5, 0, 0.5), null, $this->getDirection($player->getYaw())));
-
+        
         if($entity instanceof ArmorStandEntity){
             if($player->isSurvival()){
                 $this->pop();
@@ -35,7 +35,7 @@ class ArmorStand extends Item {
         }
         return true;
     }
-
+    
     /**
      * @param $yaw
      * @return float

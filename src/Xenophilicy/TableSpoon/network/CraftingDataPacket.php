@@ -17,13 +17,13 @@ use Xenophilicy\TableSpoon\item\enchantment\Enchantment;
  * Class CraftingDataPacket
  * @package Xenophilicy\TableSpoon\network
  */
-class CraftingDataPacket extends PMCraftingDataPacket{
-
+class CraftingDataPacket extends PMCraftingDataPacket {
+    
     /** @var int */
     public const
-        ENTRY_ENCHANT_LIST = 4, //TODO
-        ENTRY_SHULKER_BOX = 5; //TODO
-
+      ENTRY_ENCHANT_LIST = 4, //TODO
+      ENTRY_SHULKER_BOX = 5; //TODO
+    
     protected function decodePayload(): void{
         $this->decodedEntries = [];
         $recipeCount = $this->getUnsignedVarInt();
@@ -79,7 +79,7 @@ class CraftingDataPacket extends PMCraftingDataPacket{
         }
         $this->getBool(); //cleanRecipes
     }
-
+    
     protected function encodePayload(): void{
         $this->putUnsignedVarInt(count($this->entries));
         $writer = new NetworkBinaryStream();
@@ -93,7 +93,7 @@ class CraftingDataPacket extends PMCraftingDataPacket{
             }
             $writer->reset();
         }
-
+        
         $this->putUnsignedVarInt(count($this->potionTypeRecipes));
         foreach($this->potionTypeRecipes as $recipe){
             $this->putVarInt($recipe->getInputItemId());
@@ -110,7 +110,7 @@ class CraftingDataPacket extends PMCraftingDataPacket{
             $this->putVarInt($recipe->getOutputItemId());
         }
     }
-
+    
     /**
      * @param object $entry
      * @param NetworkBinaryStream $stream
@@ -128,7 +128,7 @@ class CraftingDataPacket extends PMCraftingDataPacket{
         }
         return -1;
     }
-
+    
     /**
      * @param ShapelessRecipe $recipe
      * @param NetworkBinaryStream $stream
@@ -147,7 +147,7 @@ class CraftingDataPacket extends PMCraftingDataPacket{
         $stream->put(str_repeat("\x00", 16)); //Null UUID
         return CraftingDataPacket::ENTRY_SHAPELESS;
     }
-
+    
     /**
      * @param ShapedRecipe $recipe
      * @param NetworkBinaryStream $stream
@@ -169,7 +169,7 @@ class CraftingDataPacket extends PMCraftingDataPacket{
         $stream->put(str_repeat("\x00", 16)); //Null UUID
         return CraftingDataPacket::ENTRY_SHAPED;
     }
-
+    
     /**
      * @param FurnaceRecipe $recipe
      * @param NetworkBinaryStream $stream
@@ -187,7 +187,7 @@ class CraftingDataPacket extends PMCraftingDataPacket{
             return CraftingDataPacket::ENTRY_FURNACE;
         }
     }
-
+    
     /**
      * @param EnchantmentList $list
      * @param NetworkBinaryStream $stream

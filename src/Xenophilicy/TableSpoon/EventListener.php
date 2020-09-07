@@ -7,24 +7,11 @@ namespace Xenophilicy\TableSpoon;
 
 use pocketmine\block\Block;
 use pocketmine\entity\Entity;
-use pocketmine\event\{block\BlockBreakEvent,
-    block\BlockPlaceEvent,
-    Cancellable,
-    level\LevelLoadEvent,
-    Listener,
-    server\DataPacketReceiveEvent,
-    server\DataPacketSendEvent};
+use pocketmine\event\{block\BlockBreakEvent, block\BlockPlaceEvent, Cancellable, level\LevelLoadEvent, Listener, server\DataPacketReceiveEvent,
+  server\DataPacketSendEvent};
 use pocketmine\event\entity\{EntityDamageByEntityEvent, EntityDamageEvent, EntityTeleportEvent};
-use pocketmine\event\player\{cheat\PlayerIllegalMoveEvent,
-    PlayerDropItemEvent,
-    PlayerGameModeChangeEvent,
-    PlayerInteractEvent,
-    PlayerItemConsumeEvent,
-    PlayerItemHeldEvent,
-    PlayerLoginEvent,
-    PlayerMoveEvent,
-    PlayerQuitEvent,
-    PlayerRespawnEvent};
+use pocketmine\event\player\{cheat\PlayerIllegalMoveEvent, PlayerDropItemEvent, PlayerGameModeChangeEvent, PlayerInteractEvent, PlayerItemConsumeEvent,
+  PlayerItemHeldEvent, PlayerLoginEvent, PlayerMoveEvent, PlayerQuitEvent, PlayerRespawnEvent};
 use pocketmine\item\Armor;
 use pocketmine\item\Item;
 use pocketmine\network\mcpe\protocol\ChangeDimensionPacket;
@@ -42,11 +29,11 @@ use Xenophilicy\TableSpoon\utils\ArmorTypes;
  * Class EventListener
  * @package Xenophilicy\TableSpoon
  */
-class EventListener implements Listener{
-
+class EventListener implements Listener {
+    
     /** @var Plugin */
     public $plugin;
-
+    
     /**
      * EventListener constructor.
      * @param Plugin $plugin
@@ -54,7 +41,7 @@ class EventListener implements Listener{
     public function __construct(Plugin $plugin){
         $this->plugin = $plugin;
     }
-
+    
     /**
      * @param PlayerLoginEvent $event
      * @priority MONITOR
@@ -62,7 +49,7 @@ class EventListener implements Listener{
     public function onPlayerLogin(PlayerLoginEvent $event): void{
         PlayerSessionManager::create($event->getPlayer());
     }
-
+    
     /**
      * @param PlayerQuitEvent $event
      * @priority MONITOR
@@ -70,7 +57,7 @@ class EventListener implements Listener{
     public function onPlayerQuit(PlayerQuitEvent $event): void{
         PlayerSessionManager::destroy($event->getPlayer());
     }
-
+    
     /**
      * @param LevelLoadEvent $ev
      * @priority LOWEST
@@ -92,10 +79,9 @@ class EventListener implements Listener{
             }
         }
     }
-
+    
     /**
      * @param EntityDamageEvent $ev
-     *
      * @priority HIGHEST
      * @ignoreCancelled true
      */
@@ -113,37 +99,33 @@ class EventListener implements Listener{
             }
         }
     }
-
+    
     /**
      * @param PlayerRespawnEvent $ev
-     *
      * @priority HIGHEST
      */
     public function onRespawn(PlayerRespawnEvent $ev){
         if($ev->getPlayer()->isOnFire()) $ev->getPlayer()->extinguish();
     }
-
+    
     /**
      * @param PlayerLoginEvent $ev
-     *
      * @priority LOWEST
      */
     public function onLogin(PlayerLoginEvent $ev){
         TableSpoon::getInstance()->createSession($ev->getPlayer());
     }
-
+    
     /**
      * @param PlayerQuitEvent $ev
-     *
      * @priority LOWEST
      */
     public function onLeave(PlayerQuitEvent $ev){
         TableSpoon::getInstance()->destroySession($ev->getPlayer());
     }
-
+    
     /**
      * @param PlayerIllegalMoveEvent $ev
-     *
      * @priority LOWEST
      */
     public function onCheat(PlayerIllegalMoveEvent $ev){
@@ -154,10 +136,9 @@ class EventListener implements Listener{
             }
         }
     }
-
+    
     /**
      * @param PlayerItemHeldEvent $ev
-     *
      * @priority HIGHEST
      * @ignoreCancelled true
      */
@@ -172,10 +153,9 @@ class EventListener implements Listener{
             $session->lastHeldSlot = $ev->getSlot();
         }
     }
-
+    
     /**
      * @param PlayerInteractEvent $event
-     *
      * @priority HIGHEST
      * @ignoreCancelled true
      */
@@ -216,10 +196,9 @@ class EventListener implements Listener{
             $player->getInventory()->setItemInHand($old);
         }
     }
-
+    
     /**
      * @param PlayerGameModeChangeEvent $ev
-     *
      * @priority HIGHEST
      * @ignoreCancelled true
      */
@@ -228,10 +207,9 @@ class EventListener implements Listener{
             $ev->getPlayer()->getInventory()->clearAll();
         }
     }
-
+    
     /**
      * @param PlayerDropItemEvent $ev
-     *
      * @priority HIGHEST
      * @ignoreCancelled true
      */
@@ -240,10 +218,9 @@ class EventListener implements Listener{
             $ev->setCancelled();
         }
     }
-
+    
     /**
      * @param DataPacketSendEvent $event
-     *
      * @priority NORMAL
      */
     public function onDataPacketSend(DataPacketSendEvent $event): void{
@@ -260,10 +237,9 @@ class EventListener implements Listener{
         $pk->spawnSettings = new SpawnSettings($packet->spawnSettings->getBiomeType(), $packet->spawnSettings->getBiomeName(), Utils::getDimension($world));
         $target->sendDataPacket($pk);
     }
-
+    
     /**
      * @param DataPacketReceiveEvent $event
-     *
      * @priority MONITOR
      */
     public function onDataPacketReceive(DataPacketReceiveEvent $event): void{
@@ -274,10 +250,9 @@ class EventListener implements Listener{
         if($player === null || !$player->isOnline()) return;
         PlayerSessionManager::get($player)->endDimensionChange();
     }
-
+    
     /**
      * @param EntityTeleportEvent $event
-     *
      * @priority MONITOR
      */
     public function onEntityTeleport(EntityTeleportEvent $event): void{
@@ -294,10 +269,9 @@ class EventListener implements Listener{
             PlayerSessionManager::get($player)->startDimensionChange();
         }
     }
-
+    
     /**
      * @param EntityDamageEvent $event
-     *
      * @priority LOW
      */
     public function onEntityDamage(EntityDamageEvent $event): void{
@@ -312,7 +286,7 @@ class EventListener implements Listener{
             }
         }
     }
-
+    
     private function checkDimChange(Player $player, Cancellable $event): bool{
         $instance = PlayerSessionManager::get($player);
         if($instance !== null && $instance->isChangingDimension()){
@@ -321,46 +295,41 @@ class EventListener implements Listener{
         }
         return false;
     }
-
+    
     /**
      * @param PlayerInteractEvent $event
-     *
      * @priority LOW
      */
     public function onPlayerInteract(PlayerInteractEvent $event): void{
         $this->checkDimChange($event->getPlayer(), $event);
     }
-
+    
     /**
      * @param PlayerItemConsumeEvent $event
-     *
      * @priority LOW
      */
     public function onPlayerItemUse(PlayerItemConsumeEvent $event): void{
         $this->checkDimChange($event->getPlayer(), $event);
     }
-
+    
     /**
      * @param PlayerMoveEvent $event
-     *
      * @priority LOW
      */
     public function onPlayerMove(PlayerMoveEvent $event): void{
         $this->checkDimChange($event->getPlayer(), $event);
     }
-
+    
     /**
      * @param BlockPlaceEvent $event
-     *
      * @priority LOW
      */
     public function onBlockPlace(BlockPlaceEvent $event): void{
         $this->checkDimChange($event->getPlayer(), $event);
     }
-
+    
     /**
      * @param BlockBreakEvent $event
-     *
      * @priority LOW
      */
     public function onBlockBreak(BlockBreakEvent $event): void{

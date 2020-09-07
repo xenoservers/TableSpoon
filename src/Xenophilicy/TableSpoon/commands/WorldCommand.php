@@ -11,8 +11,8 @@ use pocketmine\utils\TextFormat as TF;
  * Class WorldCommand
  * @package Xenophilicy\TableSpoon\commands
  */
-class WorldCommand extends VanillaCommand{
-
+class WorldCommand extends VanillaCommand {
+    
     /**
      * WorldCommand constructor.
      * @param $name
@@ -21,7 +21,7 @@ class WorldCommand extends VanillaCommand{
         parent::__construct($name, "Teleport to a world");
         $this->setPermission("pocketmine.command.world");
     }
-
+    
     /**
      * @param CommandSender $sender
      * @param string $currentAlias

@@ -13,9 +13,9 @@ use function min;
  * @package Xenophilicy\TableSpoon\item
  */
 class Trident extends Tool {
-
+    
     public const TAG_TRIDENT = "Trident";
-
+    
     /**
      * Trident constructor.
      * @param int $meta
@@ -24,11 +24,11 @@ class Trident extends Tool {
     public function __construct($meta = 0, $count = 1){
         parent::__construct(self::TRIDENT, $meta, "Trident");
     }
-
+    
     public function getMaxDurability(): int{
         return 251;
     }
-
+    
     public function onReleaseUsing(Player $player): bool{
         $diff = $player->getItemUseDuration();
         $p = $diff / 10;
@@ -48,15 +48,15 @@ class Trident extends Tool {
         }
         return true;
     }
-
+    
     public function getMaxStackSize(): int{
         return 1;
     }
-
+    
     public function onAttackEntity(Entity $victim): bool{
         return $this->applyDamage(1);
     }
-
+    
     public function getAttackPoints(): int{
         return 8;
     }

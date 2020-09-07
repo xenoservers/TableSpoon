@@ -15,23 +15,23 @@ use Xenophilicy\TableSpoon\player\PlayerSessionManager;
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
 abstract class PortalMultiBlock implements MultiBlock {
-
+    
     /**
      * PortalMultiBlock constructor.
      */
     public function __construct(){
     }
-
+    
     final public function getTeleportationDuration(Player $player): int{
         return $player->isAdventure() || $player->isSurvival() ? 80 : 1;
     }
-
+    
     abstract public function getTargetWorldInstance(): Level;
-
+    
     public function onPlayerMoveInside(Player $player, Block $block): void{
         PlayerSessionManager::get($player)->onEnterPortal($this);
     }
-
+    
     public function onPlayerMoveOutside(Player $player, Block $block): void{
         PlayerSessionManager::get($player)->onLeavePortal();
     }

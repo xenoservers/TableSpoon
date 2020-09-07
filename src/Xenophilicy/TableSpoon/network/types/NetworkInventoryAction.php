@@ -19,8 +19,8 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class NetworkInventoryAction
  * @package Xenophilicy\TableSpoon\network\types
  */
-class NetworkInventoryAction extends PMNetworkInventoryAction{
-
+class NetworkInventoryAction extends PMNetworkInventoryAction {
+    
     public const SOURCE_CONTAINER = 0;
     public const SOURCE_CRAFTING_GRID = 100;
     public const SOURCE_TODO = 99999;
@@ -31,7 +31,7 @@ class NetworkInventoryAction extends PMNetworkInventoryAction{
     public const SOURCE_TYPE_ENCHANT_INPUT = -15;
     public const SOURCE_TYPE_ENCHANT_MATERIAL = -16;
     public const SOURCE_TYPE_CONTAINER_DROP_CONTENTS = -100;
-
+    
     public static function cast(PMNetworkInventoryAction $action): self{
         $newAction = new self();
         $newAction->sourceType = $action->sourceType;
@@ -43,7 +43,7 @@ class NetworkInventoryAction extends PMNetworkInventoryAction{
         $newAction->newItemStackId = $action->newItemStackId;
         return $newAction;
     }
-
+    
     /**
      * @param NetworkBinaryStream $packet
      * @param bool $hasItemStackIds
@@ -59,10 +59,10 @@ class NetworkInventoryAction extends PMNetworkInventoryAction{
                 throw new UnexpectedValueException("Unknown inventory action source type $this->sourceType");
             }
         }
-
+        
         return $this;
     }
-
+    
     /**
      * @param Player $player
      * @return CreativeInventoryAction|DropItemAction|InventoryAction|SlotChangeAction|null

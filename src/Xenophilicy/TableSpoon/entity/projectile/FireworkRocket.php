@@ -1,142 +1,73 @@
-<?php /** @noinspection PhpUndefinedMethodInspection */
+<?php
 
-/*
- * Credits to @thebigsmileXD (XenialDan)
- * Original Repository: https://github.com/thebigsmileXD/fireworks
- * Ported to TableSpoon as TableSpoon overrides the fireworks item (as Elytra Booster)
- * Licensed under the MIT License (January 1, 2018)
- *
- * Modified to add explosion damage and a few fixes
- * */
+// Huge thanks to BlockHorizon's Fireworks plugin for the working fireworks functionality
 
 declare(strict_types=1);
 
 namespace Xenophilicy\TableSpoon\entity\projectile;
 
-use Exception;
 use pocketmine\entity\Entity;
-use pocketmine\entity\Living;
 use pocketmine\entity\projectile\Projectile;
-use pocketmine\event\entity\EntityDamageEvent;
-use pocketmine\item\Item;
 use pocketmine\level\Level;
-use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\mcpe\protocol\ActorEventPacket;
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
-use pocketmine\network\mcpe\protocol\SetActorDataPacket;
-use pocketmine\Player;
-use pocketmine\utils\Random;
 use Xenophilicy\TableSpoon\item\Fireworks;
 
 /**
  * Class FireworkRocket
  * @package Xenophilicy\TableSpoon\entity\projectile
  */
-class FireworkRocket extends Projectile{
-
-    public const NETWORK_ID = self::FIREWORKS_ROCKET;
-
+class FireworkRocket extends Projectile {
+    
+    public const NETWORK_ID = Entity::FIREWORKS_ROCKET;
+    public const DATA_FIREWORK_ITEM = 16;
+    
     public $width = 0.25;
     public $height = 0.25;
-    public $gravity = 0.0;
-    public $drag = 0.01;
-    public $random;
-    public $fireworks;
-    private $lifeTime = 0;
-
-    /**
-     * FireworkRocket constructor.
-     * @param Level $level
-     * @param CompoundTag $nbt
-     * @param Entity|null $shootingEntity
-     * @param Fireworks|null $item
-     * @param Random|null $random
-     */
-    public function __construct(Level $level, CompoundTag $nbt, Entity $shootingEntity = null, ?Fireworks $item = null, ?Random $random = null){
-        $this->random = $random;
-        $this->fireworks = $item;
-        parent::__construct($level, $nbt, $shootingEntity);
+    /** @var int */
+    protected $lifeTime = 0;
+    
+    public function __construct(Level $level, CompoundTag $nbt, ?Fireworks $fireworks = null){
+        parent::__construct($level, $nbt);
+        if($fireworks !== null && $fireworks->getNamedTagEntry("Fireworks") instanceof CompoundTag){
+            $this->propertyManager->setCompoundTag(self::DATA_FIREWORK_ITEM, $fireworks->getNamedTag());
+            $this->setLifeTime($fireworks->getRandomizedFlightDuration());
+        }
+        $level->broadcastLevelSoundEvent($this, LevelSoundEventPacket::SOUND_LAUNCH);
     }
     
-    /**
-     * @param Player[]|Player $player
-     * @param array|null $data Properly formatted entity data, defaults to everything
-     */
-    public function sendData($player, array $data = null): void{
-        if(!is_array($player)){
-            $player = [$player];
-        }
-        $pk = new SetActorDataPacket();
-        $pk->entityRuntimeId = $this->getId();
-        $pk->metadata = $data ?? $this->getDataPropertyManager()->getDirty();
-        foreach($player as $p){
-            if($p === $this){
-                continue;
-            }
-            $p->dataPacket(clone $pk);
-        }
-        if($this instanceof Player){
-            $this->dataPacket($pk);
-        }
+    public function setLifeTime(int $life): void{
+        $this->lifeTime = $life;
     }
-
-    public function spawnTo(Player $player): void{
-        $this->setMotion($this->getDirectionVector());
-        $this->level->broadcastLevelSoundEvent($this, LevelSoundEventPacket::SOUND_LAUNCH);
-        parent::spawnTo($player);
-    }
-
-    public function despawnFromAll(): void{
-        if(count($this->namedtag->getCompoundTag(Fireworks::TAG_FIREWORKS)->getListTag(Fireworks::TAG_EXPLOSIONS)) > 0){
-            foreach($this->getLevel()->getNearbyEntities($this->getBoundingBox()->expand(5, 5, 5)) as $entity){ // 4 1/2 blocks acording to the wiki
-                if($entity instanceof Living){
-                    $distance = $this->distance($entity);
-                    $distance = ($distance > 0 ? $distance : 1);
-                    $k = 22.5;
-                    $damage = $k / $distance;
-                    if($damage > 0){
-                        $dmgEv = new EntityDamageEvent($entity, EntityDamageEvent::CAUSE_CUSTOM, $damage);
-                        $entity->attack($dmgEv);
-                    }
-                }
-            }
-        }
-        $this->broadcastEntityEvent(ActorEventPacket::FIREWORK_PARTICLES, 0);
-        parent::flagForDespawn();
-        $this->level->broadcastLevelSoundEvent($this, LevelSoundEventPacket::SOUND_BLAST);
-    }
-
+    
     public function entityBaseTick(int $tickDiff = 1): bool{
-        if($this->lifeTime-- < 0){
+        if($this->closed){
+            return false;
+        }
+        $hasUpdate = parent::entityBaseTick($tickDiff);
+        if($this->doLifeTimeTick()){
+            $hasUpdate = true;
+        }
+        return $hasUpdate;
+    }
+    
+    protected function doLifeTimeTick(): bool{
+        if(!$this->isFlaggedForDespawn() and --$this->lifeTime < 0){
+            $this->doExplosionAnimation();
             $this->flagForDespawn();
             return true;
-        }else{
-            return parent::entityBaseTick($tickDiff);
         }
+        return false;
     }
-
-    protected function initEntity(): void{
-        parent::initEntity();
-        $random = $this->random ?? new Random();
-        $this->setGenericFlag(self::DATA_FLAG_HAS_COLLISION, true);
-        $this->setGenericFlag(self::DATA_FLAG_AFFECTED_BY_GRAVITY, true);
-        if($this->fireworks instanceof Item){
-            $this->getDataPropertyManager()->setItem(16, Item::get($this->fireworks->getId(), $this->fireworks->getDamage(), $this->fireworks->getCount(), $this->fireworks->getNamedTag()));
-        }else{
-            $this->getDataPropertyManager()->setItem(16, Item::get(Item::FIREWORKS));
-        }
-        $flyTime = 1;
-        try{
-            if(!is_null($this->namedtag->getCompoundTag(Fireworks::TAG_FIREWORKS))){
-                $fireworksNBT = $this->namedtag->getCompoundTag(Fireworks::TAG_FIREWORKS);
-                if($fireworksNBT->hasTag(Fireworks::TAG_FLIGHT, ByteTag::class)){
-                    $flyTime = $fireworksNBT->getByte(Fireworks::TAG_FLIGHT, 1);
-                }
-            }
-        }catch(Exception $exception){
-            $this->server->getLogger()->debug($exception);
-        }
-        $this->lifeTime = 20 * $flyTime + $random->nextBoundedInt(5) + $random->nextBoundedInt(7);
+    
+    protected function doExplosionAnimation(): void{
+        $this->broadcastEntityEvent(ActorEventPacket::FIREWORK_PARTICLES);
+    }
+    
+    protected function tryChangeMovement(): void{
+        $this->motion->x *= 1.15;
+        $this->motion->y += 0.04;
+        $this->motion->z *= 1.15;
     }
 }

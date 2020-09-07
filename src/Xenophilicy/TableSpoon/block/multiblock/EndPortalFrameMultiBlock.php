@@ -21,17 +21,17 @@ use Xenophilicy\TableSpoon\block\EndPortalFrame;
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
 class EndPortalFrameMultiBlock implements MultiBlock {
-
+    
     private const SIDES = [Vector3::SIDE_NORTH, Vector3::SIDE_EAST, Vector3::SIDE_SOUTH, Vector3::SIDE_WEST];
-
+    
     /** @var ReflectionProperty */
     private $property_eye;
-
+    
     public function __construct(){
         $this->property_eye = new ReflectionProperty(EndPortalFrame::class, "eye");
         $this->property_eye->setAccessible(true);
     }
-
+    
     public function interact(Block $wrapping, Player $player, Item $item, int $face): bool{
         $eyed = $wrapping->getDamage() >= 4 && $wrapping->getDamage() <= 7;
         if(!$eyed){
@@ -52,7 +52,7 @@ class EndPortalFrameMultiBlock implements MultiBlock {
         }
         return false;
     }
-
+    
     public function tryCreatingPortal(Block $wrapping): void{
         for($i = 0; $i < 4; ++$i){
             for($j = -1; $j <= 1; ++$j){
@@ -63,7 +63,7 @@ class EndPortalFrameMultiBlock implements MultiBlock {
             }
         }
     }
-
+    
     public function isCompletedPortal(Block $center): bool{
         for($i = 0; $i < 4; ++$i){
             for($j = -1; $j <= 1; ++$j){
@@ -75,7 +75,7 @@ class EndPortalFrameMultiBlock implements MultiBlock {
         }
         return true;
     }
-
+    
     public function createPortal(Block $block): void{
         $level = $block->getLevel();
         for($i = -1; $i <= 1; ++$i){
@@ -84,7 +84,7 @@ class EndPortalFrameMultiBlock implements MultiBlock {
             }
         }
     }
-
+    
     public function tryDestroyingPortal(Block $block): void{
         for($i = 0; $i < 4; ++$i){
             for($j = -1; $j <= 1; ++$j){
@@ -95,7 +95,7 @@ class EndPortalFrameMultiBlock implements MultiBlock {
             }
         }
     }
-
+    
     public function destroyPortal(Block $block): void{
         $level = $block->getLevel();
         for($i = -1; $i <= 1; ++$i){
@@ -105,17 +105,17 @@ class EndPortalFrameMultiBlock implements MultiBlock {
             }
         }
     }
-
+    
     public function update(Block $wrapping): bool{
         if($this->property_eye->getValue($wrapping)){
             $this->tryDestroyingPortal($wrapping);
         }
         return false;
     }
-
+    
     public function onPlayerMoveInside(Player $player, Block $block): void{
     }
-
+    
     public function onPlayerMoveOutside(Player $player, Block $block): void{
     }
 }

@@ -23,8 +23,8 @@ use Xenophilicy\TableSpoon\block\Portal;
  * Class Utils
  * @package Xenophilicy\TableSpoon
  */
-class Utils{
-
+class Utils {
+    
     /**
      * @param Level $lvl
      * @param Vector3 $pos
@@ -33,7 +33,7 @@ class Utils{
     public static function canSeeSky(Level $lvl, Vector3 $pos){
         return ($lvl->getHighestBlockAt($pos->getFloorX(), $pos->getFloorZ()) <= $pos->getY());
     }
-
+    
     /**
      * @param Vector3 $pos1
      * @param Vector3 $pos2
@@ -42,19 +42,19 @@ class Utils{
     public static function vector3XZDistance(Vector3 $pos1, Vector3 $pos2){
         return (($pos1->x - $pos2->x) + ($pos1->z - $pos2->z));
     }
-
+    
     public static function getPotionColor(int $effectID): Color{
         return Potion::getPotionEffectsById($effectID)[0]->getColor();
     }
-
+    
     public static function toggleBool(bool $boolean): bool{
         return !$boolean;
     }
-
+    
     public static function boolToString(bool $boolean): string{
         return $boolean ? "true" : "false";
     }
-
+    
     /**
      * @param $needle
      * @param $haystack
@@ -63,7 +63,7 @@ class Utils{
     public static function in_arrayi($needle, $haystack){
         return in_array(strtolower($needle), array_map('strtolower', $haystack));
     }
-
+    
     /**
      * @param $level
      * @return int
@@ -83,7 +83,7 @@ class Utils{
         }
         return DimensionIds::OVERWORLD;
     }
-
+    
     /**
      * @param Position $pos
      * @param Level $level
@@ -121,12 +121,12 @@ class Utils{
         }
         return new Position($pos->x - 1, $pos->y, $pos->z - 1, $level);
     }
-
+    
     private static function checkBlock(Block $block): bool{
         if($block instanceof Air) return true;
         return false;
     }
-
+    
     /**
      * @param $a
      * @param $b
@@ -141,7 +141,7 @@ class Utils{
         }
         return $x;
     }
-
+    
     public static function stringToASCIIHex(string $string): string{
         $return = "";
         for($i = 0; $i < strlen($string); $i++){
@@ -149,7 +149,7 @@ class Utils{
         }
         return $return;
     }
-
+    
     /**
      * @param Item $item
      * @return EnchantmentInstance[]

@@ -16,13 +16,13 @@ use Xenophilicy\TableSpoon\event\DimensionPortalsEvent;
 class PlayerPortalTeleportEvent extends DimensionPortalsEvent implements Cancellable {
     /** @var Player */
     private $player;
-
+    
     /** @var PortalMultiBlock */
     private $block;
-
+    
     /** @var Position */
     private $target;
-
+    
     /**
      * PlayerPortalTeleportEvent constructor.
      * @param Player $player
@@ -34,19 +34,19 @@ class PlayerPortalTeleportEvent extends DimensionPortalsEvent implements Cancell
         $this->block = $block;
         $this->target = $target;
     }
-
+    
     public function getPlayer(): Player{
         return $this->player;
     }
-
+    
     public function getBlock(): PortalMultiBlock{
         return $this->block;
     }
-
+    
     public function getTarget(): Position{
         return $this->target->asPosition();
     }
-
+    
     public function setTarget(Position $target): void{
         $this->target = $target->asPosition();
     }

@@ -11,14 +11,14 @@ use Xenophilicy\TableSpoon\network\types\NetworkInventoryAction;
  * Class InventoryTransactionPacket
  * @package Xenophilicy\TableSpoon\network
  */
-class InventoryTransactionPacket extends PMInventoryTransactionPacket{
-
+class InventoryTransactionPacket extends PMInventoryTransactionPacket {
+    
     /** @var bool */
     public $isCraftingPart;
-
+    
     /** @var bool */
     public $isFinalCraftingPart;
-
+    
     protected function decodePayload(): void{
         parent::decodePayload();
         foreach($this->actions as $index => $action){

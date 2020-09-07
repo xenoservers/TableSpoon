@@ -10,9 +10,9 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class PacketManager
  * @package Xenophilicy\TableSpoon\network
  */
-class PacketManager{
+class PacketManager {
     private static $initialized;
-
+    
     public static function init(){
         if(!self::$initialized){
             self::$initialized = true;

@@ -34,9 +34,9 @@ use pocketmine\Player;
  * @package Xenophilicy\TableSpoon\item
  */
 class LingeringPotion extends ProjectileItem {
-
+    
     public const TAG_POTION_ID = "PotionId";
-
+    
     /**
      * LingeringPotion constructor.
      * @param int $meta
@@ -44,7 +44,7 @@ class LingeringPotion extends ProjectileItem {
     public function __construct($meta = 0){
         parent::__construct(Item::LINGERING_POTION, $meta, $this->getNameByMeta($meta));
     }
-
+    
     /**
      * @param $meta
      * @return string
@@ -102,22 +102,22 @@ class LingeringPotion extends ProjectileItem {
                 return "Lingering Potion";
         }
     }
-
+    
     public function getMaxStackSize(): int{
         return 1;
     }
-
+    
     public function onClickAir(Player $player, Vector3 $directionVector): bool{//TODO optimise
         $nbt = Entity::createBaseNBT($player->add(0, $player->getEyeHeight(), 0), $directionVector, $player->yaw, $player->pitch);
         $nbt->setShort(self::TAG_POTION_ID, $this->meta);
         $projectile = Entity::createEntity($this->getProjectileEntityType(), $player->getLevel(), $nbt, $player);
-
+        
         if($projectile !== null){
             $projectile->setMotion($projectile->getMotion()->multiply($this->getThrowForce()));
         }
-
+        
         $this->count--;
-
+        
         if($projectile instanceof Projectile){
             $projectileEv = new ProjectileLaunchEvent($projectile);
             $projectileEv->call();
@@ -132,11 +132,11 @@ class LingeringPotion extends ProjectileItem {
         }
         return true;
     }
-
+    
     public function getProjectileEntityType(): string{
         return "LingeringPotion";
     }
-
+    
     public function getThrowForce(): float{
         return 0.5;
     }

@@ -13,7 +13,7 @@ use pocketmine\utils\TextFormat as TF;
  * Class PlaySoundCommand
  * @package Xenophilicy\TableSpoon\commands
  */
-class PlaySoundCommand extends VanillaCommand{
+class PlaySoundCommand extends VanillaCommand {
     /**
      * PlaySoundCommand constructor.
      * @param $name
@@ -22,12 +22,11 @@ class PlaySoundCommand extends VanillaCommand{
         parent::__construct($name, "Plays a sound");
         $this->setPermission("pocketmine.command.playsound");
     }
-
+    
     /**
      * @param CommandSender $sender
      * @param string $currentAlias
      * @param array $args
-     *
      * @return bool
      */
     public function execute(CommandSender $sender, $currentAlias, array $args){

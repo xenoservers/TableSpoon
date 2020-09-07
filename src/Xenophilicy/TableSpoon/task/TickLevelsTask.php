@@ -12,7 +12,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * @package Xenophilicy\TableSpoon\task
  */
 class TickLevelsTask extends Task {
-
+    
     /**
      * @param int $currentTick
      */

@@ -25,7 +25,7 @@ use Xenophilicy\TableSpoon\Utils;
  * Class EnchantHandler
  * @package Xenophilicy\TableSpoon\handlers
  */
-class EnchantHandler implements Listener{
+class EnchantHandler implements Listener {
     /**
      * TODO:
      *  - [X] Smite
@@ -36,14 +36,13 @@ class EnchantHandler implements Listener{
      *  - [X] Lure
      *  - [ ] Frost walker (Very laggy as of now)
      */
-
+    
     /** @var string */
     public const BANE_OF_ARTHROPODS_AFFECTED_ENTITIES = [ // Based on https://minecraft.gamepedia.com/Enchanting#Bane_of_Arthropods ^_^
-        "Spider", "Cave Spider", "Silverfish", "Endermite"];
-
+      "Spider", "Cave Spider", "Silverfish", "Endermite"];
+    
     /**
      * @param EntityDamageEvent $ev
-     *
      * @priority LOWEST
      * @ignoreCancelled true
      */
@@ -72,14 +71,12 @@ class EnchantHandler implements Listener{
             }
         }
     }
-
+    
     /**
      * @param BlockBreakEvent $ev
-     *
      * Attribution:
      *  - Big thanks to @TheAz928 for the values... It really helped a lot! :D
      *  - The onBreak function below is a refactored, bare-bones and more-human friendly version of his Fortune enchant handler...
-     *
      * @priority LOWEST
      * @ignoreCancelled true
      */
@@ -143,7 +140,7 @@ class EnchantHandler implements Listener{
             }
         }
     }
-
+    
     /**
      * @param Item[] $drops
      * @param int $amount
@@ -156,10 +153,9 @@ class EnchantHandler implements Listener{
         }
         return $newDrops;
     }
-
+    
     /**
      * @param EntityDeathEvent $ev
-     *
      * @priority LOWEST
      * @ignoreCancelled true
      */

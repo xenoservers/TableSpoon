@@ -14,7 +14,7 @@ use Xenophilicy\TableSpoon\TableSpoon;
  */
 class LevelManager {
     public static $loaded = false;
-
+    
     public static function init(){
         if(!self::$loaded){
             self::$loaded = true;
@@ -22,13 +22,13 @@ class LevelManager {
             self::loadAndGenerateLevels();
         }
     }
-
+    
     private static function registerGenerators(){
         if(TableSpoon::$settings["dimensions"]["end"]["enabled"]){
             GeneratorManager::addGenerator(Ender::class, "ender");
         }
     }
-
+    
     private static function loadAndGenerateLevels(){
         TableSpoon::$overworldLevel = TableSpoon::getInstance()->getServer()->getDefaultLevel();
         if(TableSpoon::$settings["dimensions"]["nether"]["enabled"]){

@@ -15,8 +15,8 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class WeatherCommand
  * @package Xenophilicy\TableSpoon\commands
  */
-class WeatherCommand extends VanillaCommand{
-
+class WeatherCommand extends VanillaCommand {
+    
     /**
      * WeatherCommand constructor
      * @param string $name
@@ -25,12 +25,11 @@ class WeatherCommand extends VanillaCommand{
         parent::__construct($name, "Set the weather on a level");
         $this->setPermission("pocketmine.command.weather");
     }
-
+    
     /**
      * @param CommandSender $sender
      * @param string $currentAlias
      * @param array $args
-     *
      * @return bool
      */
     public function execute(CommandSender $sender, $currentAlias, array $args){
@@ -62,7 +61,7 @@ class WeatherCommand extends VanillaCommand{
         }
         return true;
     }
-
+    
     /**
      * @param int $weather
      * @return string
@@ -81,7 +80,7 @@ class WeatherCommand extends VanillaCommand{
                 return TF::YELLOW . "Weather: Unknown";
         }
     }
-
+    
     /**
      * @param Level $level
      * @param int $weather

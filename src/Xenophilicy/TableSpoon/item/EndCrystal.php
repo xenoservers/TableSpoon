@@ -22,11 +22,11 @@ class EndCrystal extends Item {
     public function __construct($meta = 0, $count = 1){
         parent::__construct(Item::END_CRYSTAL, $meta, "Ender Crystal");
     }
-
+    
     public function getMaxStackSize(): int{
         return 64;
     }
-
+    
     public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector): bool{
         if(in_array($blockClicked->getId(), [Block::OBSIDIAN, Block::BEDROCK])){
             $nbt = Entity::createBaseNBT($blockReplace->add(0.5, 0, 0.5));

@@ -18,21 +18,21 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * @package Xenophilicy\TableSpoon\block\multiblock
  */
 final class MultiBlockFactory {
-
+    
     /** @var MultiBlock[] */
     private static $blocks = [];
-
+    
     public static function init(): void{
         TableSpoon::getInstance()->getServer()->getPluginManager()->registerEvents(new MultiBlockEventHandler(), TableSpoon::getInstance());
         self::initNether();
         self::initEnd();
     }
-
+    
     private static function initNether(): void{
         self::register(new NetherPortalFrameMultiBlock(), new Obsidian());
         self::register(new NetherPortalMultiBlock(), new Portal());
     }
-
+    
     public static function register(MultiBlock $multiBlock, Block $block): void{
         self::$blocks[$block->getId() . ":" . $block->getDamage()] = $multiBlock;
         foreach(BlockFactory::getBlockStatesArray() as $state){
@@ -41,12 +41,12 @@ final class MultiBlockFactory {
             }
         }
     }
-
+    
     private static function initEnd(): void{
         self::register(new EndPortalFrameMultiBlock(), new EndPortalFrame());
         self::register(new EndPortalMultiBlock(), new EndPortal());
     }
-
+    
     public static function get(Block $block): ?MultiBlock{
         return self::$blocks[$block->getId() . ":" . $block->getDamage()] ?? null;
     }

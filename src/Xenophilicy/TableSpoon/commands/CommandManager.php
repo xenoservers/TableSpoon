@@ -10,8 +10,8 @@ use Xenophilicy\TableSpoon\TableSpoon;
  * Class CommandManager
  * @package Xenophilicy\TableSpoon\commands
  */
-class CommandManager{
-
+class CommandManager {
+    
     public static function init(){
         $cmds = [new WorldCommand("world"), new PlaySoundCommand("playsound")];
         if(TableSpoon::$settings["weather"]["enabled"]){

@@ -12,7 +12,7 @@ use pocketmine\nbt\tag\NamedTag;
  * @package Xenophilicy\TableSpoon\item
  */
 class UnDyedShulkerBox extends ShulkerBox {
-
+    
     /**
      * @param string|null $name
      * @param NamedTag|null $inventory
