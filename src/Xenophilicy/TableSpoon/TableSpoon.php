@@ -29,7 +29,7 @@ use Xenophilicy\TableSpoon\utils\FishingLootTable;
  */
 class TableSpoon extends PluginBase {
     
-    public const CONFIG_VERSION = "1.0.2";
+    public const CONFIG_VERSION = "1.1.0";
     
     /** @var Config */
     public static $cacheFile;
@@ -63,8 +63,16 @@ class TableSpoon extends PluginBase {
     }
     
     public function onEnable(){
-        $this->initManagers();
         $this->checkConfigVersion();
+        $this->initManagers();
+    }
+    
+    private function checkConfigVersion(){
+        if(version_compare(self::CONFIG_VERSION, $this->getConfig()->get("VERSION"), "gt")){
+            $this->getLogger()->warning("You've updated TableSpoon but have an outdated config! Please delete your old config for new features to be enabled and to prevent unwanted errors!");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+            return;
+        }
     }
     
     private function initManagers(){
@@ -88,16 +96,6 @@ class TableSpoon extends PluginBase {
         }
         if(self::$settings["weather"]["enabled"]){
             $this->getScheduler()->scheduleRepeatingTask(new TickLevelsTask(), 1);
-        }
-    }
-    
-    private function checkConfigVersion(){
-        $configVersion = $this->getConfig()->get("VERSION");
-        $pluginVersion = $this->getDescription()->getVersion();
-        if(version_compare(self::CONFIG_VERSION, $configVersion, "gt")){
-            $this->getLogger()->warning("You have updated TableSpoon to v" . $pluginVersion . " but have a config from v$configVersion! Please delete your old config for new features to be enabled and to prevent unwanted errors!");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-            return;
         }
     }
     

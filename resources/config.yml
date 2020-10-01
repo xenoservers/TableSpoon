@@ -1,4 +1,4 @@
-VERSION: "1.0.2" # Internal use only
+VERSION: "1.1.0" # Internal use only
 
 entities:
   # Enable lightning and fire damage
@@ -23,14 +23,20 @@ enchantments:
 dimensions:
   # Nether dimension configuration
   nether:
-    # Enable or disable the Nether dimension
+    # Enable or disable teleporting to the Nether dimension (using portal)
     enabled: true
+    # Enable or disable the Nether level generation
+    # If you have your own Nether world, you can disable this to use it
+    generate: true
     # Set the name of the nether level
     name: "nether"
   # End dimension configuration
   end:
-    # Enable or disable the End dimension
+    # Enable or disable teleporting to the End dimension (using portal)
     enabled: false
+    # Enable or disable the End level generation
+    # If you have your own End world, you can disable this to use it
+    generate: true
     # Set the name of the end level
     name: "end"
 

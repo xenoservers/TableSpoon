@@ -37,11 +37,11 @@ class FishingRod extends Durable {
     }
     
     public function getMaxDurability(): int{
-        return 355; // TODO: Know why it breaks early at 65
+        return 355;
     }
     
     public function onClickAir(Player $player, Vector3 $directionVector): bool{
-        if(TableSpoon::$settings["fishing"]["enabled"]){
+        if(TableSpoon::$settings["player"]["fishing"]["enabled"]){
             $session = TableSpoon::getInstance()->getSessionById($player->getId());
             if($session instanceof PlayerSession){
                 if(!$session->fishing){

@@ -9,6 +9,7 @@ use pocketmine\block\Block;
 use pocketmine\level\Level;
 use pocketmine\Player;
 use Xenophilicy\TableSpoon\player\PlayerSessionManager;
+use Xenophilicy\TableSpoon\TableSpoon;
 
 /**
  * Class PortalMultiBlock
@@ -29,10 +30,12 @@ abstract class PortalMultiBlock implements MultiBlock {
     abstract public function getTargetWorldInstance(): Level;
     
     public function onPlayerMoveInside(Player $player, Block $block): void{
+        if(!TableSpoon::$settings["dimensions"]["nether"]["enabled"]) return;
         PlayerSessionManager::get($player)->onEnterPortal($this);
     }
     
     public function onPlayerMoveOutside(Player $player, Block $block): void{
+        if(!TableSpoon::$settings["dimensions"]["nether"]["enabled"]) return;
         PlayerSessionManager::get($player)->onLeavePortal();
     }
 }

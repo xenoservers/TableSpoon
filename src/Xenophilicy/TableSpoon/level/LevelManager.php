@@ -32,14 +32,18 @@ class LevelManager {
     private static function loadAndGenerateLevels(){
         TableSpoon::$overworldLevel = TableSpoon::getInstance()->getServer()->getDefaultLevel();
         if(TableSpoon::$settings["dimensions"]["nether"]["enabled"]){
-            if(!Server::getInstance()->loadLevel(TableSpoon::$settings["dimensions"]["nether"]["name"])){
-                Server::getInstance()->generateLevel(TableSpoon::$settings["dimensions"]["nether"]["name"], (time()), GeneratorManager::getGenerator("nether"));
+            if(TableSpoon::$settings["dimensions"]["nether"]["generate"]){
+                if(!Server::getInstance()->loadLevel(TableSpoon::$settings["dimensions"]["nether"]["name"])){
+                    Server::getInstance()->generateLevel(TableSpoon::$settings["dimensions"]["nether"]["name"], (time()), GeneratorManager::getGenerator("nether"));
+                }
             }
             TableSpoon::$netherLevel = Server::getInstance()->getLevelByName(TableSpoon::$settings["dimensions"]["nether"]["name"]);
         }
         if(TableSpoon::$settings["dimensions"]["end"]["enabled"]){
-            if(!Server::getInstance()->loadLevel(TableSpoon::$settings["dimensions"]["end"]["name"])){
-                Server::getInstance()->generateLevel(TableSpoon::$settings["dimensions"]["end"]["name"], time(), GeneratorManager::getGenerator("ender"));
+            if(TableSpoon::$settings["dimensions"]["end"]["generate"]){
+                if(!Server::getInstance()->loadLevel(TableSpoon::$settings["dimensions"]["end"]["name"])){
+                    Server::getInstance()->generateLevel(TableSpoon::$settings["dimensions"]["end"]["name"], time(), GeneratorManager::getGenerator("ender"));
+                }
             }
             TableSpoon::$endLevel = Server::getInstance()->getLevelByName(TableSpoon::$settings["dimensions"]["end"]["name"]);
         }
