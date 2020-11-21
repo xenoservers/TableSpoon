@@ -42,7 +42,7 @@ class PacketHandler implements Listener {
                 if($session instanceof PlayerSession){
                     switch($pk->action){
                         case PlayerActionPacket::ACTION_DIMENSION_CHANGE_ACK:
-                        case PlayerActionPacket::ACTION_DIMENSION_CHANGE_REQUEST:
+                        case PlayerActionPacket::ACTION_CREATIVE_PLAYER_DESTROY_BLOCK: // Packets in ACTION_DIMENSION_CHANGE_REQUEST have been renamed in 1.16.100.
                             $pk->action = PlayerActionPacket::ACTION_RESPAWN; // redirect to respawn action so that PMMP would handle it as a respawn
                             break;
                         case PlayerActionPacket::ACTION_START_GLIDE:
