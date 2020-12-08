@@ -2,8 +2,8 @@
 name: Bug report
 about: Create a report to help us improve TableSpoon
 title: "[BUG] YOUR ISSUE TITLE HERE"
-labels: ''
-assignees: Xenophilicy
+labels: bug
+assignees: HyperFlareMC
 
 ---
 

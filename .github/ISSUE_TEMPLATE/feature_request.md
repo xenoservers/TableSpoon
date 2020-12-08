@@ -2,8 +2,8 @@
 name: Feature request
 about: Suggest something be added to TableSpoon
 title: "[FEATURE REQUEST] YOUR SUGGESTION TITLE HERE"
-labels: ''
-assignees: Xenophilicy
+labels: enhancement
+assignees: HyperFlareMC
 
 ---
 
