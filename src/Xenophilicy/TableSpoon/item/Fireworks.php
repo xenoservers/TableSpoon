@@ -17,6 +17,7 @@ use pocketmine\Player;
 use pocketmine\utils\Random;
 use Xenophilicy\TableSpoon\player\PlayerSession;
 use Xenophilicy\TableSpoon\TableSpoon;
+use Xenophilicy\TableSpoon\entity\projectile\FireworkRocket;
 use Xenophilicy\TableSpoon\task\ElytraRocketBoostTrackingTask;
 
 /**
