@@ -1,4 +1,3 @@
-[![TableSpoon](http://file.xenoservers.net/Resources/GitHub-Resources/tablespoon.png)]()
 # Tablespoon
 Dead fork (meaning I no longer update it) of [TeaSpoon](https://github.com/CortexPE/TeaSpoon)
 
