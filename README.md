@@ -1,6 +1,6 @@
 [![TableSpoon](http://file.xenoservers.net/Resources/GitHub-Resources/tablespoon.png)]()
 # Tablespoon
-Highly maintained and updated fork of [TeaSpoon](https://github.com/CortexPE/TeaSpoon)
+Dead fork (meaning I no longer update it) of [TeaSpoon](https://github.com/CortexPE/TeaSpoon)
 
 [![Patreon](https://img.shields.io/badge/patreon-donate-green.svg)](http://patreon.com/xenophilicy)
 [![HitCount](http://hits.dwyl.com/XenoServers/TableSpoon.svg)](http://hits.dwyl.com/XenoServers/TableSpoon)
